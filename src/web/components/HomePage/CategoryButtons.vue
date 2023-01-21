@@ -1,5 +1,5 @@
 <template>
-  <div class="px-0">
+  <div class="py-11">
     <v-row
       class="px-6 text-center"
       justify="center"
