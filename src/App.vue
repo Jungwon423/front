@@ -15,6 +15,6 @@ export default {
 
 <style>
 #app {
-  overflow-y:scroll;
+  overflow-x:scroll;
 }
 </style>
