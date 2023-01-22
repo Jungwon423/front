@@ -1,4 +1,7 @@
 <template>
+  <div>
+    홈 > 가전/전자
+  </div>
   <div class="sidebar-sidebar">
     <div class="sidebar-group1">
       <div

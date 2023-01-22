@@ -81,7 +81,10 @@
         height="30px"
         class="cate-img"
       >
-      <span class="group1-text px-3">카테고리</span>
+      <span
+        class="group1-text px-3"
+        @click="gopage"
+      >카테고리</span>
       <span class="v-line" />
       <span class="group1-text px-10">홈</span>
       <span class="group1-text px-10">핫딜</span>
@@ -90,6 +93,16 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  name: 'HomeHeader',
+  methods: {
+    gopage() {
+      this.$router.push('/category')
+    },
+  },
+}
+</script>
 
 <style>
 
