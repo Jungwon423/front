@@ -20,6 +20,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .category-page {
   width: 1200px;
