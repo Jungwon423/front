@@ -1,13 +1,13 @@
 <template>
   <div class="card-group1">
     <img
-      src="/play/writer.png"
+      :src="imgUrl"
       alt="img11"
       height="250"
       width="250"
     >
     <div class="text-group1 px-5">
-      <span>타이핑 라이터입니다. 아주 쓸만하지 않을까요? 아님 말고</span>
+      <span>{{ productName }}</span>
     </div>
     <span class="px-5 py-3"> 6500원 </span>
     <span class="v-line" />
@@ -46,6 +46,75 @@
 <script>
 export default {
   name: 'ProductContainer',
+  props: {
+
+  productName: {
+    type: String,
+    required: true,
+  },
+
+  productPrice: {
+    type: Number,
+    required: true,
+  },
+  
+  currency: {
+    type: String,
+    required: true
+  },
+
+  discountRate: {
+    type: Number,
+    required: true,
+  },
+
+  imgUrl: {
+    type: String,
+    required: true,
+  },
+
+  categoryName: {
+    type: String,
+    required: true
+  },
+
+  marketName: {
+    type: String,
+    required: true,
+  },
+
+  link: {
+    type: String,
+    required: true,
+  },
+  
+  // tax: {
+  //   type: Number,
+  //   required: true
+  // },
+
+  // shippingFee: {
+  //   type: Number,
+  //   required: true
+  // },
+
+  clickCount: {
+    type: Number,
+    required: true
+  },
+
+  locale: {
+    type: String,
+    required: true,
+  },
+
+  naverPrice: {
+    type: Number,
+    required: true
+  }
+
+  },
+  
   data: () => ({ rating: 3 }),
 }
 </script>

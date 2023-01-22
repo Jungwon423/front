@@ -32,13 +32,27 @@
       justify="center"
     >
       <v-col
-        v-for="n in 3"
-        :key="n"
+        v-for="product in top3ProductList"
+        :key="product"
         cols="12"
         md="4"
         class="pa-0"
       >
-        <product-container />
+        <product-container 
+          :product-name="product.name"
+          :product-price="product.price"
+          :currency="product.currency"
+          :discount-rate="product.discountRate"
+          :img-url="product.imageUrl"
+          :category-name="product.categoryName"
+          :market-name="product.marketName"
+          :link="product.link"
+          :tax="product.tax"
+          :shipping-fee="product.shippingFee"
+          :click-count="product.clickCount"
+          :locale="product.locale"
+          :naver-price="product.naverPrice"
+        />
       </v-col>
     </v-row>
   </div>
@@ -48,16 +62,39 @@
 import ProductContainer from '@/web/components/HomePage/ProductContainer.vue'
 
 export default {
+
   name: 'ProductSet',
+
   components: {
     ProductContainer
   },
+
   data() {
     return {
       tab: 'Market',
       marketNames: ['all', 'Amazon', 'AliExpress', 'eBay'],
     }
   },
+
+  computed: {
+
+    // vuex store에서 top3 product list 읽어옴
+    top3ProductList: function () {
+      return this.$store.state.ProductStore.top3ProductList
+    },
+
+    // vuex store에서 current market 읽어옴
+    currentMarket: function() {
+      return this.$store.state.ProductStore.currentMarket
+    }
+  },
+
+  watch: {
+    currentMarket: function() {
+      this.$store.dispatch('ProductStore/FETCH_TOP3_PRODUCTLIST')
+    }
+  }
+
 }
 </script>
 

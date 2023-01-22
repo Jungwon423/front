@@ -22,7 +22,10 @@ export default {
     AdvertisingBox,
     CategoryButtons,
     ProductSet,
-    ExhibitionSet
+    // ExhibitionSet
+  },
+  async created () {
+    await this.$store.dispatch('ProductStore/FETCH_TOP3_PRODUCTLIST_API')
   }
 }
 </script>
