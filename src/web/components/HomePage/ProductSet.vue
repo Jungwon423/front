@@ -48,11 +48,11 @@
 import ProductContainer from '@/web/components/HomePage/ProductContainer.vue'
 
 export default {
-    name: 'ProductSet',
-    components: {
-        ProductContainer
-    },
-    data() {
+  name: 'ProductSet',
+  components: {
+    ProductContainer
+  },
+  data() {
     return {
       tab: 'Market',
       marketNames: ['all', 'Amazon', 'AliExpress', 'eBay'],

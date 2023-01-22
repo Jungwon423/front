@@ -14,4 +14,7 @@ export default {
 </script>
 
 <style>
+#app {
+  overflow-y:scroll;
+}
 </style>
