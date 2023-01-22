@@ -3,6 +3,7 @@ import MobileDetect from 'mobile-detect';
 
 import w_HomePage from '@/web/pages/HomePage.vue';
 import w_CategoryPage from '@/web/pages/CategoryPage.vue';
+import w_ProductPage from '@/web/pages/ProductPage.vue'
 
 const m_routes = [ //모바일 라우터
     {
@@ -23,6 +24,11 @@ const w_routes = [ //웹 라우터
       path: '/category',
       name: 'category',
       component: w_CategoryPage
+    },
+    {
+      path: '/product',
+      name: 'product',
+      component: w_ProductPage
     }
 ]
 

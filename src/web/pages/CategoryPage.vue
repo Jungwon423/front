@@ -16,9 +16,4 @@ export default {
 }
 </script>
 <style scoped>
-#app{
-  width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
 </style>
