@@ -1,5 +1,5 @@
 <template>
-  <div class="pa-10">
+  <div class="pa-10 flex-titlebar">
     <v-avatar
       color="white"
       size="56"
@@ -17,32 +17,62 @@
     >
       Kagu
     </span>
-    <span
-      class="
-      d-flex
-      align-center
-      rounded-xl
-      search-bar"
+  
+    <div class="search-bar-wrapper">
+      <input
+        type="text"
+        name="hot"
+        placeholder="최근 핫딜"
+        class="search-bar"
+      >
+      <div class="search-btn1 text-center">
+        <v-row
+          align-content="center"
+        >
+          <v-col>검색</v-col>
+        </v-row>
+      </div>
+    </div>
+    <v-row
+      class="text-center"
+      justify="center"
     >
-      <v-text-field
-        class="text-align-center"
-        bg-color="#ECEFF1"
-        density="comfortable"
-        hide-details="auto"
-        append-inner-icon="mdi-magnify"
-      />
-    </span>
-    <v-icon
-      large
-    >
-      mdi-heart
-    </v-icon>
-    <v-icon
-      large
-    >
-      mdi-account
-    </v-icon>
+      <v-col>
+        <div class="icon-group1">
+          <v-icon
+            large
+            color="grey"
+          >
+            mdi-account
+          </v-icon>
+          <div
+            class="py-2"
+            style="text-align:center"
+          >
+            내 프로필
+          </div>
+        </div>
+      </v-col>
+      <v-col>
+        <div class="icon-group2">
+          <v-icon
+            large
+            color="grey"
+          >
+            mdi-heart
+          </v-icon>
+          <div
+            class="py-2"
+            style="text-align:center"
+          >
+            나의 찜
+          </div>
+        </div>
+      </v-col>
+    </v-row>
   </div>
+    
+
   <div>
     <div class="group1">
       <img
@@ -108,7 +138,46 @@
   border-color:#E0E0E0;
   height:38px;
 }
+.search-bar-wrapper{
+  display: flex;
+  border-style:solid;
+  border-radius:10px;
+  border-color:#6D4C41;
+  border-width:1px;
+  margin-left:50px;
+  width:400px;
+}
 .search-bar{
-  width:500px;
+  position:relative;
+  width:400px;
+  left:5%;
+}
+.search-btn1{
+  display:flex;
+  height:auto;
+  width:100px;
+  margin-left:50px;
+  border-color:#6D4C41;
+  border-radius:0px 9px 9px 0px;
+  background-color:#8D6E63;
+  border-width:1px;
+  color:white;
+}
+.flex-titlebar{
+  display: flex;
+}
+.icon-group1{
+  position:absolute;
+  right:20%;
+  width:100px;
+  display:block;
+  font-size:small;
+}
+.icon-group2{
+  position:absolute;
+  right:10%;
+  width:100px;
+  display:block;
+  font-size:small;
 }
 </style>
