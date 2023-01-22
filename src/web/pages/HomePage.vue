@@ -1,9 +1,11 @@
 <template>
-  <HomeHeader />
-  <AdvertisingBox />
-  <CategoryButtons />
-  <ProductSet />
-  <ExhibitionSet />
+  <div class="home-page">
+    <HomeHeader />
+    <AdvertisingBox />
+    <CategoryButtons />
+    <ProductSet />
+    <ExhibitionSet />
+  </div>
 </template>
 
 <script>
@@ -24,6 +26,12 @@ export default {
   }
 }
 </script>
+
 <style scoped>
+.home-page {
+  width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
 </style>
   

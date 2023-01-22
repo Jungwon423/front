@@ -49,7 +49,7 @@ export default {
   data: () => ({ rating: 3 }),
 }
 </script>
-  
+
 <style scoped>
 .card-group1{
   width: 190px;
@@ -74,4 +74,3 @@ export default {
   display:flex;
 }
 </style>
-  

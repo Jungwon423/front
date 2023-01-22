@@ -1,67 +1,69 @@
 <template>
-  <div>
-    홈 > 가전/전자
-  </div>
-  <div class="sidebar-sidebar">
-    <div class="sidebar-group1">
-      <div
-        class="sidebar-title pa-2"
-      >
-        Category 
-        <span><v-icon
-          class="px-12 icon1"
-          color="black"
-          size="xx-large"
+  <div class="side-box">
+    <span>
+      홈 > 가전/전자
+    </span>
+    <div class="sidebar-sidebar">
+      <div class="sidebar-group1">
+        <div
+          class="sidebar-title pa-2"
         >
-          mdi-menu-up
-        </v-icon>
-        </span>
-      </div>
-      <div
-        v-for="item in categoryNames" 
-        :key="item"
-        class="sidebar-content"
-      >
-        <span class="sidebar-text">
-          {{ item }}
-        </span>
-      </div>
+          카테고리
+          <span><v-icon
+            class="px-12 icon1"
+            color="black"
+            size="xx-large"
+          >
+            mdi-menu-up
+          </v-icon>
+          </span>
+        </div>
+        <div
+          v-for="item in categoryNames" 
+          :key="item"
+          class="sidebar-content"
+        >
+          <span class="sidebar-text">
+            {{ item }}
+          </span>
+        </div>
           
-      <div class="sidebar-add">
-        See All
+        <div class="sidebar-add">
+          See All
+        </div>
+        <div class="sidebar-add" />
       </div>
-      <div class="sidebar-add" />
-    </div>
-    <div class="sidebar-group1">
-      <div class="sidebar-title pa-2">
-        Brands
-        <span><v-icon
-          class="px-12 icon1"
-          color="black"
-          size="xx-large"
-        >
-          mdi-menu-up
-        </v-icon>
-        </span>
-      </div>
+      <div class="sidebar-group1">
+        <div class="sidebar-title pa-2">
+          쇼핑몰
+          <span><v-icon
+            class="px-12 icon1"
+            color="black"
+            size="xx-large"
+          >
+            mdi-menu-up
+          </v-icon>
+          </span>
+        </div>
 
-      <div class="sidebar-content">
-        <label><input
-          type="checkbox"
-          value="amazon"
-        > Amazon</label>
-      </div>
-      <div class="sidebar-content">
-        <label><input
-          type="checkbox"
-          value="ebay"
-        > <span class="sidebar-text">eBay</span></label>
-      </div>
-      <div class="sidebar-content">
-        <label><input
-          type="checkbox"
-          value="aliexpress"
-        > AliExpress</label>
+        <div class="sidebar-content">
+          <label><input
+            type="checkbox"
+            value="amazon"
+          > Amazon</label>
+        </div>
+        <div class="sidebar-content">
+          <label><input
+            type="checkbox"
+            value="ebay"
+          > <span class="sidebar-text">eBay</span></label>
+        </div>
+        <div class="sidebar-content">
+          <label><input
+            type="checkbox"
+            value="aliexpress"
+          > AliExpress</label>
+        </div>
       </div>
     </div>
   </div>
@@ -78,11 +80,15 @@
   },
   }
 </script>
+
 <style scoped>
+.side-box{
+  float: left;
+  margin-right: 100px
+}
 .sidebar-sidebar {
   width: 240px;
   height: 500px;
-  display: block;
   position: relative;
   align-items: flex-start;
 
