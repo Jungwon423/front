@@ -75,16 +75,14 @@
 
   <div>
     <div class="group1">
-      <img
+      <v-img
         src="/play/line3.svg"
         alt="img002"
         height="30px"
         class="cate-img"
-      >
-      <span
-        class="group1-text px-3"
         @click="gopage"
-      >카테고리</span>
+      />
+      <span class="category-text px-10">카테고리</span>
       <span class="v-line" />
       <span class="group1-text px-10">홈</span>
       <span class="group1-text px-10">핫딜</span>
@@ -119,6 +117,8 @@ export default {
   vertical-align: middle;
 }
 .cate-img{
+  padding-left:150px;
+  position:absolute;
   margin-top:7px;
 }
 .group2-text {
@@ -132,6 +132,17 @@ export default {
   letter-spacing: 0em;
   text-align: left;
   margin-top:4px;
+}
+.category-text{
+  margin-left:70px;
+  margin-top:4px;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: 0em;
+  text-align: left;
+  position: relative;
 }
 .group1-text{
   margin-top:4px;

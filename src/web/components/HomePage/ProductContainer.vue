@@ -43,35 +43,35 @@
   </div>
 </template>
   
-  <script>
-  export default {
-    name: 'ProductContainer',
-    data: () => ({ rating: 3 }),
-  }
-  </script>
+<script>
+export default {
+  name: 'ProductContainer',
+  data: () => ({ rating: 3 }),
+}
+</script>
   
-  <style scoped>
-  .card-group1{
-    width: 190px;
-    height: 450px;
-    display: block;
-    position: relative;
-  }
-  .text-group1{
-    width: 220px;
-    height: auto;
-    display: flex;
-  }
-  .originPrice-group{
-    text-decoration: line-through;
-  }
-  .heart-btn{
-    top:6%;
-    right:-20%;
-    position:absolute;
-    width:30px;
-    height:10px;
-    display:flex;
-  }
-  </style>
+<style scoped>
+.card-group1{
+  width: 190px;
+  height: 450px;
+  display: block;
+  position: relative;
+}
+.text-group1{
+  width: 220px;
+  height: auto;
+  display: flex;
+}
+.originPrice-group{
+  text-decoration: line-through;
+}
+.heart-btn{
+  top:6%;
+  right:-20%;
+  position:absolute;
+  width:30px;
+  height:10px;
+  display:flex;
+}
+</style>
   
