@@ -30,18 +30,14 @@
     </v-row>
     <v-row
       justify="center"
-      class="px-12"
     >
-      <v-col>
-        <product-container />
-      </v-col>
-      <v-col>
-        <product-container />
-      </v-col>
-      <v-col>
-        <product-container />
-      </v-col>
-      <v-col>
+      <v-col
+        v-for="n in 3"
+        :key="n"
+        cols="12"
+        md="4"
+        class="pa-0"
+      >
         <product-container />
       </v-col>
     </v-row>
@@ -49,7 +45,7 @@
 </template>
 
 <script>
-import ProductContainer from '@/web/HomePage/components/ProductContainer.vue'
+import ProductContainer from '@/web/components/HomePage/ProductContainer.vue'
 
 export default {
     name: 'ProductSet',

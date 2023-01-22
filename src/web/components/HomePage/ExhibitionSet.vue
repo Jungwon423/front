@@ -12,7 +12,6 @@
     </v-row> 
     <v-row
       justify="center"
-      class="px-12"
     >
       <v-col>
         <product-container />
@@ -31,7 +30,7 @@
 </template>
   
 <script>
-import ProductContainer from '@/web/HomePage/components/ProductContainer.vue'
+import ProductContainer from '@/web/components/HomePage/ProductContainer.vue'
 
 export default {
   name: 'ProductSet',

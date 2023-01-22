@@ -36,6 +36,7 @@
 .banner{
   padding-top:10px;
   padding-bottom: 10px;
+  top:-8px;
   position:relative;
   background-color: transparent;
 }
@@ -45,7 +46,7 @@
   font-weight: 500;
   line-height: 36px;
   position:absolute;
-  top:500px;
-  left:300px;
+  top:25%;
+  left:10%;
 }
 </style>

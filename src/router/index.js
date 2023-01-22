@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import MobileDetect from 'mobile-detect';
 
-import w_HomePage from '@/web/HomePage/HomePage.vue';
+import w_HomePage from '@/web/pages/HomePage.vue';
+import w_CategoryPage from '@/web/pages/CategoryPage.vue';
 
 const m_routes = [ //모바일 라우터
     {
@@ -17,6 +18,11 @@ const w_routes = [ //웹 라우터
       path: '/',
       name: 'home',
       component: w_HomePage
+    },
+    {
+      path: '/category',
+      name: 'category',
+      component: w_CategoryPage
     }
 ]
 
