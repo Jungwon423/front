@@ -5,6 +5,7 @@ import w_HomePage from '@/web/pages/HomePage.vue';
 import w_CategoryPage from '@/web/pages/CategoryPage.vue';
 import w_ProductPage from '@/web/pages/ProductPage.vue';
 import w_LoginPage from '@/web/pages/LoginPage.vue';
+import w_Login2Page from '@/web/components/LoginPage/LoginMain2.vue';
 import w_RegisterPage from '@/web/pages/RegisterPage.vue';
 import w_PolicyPage from '@/web/pages/PolicyPage.vue';
 import w_CompanyPage from '@/web/pages/CompanyPage.vue';
@@ -38,6 +39,11 @@ const w_routes = [ //웹 라우터
       path: '/login',
       name: 'login',
       component: w_LoginPage
+    },
+    {
+      path: '/login2',
+      name: 'login2',
+      component: w_Login2Page
     },
     {
       path: '/register',

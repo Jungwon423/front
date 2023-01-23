@@ -100,7 +100,7 @@ export default {
     margin-top:150px;
     display: block;
     width:500px;
-    height:600px;
+    height:700px;
     background-color: white;
 }
 #loginForm {
