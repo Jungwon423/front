@@ -46,7 +46,7 @@
   font-weight: 500;
   line-height: 36px;
   position:absolute;
-  top:25%;
-  left:10%;
+  top:30%;
+  left:30%;
 }
 </style>

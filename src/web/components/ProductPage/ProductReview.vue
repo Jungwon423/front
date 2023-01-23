@@ -25,23 +25,43 @@
   <div
     v-for="user in users"
     :key="user"
+    style="display:inline"
     class="pa-8"
   >
-    <span>
-      <v-avatar
-        size="50"
-        class="rounded-xl"
-        color="wheat"
-        :image="user.src"
-      />
-    </span>
-    <span class="user-block">
-      <span>{{ user.name }}</span>
-      <div>
-        {{ user.id }}
+    <div style="display:flex">
+      <div class="img-block">
+        <v-avatar
+          size="50"
+          class="rounded-xl"
+          color="wheat"
+          :image="user.src"
+        />
       </div>
-    </span>
-      
+      <div class="user-block">
+        <div class="user-name">
+          {{ user.name }}
+        </div>
+        <div class="user-id">
+          @{{ user.id }}
+        </div>
+      </div>  
+      <div class="ddabong-card10">
+        <div class="ddabong">
+          <v-img src="@/assets/개추.png" />
+        </div>
+        <div class="ddabong-text">
+          7
+        </div>
+      </div>
+      <div class="ddabong-card11">
+        <div class="ddabong">
+          <v-img src="@/assets/비추.png" />
+        </div>
+        <div class="ddabong-text">
+          0
+        </div>
+      </div>
+    </div>
     <div class="user-rating">
       <v-rating
         v-model="user.rating"
@@ -55,13 +75,10 @@
         readonly
         size="20"
       />
-      <span>{{ user.rating }}</span>
+      <span>{{ user.rating }}점</span>
     </div>
     <div class="user-content py-4">
       {{ user.content }}
-    </div>
-    <div class="date-time">
-      {{ user.date }}
     </div>
   </div>
 </template>
@@ -97,23 +114,70 @@ export default {
 </script>
 <style scoped>
 .text-group5{
-  bottom:0.5%;
   position:relative;
+  bottom:0.5%;
+}
+.img-block{
+  display:flex;
+  height:70px;
+}
+.user-name{
+  font-size:14px;
+  font-weight:600;
+}
+.user-id{
+  font-size:12px;
+  color:#B0BEC5;
 }
 .user-block{
-  font-size:13px;
-  display:inline-block;
+  position:relative;
+  height:70px;
+  margin-top:8px;
+  margin-left:12px;
+  font-size:12px;
+  font-weight: 500;
+  display:block;
 }
 .user-rating{
-  position:relative;
-  left:-15px;
+  display:block;
+  position: relative;
+  height:10px;
+  left:-20px;
+  top:-15px;
 }
 .user-content{
   width :980px;
+  border-bottom:solid;
+  border-width:1px;
+  border-color:#E0E0E0;
 }
 .date-time{
   color:#546E7A;
   font-size:14px;
   text-align: end;
+}
+.ddabong-card10{
+  text-align:end;
+  position:relative;
+  margin-top:10px;
+  left:70%;
+  display:flex;
+  width:100px;
+}
+.ddabong-card11{
+  text-align:end;
+  position:relative;
+  margin-top:10px;
+  left:65%;
+  display:flex;
+  width:100px;
+}
+.ddabong{
+  display: inline-block;
+  width:30px;
+} 
+.ddabong-text{
+  text-align: center;
+  margin:3px;
 }
 </style>

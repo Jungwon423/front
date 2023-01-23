@@ -82,12 +82,21 @@
         class="cate-img"
         @click="gopage"
       />
-      <span class="category-text px-10">카테고리</span>
+      <span
+        class="category-text px-10"
+        @click="gopage"
+      >카테고리</span>
       <span class="v-line" />
       <span class="group1-text px-10">홈</span>
       <span class="group1-text px-10">핫딜</span>
-      <span class="group1-text px-10">기획전</span>
-      <span class="group2-text px-10">로그인</span>
+      <span
+        class="group1-text px-10"
+        @click="goProduct"
+      >기획전</span>
+      <span
+        class="group2-text px-10"
+        @click="goLogin"
+      >로그인</span>
     </div>
   </div>
 </template>
@@ -99,12 +108,17 @@ export default {
     gopage() {
       this.$router.push('/category')
     },
+    goProduct() {
+      this.$router.push('/product')
+    },
+    goLogin() {
+      this.$router.push('/login')
+    },
   },
 }
 </script>
 
-<style>
-
+<style scoped>
 .group1 {
   display: flex;
   height: 50px;
@@ -133,6 +147,7 @@ export default {
   letter-spacing: 0em;
   text-align: left;
   margin-top:4px;
+  cursor: pointer;
 }
 .category-text{
   margin-left:70px;
@@ -144,6 +159,7 @@ export default {
   letter-spacing: 0em;
   text-align: left;
   position: relative;
+  cursor: pointer;
 }
 .group1-text{
   margin-top:4px;
@@ -154,6 +170,7 @@ export default {
   letter-spacing: 0em;
   text-align: left;
   position: relative;
+  cursor: pointer;
 }
 .v-line{
   margin-top:5px;
@@ -192,15 +209,15 @@ export default {
   display: flex;
 }
 .icon-group1{
-  position:absolute;
-  right:20%;
+  position:relative;
+  left:100%;
   width:100px;
   display:block;
   font-size:small;
 }
 .icon-group2{
-  position:absolute;
-  right:10%;
+  position:relative;
+  left:50%;
   width:100px;
   display:block;
   font-size:small;
