@@ -1,22 +1,24 @@
 <template>
   <div class="pa-10 flex-titlebar">
-    <v-avatar
-      color="white"
-      size="56"
+    <router-link
+      to="/"
+      class="decoration-none"
     >
-      <v-img
-        max-height="100"
-        max-width="100"
-        src="@/assets/kamua.png"
-      />
-    </v-avatar>
+      <v-avatar
+        color="white"
+        size="56"
+      >
+        <v-img
+          max-height="100"
+          max-width="100"
+          src="@/assets/kamua.png"
+        />
+      </v-avatar>
 
-    <span
-      class="mx-1"
-      style="font-size: 22px; font-family: dream"
-    >
-      Kagu
-    </span>
+      <span>
+        Kagu
+      </span>
+    </router-link>
   
     <div class="search-bar-wrapper">
       <input
@@ -25,11 +27,14 @@
         placeholder="최근 핫딜"
         class="search-bar"
       >
-      <div class="search-btn1 text-center">
+    
+      <div class="text-center">
         <v-row
           align-content="center"
         >
-          <v-col>검색</v-col>
+          <v-col>
+            <search-dialog />
+          </v-col>
         </v-row>
       </div>
     </div>
@@ -80,7 +85,7 @@
         alt="img002"
         height="30px"
         class="cate-img"
-        @click="gopage"
+        @click="goToCategoryPage"
       />
       <span
         class="category-text px-10"
@@ -102,10 +107,23 @@
 </template>
 
 <script>
+import SearchDialog from './SearchDialog.vue'
+
 export default {
   name: 'HomeHeader',
+  components: {
+    SearchDialog
+  },
+  data () {
+      return {
+        dialog: false,
+      }
+    },
   methods: {
-    gopage() {
+    goToHomePage() {
+      this.$router.push('/')
+    },
+    goToCategoryPage() {
       this.$router.push('/category')
     },
     goProduct() {
@@ -119,6 +137,15 @@ export default {
 </script>
 
 <style scoped>
+
+.decoration-none {
+  color: #000;
+
+  font-size: 22px;
+  font-family: dream;
+  text-decoration : none !important; 
+}
+
 .group1 {
   display: flex;
   height: 50px;
@@ -193,17 +220,6 @@ export default {
   position:relative;
   width:400px;
   left:5%;
-}
-.search-btn1{
-  display:flex;
-  height:auto;
-  width:100px;
-  margin-left:50px;
-  border-color:#6D4C41;
-  border-radius:0px 9px 9px 0px;
-  background-color:#8D6E63;
-  border-width:1px;
-  color:white;
 }
 .flex-titlebar{
   display: flex;

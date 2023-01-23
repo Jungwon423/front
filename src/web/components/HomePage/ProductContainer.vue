@@ -34,7 +34,6 @@
       <span class="heart-btn">
         <v-icon
           large
-          @click="next"
         >
           mdi-heart
         </v-icon>
