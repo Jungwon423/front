@@ -29,7 +29,7 @@
             height="20px"
           />
         </span>
-        <span class="py-2">추천수 : 35개</span>
+        <span class="py-2">리뷰 : 35개</span>
       </div>
       
       <span class="mx-5 py-3"> 6500원 </span>
@@ -72,78 +72,80 @@ export default {
 </script>
 <style scoped>
 .product-wrapper{
-    display:flex;
-    width:980px;
+  display:flex;
+  width:980px;
 }
 .img-wrapper1{
-    display:flex;
-    width:300px;
+  display:flex;
+  width:300px;
 }
 .product-description1{
-    width:600px;
+  width:600px;
 }
 .text-group2{
-    font-size:20px;
-    font-weight: 600;
+  font-size:20px;
+  font-weight: 600;
 }
 .text-group4{
-    position:relative;
-    left:-2%;
+  position:relative;
+  left:-2%;
 }
 .img-message{
-    position:relative;
-    margin-left:10px;
+  position:relative;
+  margin-left:10px;
 }
 .text-group3{
-    display:flex;
-    align-self:center;
+  display:flex;
+  align-self:center;
 }
 .v-line2{
-    margin-top:10px;
-    border-left: solid;
-    border-width:1px;
-    border-color:#E0E0E0;
-    height:20px;
+  margin-top:10px;
+  border-left: solid;
+  border-width:1px;
+  border-color:#E0E0E0;
+  height:20px;
 }
 .h-line1{
-    margin-top:50px;
-    border-left: solid;
-    border-width:0.5px;
-    border-color:#E0E0E0;
-    width:500px;
+  margin-top:50px;
+  border-left: solid;
+  border-width:0.5px;
+  border-color:#E0E0E0;
+  width:500px;
 }
 .originPrice{
-    font-size:11px;
-    text-decoration-line: line-through;
+  position:relative;
+  left:-4%;
+  font-size:11px;
+  text-decoration-line: line-through;
 }
 .discountPrice{
-    font-size:14px;
-    font-weight: 600;
-    color:#EF5350;
+  font-size:14px;
+  font-weight: 600;
+  color:#EF5350;
 }
 .ddabong{
-    display: inline-block;
-    width:50px;
+  display: inline-block;
+  width:50px;
 } 
 .ddabong-card{
-    width:500px;
+  width:500px;
 }
 .ddabong-card1{
-    display:inline-block;
-    border-style:solid;
-    border-width: 1px 0px 1px 1px;
-    border-color:black;
-    width:150px;
-    height:70px;
-    align-self: center;
+  display:inline-block;
+  border-style:solid;
+  border-width: 1px 0px 1px 1px;
+  border-color:black;
+  width:150px;
+  height:70px;
+  align-self: center;
 }
 .ddabong-card2{
-    display:inline-block;
-    border-style:solid;
-    border-width: 1px;
-    border-color:black;
-    width:150px;
-    height:70px;
-    align-self: center;
+  display:inline-block;
+  border-style:solid;
+  border-width: 1px;
+  border-color:black;
+  width:150px;
+  height:70px;
+  align-self: center;
 }
 </style>

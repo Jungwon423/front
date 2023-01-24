@@ -1,21 +1,28 @@
 <template>
-  <div class="card-group1">
-    <img
-      :src="imgUrl"
-      alt="img11"
-      height="250"
-      width="250"
-    >
-    <div class="text-group1 px-5">
-      <span>{{ productName }}</span>
+  <div class="card-group1 px-3">
+    <div class="card-img">
+      <img
+        :src="imgUrl"
+        alt="img11"
+        height="250"
+        width="250"
+      >
     </div>
-    <span class="px-5 py-3"> 6500원 </span>
-    <span class="v-line" />
-    <span class="originPrice-group"> 12000원 </span>
-    <div>
+    <div class="text-group1">
+      <div class="product-name">
+        {{ productName }}
+      </div>
+      <div class="product-group">
+        <span>6500원</span>
+        <span class="originPrice-group"> 12000원 </span>
+      </div>
+      <div class="naver-price">
+        네이버 최저가 : 103,000원
+      </div>
+    </div>
+    <div class="rating-group">
       <v-rating
         v-model="rating"
-        class="px-3"
         value="3.5"
         color="#FFB300"
         empty-icon="mdi-star-outline"
@@ -25,19 +32,43 @@
         readonly
         size="15"
       />
-
-      <span
-        style="font-weight: bolder"
-      >
-        3.5(6504)
+      <span class="px-1 rating-num2">
+        3.0
       </span>
-      <span class="heart-btn">
-        <v-icon
-          large
+      <div class="py-3 review-group">
+        <span>
+          <v-img
+            src="@/assets/message.png"
+            width="20px"
+            height="20px"
+          />
+        </span>
+        <span>리뷰 : 35개</span>
+        <div
+          v-if="empty"
+          class="heart-box"
         >
-          mdi-heart
-        </v-icon>
-      </span>
+          <v-icon
+            icon="mdi-heart-outline"
+            color="#A1887F"
+            size="large"
+            class="heart-icon"
+            @click="changeBtn()"
+          />
+        </div>
+        <div
+          v-if="fill"
+          class="heart-box"
+        >
+          <v-icon
+            icon="mdi-heart"
+            color="#A1887F"
+            size="large"
+            class="heart-icon"
+            @click="changeBtn()"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -113,32 +144,89 @@ export default {
   }
 
   },
-  
-  data: () => ({ rating: 3 }),
+  data () {
+    return {
+      rating: 3,
+      empty:true,
+    }
+  },
+  methods:{
+    changeBtn(){
+      this.empty = !this.empty;
+      this.fill = !this.fill;
+    }
+  },
 }
 </script>
 
 <style scoped>
 .card-group1{
-  width: 190px;
-  height: 450px;
+  width: 300px;
+  height: 500px;
   display: block;
   position: relative;
 }
+.card-img{
+  width:300px;
+  position:relative;
+  margin-left:10%;
+}
 .text-group1{
-  width: 220px;
+  width: 300px;
   height: auto;
-  display: flex;
+  margin-left:3%;
+}
+.product-name{
+  height:100px;
+}
+.product-group{
+  margin-top:10px;
 }
 .originPrice-group{
+  position:relative;
+  font-size: 12px;
   text-decoration: line-through;
 }
-.heart-btn{
-  top:6%;
-  right:-20%;
-  position:absolute;
-  width:30px;
-  height:10px;
+.naver-price{
+  color:#F4511E;
+  font-size:14px;
+}
+.rating-group{
+  position:relative;
+  left:3%;
+}
+.rating-num2{
+  position:relative;
+  color:#FFB300;
+  font-weight:500;
+}
+.review-group{
   display:flex;
+}
+.heart-box{
+  position:relative;
+  margin-top:-10px;
+  margin-left:130px;
+  display:flex;
+  vertical-align: middle;
+  border-style:solid;
+  border-width:1px;
+  border-color:#BDBDBD;
+  border-radius:7px;
+  width:40px;
+  height:40px;
+  color: #000;
+  background-color: #fff;
+  box-shadow: 0px 8px 15px white;
+  cursor: pointer;
+}
+.heart-box:hover {
+  background-color: #EEEEEE;
+  box-shadow: 0px 2px 2px #E0E0E0;
+}
+.heart-icon{
+  position:relative;
+  left:13%;
+  top:13%;
 }
 </style>

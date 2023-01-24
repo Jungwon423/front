@@ -63,39 +63,40 @@
     </v-row>
   </div>
 </template>
-  <script>
-  export default {
-    components : {
-    },
-    data() {
-      return {
-        user_id: '',
-        user_pw: ''
-      }
-    },
-    methods: {
-      fnLogin() {
-        if (this.user_id === '') {
-          alert('ID를 입력하세요.')
-          return
-        }
-  
-        if (this.user_pw === '') {
-          alert('비밀번호를 입력하세요.')
-          return
-        }
-  
-        alert('로그인 되었습니다.')
-      },
-      goRegister() {
-          this.$router.push('/register')
-        },
+<script>
+export default {
+  components : {
+  },
+  data() {
+    return {
+      user_id: '',
+      user_pw: ''
     }
+  },
+  methods: {
+    fnLogin() {
+      if (this.user_id === '') {
+        alert('ID를 입력하세요.')
+        return
+      }
+
+      if (this.user_pw === '') {
+        alert('비밀번호를 입력하세요.')
+        return
+      }
+
+      alert('로그인 되었습니다.')
+    },
+    goRegister() {
+        this.$router.push('/register')
+      },
   }
-  </script>
+}
+</script>
 <style scoped>
 #bg{
   background-color:#F5F5F5;
+  height:1000px;
 }
 .login-text-title{
   margin-top:20px;

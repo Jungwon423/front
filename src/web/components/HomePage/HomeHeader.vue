@@ -26,24 +26,19 @@
         name="hot"
         placeholder="최근 핫딜"
         class="search-bar"
-      >
-    
-      <div class="text-center">
-        <v-row
-          align-content="center"
-        >
-          <v-col>
-            <search-dialog />
-          </v-col>
-        </v-row>
-      </div>
+        width="300px"
+      >  
+      <search-dialog />
     </div>
     <v-row
       class="text-center"
       justify="center"
     >
       <v-col>
-        <div class="icon-group1">
+        <div
+          class="icon-group1"
+          @click="goProfile()"
+        >
           <v-icon
             large
             color="grey"
@@ -52,14 +47,17 @@
           </v-icon>
           <div
             class="py-2"
-            style="text-align:center"
+            style="text-align:center;"
           >
             내 프로필
           </div>
         </div>
       </v-col>
       <v-col>
-        <div class="icon-group2">
+        <div
+          class="icon-group2"
+          @click="goLike()"
+        >
           <v-icon
             large
             color="grey"
@@ -89,7 +87,7 @@
       />
       <span
         class="category-text px-10"
-        @click="gopage"
+        @click="goToCategoryPage"
       >카테고리</span>
       <span class="v-line" />
       <span class="group1-text px-10">홈</span>
@@ -132,20 +130,29 @@ export default {
     goLogin() {
       this.$router.push('/login')
     },
+    goProfile() {
+      this.$router.push('/profile')
+    },
+    goLike() {
+      this.$router.push('/like')
+    },
   },
 }
 </script>
-
-<style scoped>
-
+<style>
 .decoration-none {
   color: #000;
-
   font-size: 22px;
   font-family: dream;
   text-decoration : none !important; 
 }
-
+.width-980{
+  width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<style scoped>
 .group1 {
   display: flex;
   height: 50px;
@@ -207,6 +214,10 @@ export default {
   border-color:#E0E0E0;
   height:38px;
 }
+input::placeholder{
+  font-size:17px;
+  font-weight:400;
+}
 .search-bar-wrapper{
   display: flex;
   border-style:solid;
@@ -214,12 +225,14 @@ export default {
   border-color:#6D4C41;
   border-width:1px;
   margin-left:50px;
-  width:400px;
+  width:500px;
+  height:56px;
 }
 .search-bar{
   position:relative;
-  width:400px;
-  left:5%;
+  width:380px;
+  height:55px;
+  left:3%;
 }
 .flex-titlebar{
   display: flex;
@@ -230,6 +243,7 @@ export default {
   width:100px;
   display:block;
   font-size:small;
+  cursor:pointer;
 }
 .icon-group2{
   position:relative;
@@ -237,5 +251,6 @@ export default {
   width:100px;
   display:block;
   font-size:small;
+  cursor:pointer;
 }
 </style>

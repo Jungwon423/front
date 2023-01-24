@@ -50,9 +50,9 @@
 <style scoped>
 .search-btn1{
   display:flex;
-  height:auto;
+  height:55px;
   width:100px;
-  margin-left:50px;
+  margin-left:20px;
   border-color:#6D4C41;
   border-radius:0px 9px 9px 0px;
   background-color:#8D6E63;
