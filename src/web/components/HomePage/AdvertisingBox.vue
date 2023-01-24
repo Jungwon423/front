@@ -14,13 +14,13 @@
         />
 
         <v-carousel-item
-          src="@/assets/carousel/cate2.png"
+          src="@/assets/상품정보1.png"
           max-height="400px"
           cover
         />
 
         <v-carousel-item
-          src="@/assets/carousel/cate3.png"
+          src="@/assets/상품정보2.png"
           cover
           max-height="400px"
         />

@@ -1,8 +1,13 @@
 <template>
   <div class="side-box">
-    <span>
-      홈 > 가전/전자
-    </span>
+    <div class="pa-3 category-ex">
+      홈
+      <span
+        class="px-3"
+        style="color:grey"
+      >></span>
+      가전/전자
+    </div>
     <div class="sidebar-sidebar">
       <div class="sidebar-group1">
         <div
@@ -28,9 +33,6 @@
           </span>
         </div>
           
-        <div class="sidebar-add">
-          See All
-        </div>
         <div class="sidebar-add" />
       </div>
       <div class="sidebar-group1">
@@ -82,19 +84,20 @@
 </script>
 
 <style scoped>
+.category-ex{
+  margin-top:10px;
+}
 .side-box{
   float: left;
-  margin-right: 100px
 }
 .sidebar-sidebar {
   width: 240px;
   height: 500px;
   position: relative;
   align-items: flex-start;
-
   justify-content: flex-start;
   background-color: whitesmoke;
-}
+} 
 .sidebar-title{
   width: 240px;
   height: 40px;

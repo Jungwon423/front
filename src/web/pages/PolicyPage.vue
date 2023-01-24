@@ -429,6 +429,9 @@
     font-weight:700;
 }
 .policy-box{
+    width:1620px;
+    margin-left:auto;
+    margin-top:auto;
     border-style:solid;
     border-color:black;
     border-width:0.5px;

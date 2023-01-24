@@ -42,49 +42,33 @@
       </div>
     </span>
 
-    <div class="shopping-mall py-4">
+    
+    <div class="shopping-mall1 px-4">
       <v-img
         src="@/assets/Amazon.png"
         width="50"
       />
-      <div class="shopping-mall-text">
-        Amazon
-      </div>
     </div>
-    <div class="community-info">
-      <div
-        v-if="empty"
-        class="heart-box"
+    <div>
+      <v-btn
+        class="like-btn-wrapper1"
       >
-        <v-icon
-          icon="mdi-heart-outline"
-          color="blue"
-          size="large"
-          class="heart-icon"
-          @click="changeBtn()"
-        />
-      </div>
-      <div
-        v-if="fill"
-        class="heart-box"
+        <span
+          class="px-12"
+          style="font-size:14px; font-weight:600;"
+        >
+          구매하러가기
+        </span>
+      </v-btn>
+    
+      <v-btn
+        class="like-btn-wrapper2"
       >
-        <v-icon
-          icon="mdi-heart"
-          color="blue"
-          size="large"
-          class="heart-icon"
-          @click="changeBtn()"
-        />
-      </div>
-      
-      <div class="recommend">
-        <div class="recommend-text">
-          추천 73
-        </div>
-        <div class="recommend-text">
-          비추천 10
-        </div>
-      </div>
+        <span
+          class="px-12"
+          style="font-size:14px; font-weight:600;"
+        >찜 목록에서 삭제</span>
+      </v-btn>
     </div>
   </div>
 </template>
@@ -94,15 +78,8 @@ export default {
   data () {
     return {
       rating: 3,
-      empty:true,
     }
   },
-  methods:{
-    changeBtn(){
-      this.empty = !this.empty;
-      this.fill = !this.fill;
-    }
-  }
 }
 </script>
 
@@ -115,8 +92,9 @@ export default {
   height: 200px;
   border: 1px solid;
   border-width:1px;
-  border-color:#E0E0E0;
+  border-color:#FCE4EC;
   border-radius: 8px;
+  background-color:white;
 }
 .origin-price{
   padding-left:3px;
@@ -138,7 +116,7 @@ export default {
 }
 .rating-num{
   position:relative;
-  color:#FFB300;
+  color:#FFCA28;
   font-weight:500;
   margin-top:1%;
   left:-2%;
@@ -149,18 +127,6 @@ export default {
   top:-8%;
   left:-5%;
 }
-.shopping-mall-text{
-  font-size:14px;
-  color:#BDBDBD;
-}
-.recommend{
-  margin-top:60px;
-}
-.recommend-text{
-  font-size:15px;
-  font-weight:600;
-  text-align: end;
-}
 .product-image {
   vertical-align:middle;
 }
@@ -168,36 +134,27 @@ export default {
   padding-left: 30px;
   width: 500px;
 }
-.heart-box{
-  position:relative;
-  top:5%;
-  left:60%;
-  display:flex;
-  vertical-align: middle;
-  border-style:solid;
-  border-width:1px;
-  border-color:#BDBDBD;
-  border-radius:7px;
-  width:40px;
-  height:40px;
-  color: #000;
-  background-color: #fff;
-  box-shadow: 0px 8px 15px white;
-  cursor: pointer;
-}
-.heart-box:hover {
-  background-color: #EEEEEE;
-  box-shadow: 0px 2px 2px #E0E0E0;
-}
-.heart-icon{
-  position:relative;
-  left:13%;
-  top:13%;
-}
-.shopping-mall {
+.shopping-mall1 {
   width: 80px;
+  display:inline-block;
+  left:50%;
 }
-.community-info {
-  width: 100px;
+.like-btn-wrapper1{
+  position: relative;
+  top:40%;
+  left:40%;
+  width:140px;
+  height:40px;
+  background-color:#FF4081;
+  color:white;
+}
+.like-btn-wrapper2{
+  position: relative;
+  left:40%;
+  top:45%;
+  width:140px;
+  height:40px;
+  background-color:white;
+  color:black;
 }
 </style>

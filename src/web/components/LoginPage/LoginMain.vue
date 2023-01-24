@@ -90,18 +90,19 @@ export default {
 </script>
 <style scoped>
 #bg{
-    background-color:#F5F5F5;
+  background-color:#F5F5F5;
+  height:1050px;
 }
 .login-title{
-    font-size:25px;
-    font-weight: 600;
+  font-size:25px;
+  font-weight: 600;
 }
 .login-box{
-    margin-top:150px;
-    display: block;
-    width:500px;
-    height:700px;
-    background-color: white;
+  margin-top:150px;
+  display: block;
+  width:500px;
+  height:700px;
+  background-color: white;
 }
 #loginForm {
   width: 500px;
