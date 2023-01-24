@@ -33,7 +33,7 @@
           align-content="center"
         >
           <v-col>
-            <search-dialog />
+            <not-available-dialog />
           </v-col>
         </v-row>
       </div>
@@ -43,7 +43,10 @@
       justify="center"
     >
       <v-col>
-        <div class="icon-group1">
+        <div
+          class="icon-group1"
+          @click="goLogin"
+        >
           <v-icon
             large
             color="grey"
@@ -59,7 +62,10 @@
         </div>
       </v-col>
       <v-col>
-        <div class="icon-group2">
+        <div
+          class="icon-group2"
+          @click="goLogin"
+        >
           <v-icon
             large
             color="grey"
@@ -80,17 +86,7 @@
 
   <div>
     <div class="group1">
-      <v-img
-        src="/play/line3.svg"
-        alt="img002"
-        height="30px"
-        class="cate-img"
-        @click="goToCategoryPage"
-      />
-      <span
-        class="category-text px-10"
-        @click="gopage"
-      >카테고리</span>
+      <navigation-drawer />
       <span class="v-line" />
       <span class="group1-text px-10">홈</span>
       <span class="group1-text px-10">핫딜</span>
@@ -107,12 +103,14 @@
 </template>
 
 <script>
-import SearchDialog from './SearchDialog.vue'
+import NotAvailableDialog from './NotAvailableDialog.vue'
+import NavigationDrawer from './NavigationDrawer.vue'
 
 export default {
   name: 'HomeHeader',
   components: {
-    SearchDialog
+    NotAvailableDialog,
+    NavigationDrawer
   },
   data () {
       return {
@@ -162,6 +160,7 @@ export default {
   padding-left:150px;
   position:absolute;
   margin-top:7px;
+  cursor: pointer;
 }
 .group2-text {
   left: 30%;
@@ -230,6 +229,7 @@ export default {
   width:100px;
   display:block;
   font-size:small;
+  cursor: pointer;
 }
 .icon-group2{
   position:relative;
@@ -237,5 +237,6 @@ export default {
   width:100px;
   display:block;
   font-size:small;
+  cursor: pointer;
 }
 </style>
