@@ -2,22 +2,21 @@
   <div class="product-container">
     <img
       class="product-image"
-      src="https://i.ebayimg.com/images/g/A5UAAOSwK39hi5H1/s-l300.jpg"
+      :src="imageUrl"
       width="180"
       height="180"
     >
     <span class="product-info py-2">
-      <div>Canon Cemra EOS 200D, Black 10x zoom</div>
+      <div> {{ name }}</div>
       <div class="py-2">
-        <span style="font-size:15px;">87,000원</span>
-        <span class="origin-price">110,000원</span>
-        <div class="naver-price">네이버 최저가 : 103,000원</div>
+        <span style="font-size:15px;">{{ price }}원</span>
+        <span class="origin-price">{{ naverPrice }} 원</span>
+        <div class="naver-price">네이버 최저가 : {{ naverPrice }} 원</div>
       </div>
       <div class="rating-review">
         <v-rating
-          v-model="rating"
+          v-model="computed_rating"
           class="px-5"
-          value="3.5"
           color="#FFB300"
           empty-icon="mdi-star-outline"
           full-icon="mdi-star"
@@ -26,7 +25,7 @@
           readonly
           size="15"
         />
-        <div class="rating-num">3.0</div>
+        <div class="rating-num"> {{ rating }}</div>
         <div class="v-line3" />
         <span class="img-message py-2">
           <v-img
@@ -35,20 +34,20 @@
             height="20px"
           />
         </span>
-        <span class="py-2">리뷰 : 35개</span>
+        <span class="py-2"> 댓글 : {{ comment }}개</span>
       </div>
       <div>
-        조회수 : 401,222
+        조회수 : {{ view }}
       </div>
     </span>
 
     <div class="shopping-mall py-4">
       <v-img
-        src="@/assets/Amazon.png"
+        :src="market_image"
         width="50"
       />
       <div class="shopping-mall-text">
-        Amazon
+        {{ marketName }}
       </div>
     </div>
     <div class="community-info">
@@ -79,10 +78,10 @@
       
       <div class="recommend">
         <div class="recommend-text">
-          추천 73
+          추천 {{ good }}
         </div>
         <div class="recommend-text">
-          비추천 10
+          비추천 {{ bad }}
         </div>
       </div>
     </div>
@@ -91,10 +90,54 @@
 
 <script>
 export default {
-  data () {
-    return {
-      rating: 3,
-      empty:true,
+  props: {
+    imageUrl: {
+      type: String,
+      default: ''
+    },
+    name: {
+      type: String,
+      default: ''
+    },
+    price: {
+      type: Number,
+      default: -1
+    },
+    naverPrice: {
+      type: Number,
+      default: -1
+    },
+    rating: {
+      type: Number,
+      default: 0
+    },
+    comment: {
+      type: Number,
+      default: 0
+    },
+    view: {
+      type: Number,
+      default: 0
+    },
+    marketName: {
+      type: String,
+      default: ''
+    },
+    good: {
+      type: Number,
+      default: 0
+    },
+    bad: {
+      type: Number,
+      default: 0
+    }
+  },
+  computed: {
+    computed_rating: function () {
+      return this.rating
+    },
+    market_image: function () {
+      return require("@/assets/" + this.marketName + ".png")
     }
   },
   methods:{
