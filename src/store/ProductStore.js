@@ -13,7 +13,7 @@ export default {
     productList_c: [],
     productCount_c: 0,
     page_c: 1,
-    pageNumber_c: 1,
+    totalPage_c: 1,
   },
 
   getters: {},
@@ -52,8 +52,8 @@ export default {
       state.page_c = payload;
     },
 
-    SET_PAGENUMBER_C(state, payload) {
-      state.pageNumber_c = payload
+    SET_TOTALPAGE_C(state, payload) {
+      state.totalPage_c = payload
     }
   },
 
@@ -67,7 +67,11 @@ export default {
           context.state.currentMarket +
           "/top3"
         );
+        console.log('현재 marketName : '+context.state.currentMarket)
         console.log("FETCH_TOP3_PRODUCTLIST_API SUCCESS");
+        console.log('초특가 핫딜 products : ')
+        console.log(res.data["result"])
+
         context.commit("SET_TOP3_PRODUCTLIST", res.data["result"]);
 
       } catch (error) {
@@ -92,7 +96,7 @@ export default {
 
         context.commit("SET_PRODUCTLIST_C", res.data["result"],);
         context.commit("SET_PRODUCTCOUNT_C", res.data['productCount']);
-        context.commit("SET_PAGENUMBER_C", res.data['pageNumber']);
+        context.commit("SET_TOTALPAGE_C", res.data['totalPage']);
 
         console.log(res.data["result"])
 

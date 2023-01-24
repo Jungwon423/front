@@ -6,6 +6,7 @@
     <ProductContainer 
       v-for="product in productList_c"
       :key="product.name"
+      :name="product.name"
       :image-url="product.imageUrl"
       :price="product.price"
       :naver-price="product.naverPrice"
@@ -32,8 +33,6 @@ export default {
       return this.$categoryMap.get(this.$store.state.ProductStore.currentCategory_c)
     },
     productList_c: function () {
-      console.log('computed')
-      console.log(this.$store.state.ProductStore.productList_c)
       return this.$store.state.ProductStore.productList_c
     },
     productCount_c: function () {

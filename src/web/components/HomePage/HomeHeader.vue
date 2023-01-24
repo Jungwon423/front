@@ -88,9 +88,12 @@
       <span class="v-line" />
       <span
         class="group1-text px-10"
-        @click="goToCategoryPage"
+        @click="goHomePage"
       >홈</span>
-      <span class="group1-text px-10">핫딜</span>
+      <span
+        class="group1-text px-10"
+        @click="goCategoryPage"
+      >핫딜</span>
       <span
         class="group1-text px-10"
         @click="goProduct"
@@ -119,11 +122,13 @@ export default {
       }
     },
   methods: {
-    goToHomePage() {
+    goHomePage() {
       this.$router.push('/')
     },
-    goToCategoryPage() {
-      this.$router.push('/category')
+    goCategoryPage() {
+      this.$router.push({
+        name: 'category',
+        query: {categoryName: "life_health", marketName: "all", page: "1"}},)
     },
     goProduct() {
       this.$router.push('/product')

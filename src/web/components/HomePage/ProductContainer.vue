@@ -2,7 +2,7 @@
   <div class="card-group1 px-3">
     <div class="card-img">
       <img
-        :src="imgUrl"
+        :src="imageUrl"
         alt="img11"
         height="250"
         width="250"
@@ -10,19 +10,19 @@
     </div>
     <div class="text-group1">
       <div class="product-name">
-        {{ productName }}
+        {{ name }}
       </div>
       <div class="product-group">
-        <span>6500원</span>
-        <span class="originPrice-group"> 12000원 </span>
+        <span>{{ roundedPrice }}원</span>
+        <span class="originPrice-group"> {{ roundedNaverPrice }}원 </span>
       </div>
       <div class="naver-price">
-        네이버 최저가 : 103,000원
+        네이버 최저가 : {{ roundedNaverPrice }}원
       </div>
     </div>
     <div class="rating-group">
       <v-rating
-        v-model="rating"
+        v-model="computed_rating"
         value="3.5"
         color="#FFB300"
         empty-icon="mdi-star-outline"
@@ -33,7 +33,7 @@
         size="15"
       />
       <span class="px-1 rating-num2">
-        3.0
+        {{ computed_rating }}
       </span>
       <div class="py-3 review-group">
         <span>
@@ -43,7 +43,7 @@
             height="20px"
           />
         </span>
-        <span>리뷰 : 35개</span>
+        <span>댓글 : {{ comment }}개</span>
         <div
           v-if="empty"
           class="heart-box"
@@ -76,86 +76,106 @@
 <script>
 export default {
   name: 'ProductContainer',
+
   props: {
+    name: {
+      type: String,
+      required: true,
+    },
 
-  productName: {
-    type: String,
-    required: true,
-  },
+    price: {
+      type: Number,
+      required: true,
+    },
+    
+    currency: {
+      type: String,
+      required: true
+    },
 
-  productPrice: {
-    type: Number,
-    required: true,
-  },
-  
-  currency: {
-    type: String,
-    required: true
-  },
+    discountRate: {
+      type: Number,
+      required: true,
+    },
 
-  discountRate: {
-    type: Number,
-    required: true,
-  },
+    imageUrl: {
+      type: String,
+      required: true,
+    },
 
-  imgUrl: {
-    type: String,
-    required: true,
-  },
+    categoryName: {
+      type: String,
+      required: true
+    },
 
-  categoryName: {
-    type: String,
-    required: true
-  },
+    marketName: {
+      type: String,
+      required: true,
+    },
 
-  marketName: {
-    type: String,
-    required: true,
-  },
+    link: {
+      type: String,
+      required: true,
+    },
+    
+    // tax: {
+    //   type: Number,
+    //   required: true
+    // },
 
-  link: {
-    type: String,
-    required: true,
-  },
-  
-  // tax: {
-  //   type: Number,
-  //   required: true
-  // },
+    // shippingFee: {
+    //   type: Number,
+    //   required: true
+    // },
 
-  // shippingFee: {
-  //   type: Number,
-  //   required: true
-  // },
+    clickCount: {
+      type: Number,
+      required: true
+    },
 
-  clickCount: {
-    type: Number,
-    required: true
-  },
+    locale: {
+      type: String,
+      required: true,
+    },
 
-  locale: {
-    type: String,
-    required: true,
-  },
+    naverPrice: {
+      type: Number,
+      required: true
+    },
 
-  naverPrice: {
-    type: Number,
-    required: true
-  }
-
+    rating: {
+      type: Number,
+      default: 0
+    },
+    
+    comment: {
+      type: Number,
+      default: 0
+    },
   },
   data () {
     return {
-      rating: 3,
-      empty:true,
+      empty: true,
+      fill: false,
     }
+  },
+  computed: {
+    roundedPrice: function() {
+      return Math.floor(this.price).toLocaleString('ko-KR')
+    },
+    roundedNaverPrice: function () {
+      return Math.floor(this.naverPrice).toLocaleString('ko-KR')
+    },
+    computed_rating: function () {
+      return this.rating
+    },
   },
   methods:{
     changeBtn(){
       this.empty = !this.empty;
       this.fill = !this.fill;
     }
-  },
+  }
 }
 </script>
 

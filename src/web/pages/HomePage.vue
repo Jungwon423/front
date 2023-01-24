@@ -4,7 +4,7 @@
     <AdvertisingBox />
     <CategoryButtons />
     <ProductSet />
-    <ExhibitionSet />
+    <!-- <ExhibitionSet /> -->
     <Footer />
   </div>
 </template>

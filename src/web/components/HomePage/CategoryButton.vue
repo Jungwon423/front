@@ -45,7 +45,7 @@ export default {
     },
     methods: {
         changeCategory: function(evt) {
-            console.log(this.value)
+            console.log(this.value + '를 클릭했습니다')
             this.$store.commit('ProductStore/SET_CURRENTCATEGORY', this.value)
     }
     }

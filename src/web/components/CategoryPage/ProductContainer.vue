@@ -9,9 +9,9 @@
     <span class="product-info py-2">
       <div> {{ name }}</div>
       <div class="py-2">
-        <span style="font-size:15px;">{{ price }}원</span>
-        <span class="origin-price">{{ naverPrice }} 원</span>
-        <div class="naver-price">네이버 최저가 : {{ naverPrice }} 원</div>
+        <span style="font-size:15px;">{{ roundedPrice }}원</span>
+        <span class="origin-price">{{ roundedNaverPrice }} 원</span>
+        <div class="naver-price">네이버 최저가 : {{ roundedNaverPrice }} 원</div>
       </div>
       <div class="rating-review">
         <v-rating
@@ -132,13 +132,25 @@ export default {
       default: 0
     }
   },
+  data() {
+      return {
+        empty: true,
+        fill: false,
+      }
+  },
   computed: {
     computed_rating: function () {
       return this.rating
     },
     market_image: function () {
       return require("@/assets/" + this.marketName + ".png")
-    }
+    },
+    roundedPrice: function() {
+      return Math.floor(this.price).toLocaleString('ko-KR')
+    },
+    roundedNaverPrice: function () {
+      return Math.floor(this.naverPrice).toLocaleString('ko-KR')
+    },
   },
   methods:{
     changeBtn(){

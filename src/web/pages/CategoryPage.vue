@@ -24,6 +24,11 @@ export default {
     CategoryPagination,
     Footer,
   },
+  created(){
+    this.$store.commit('ProductStore/SET_CURRENTCATEGORY_C', this.$route.query.categoryName)
+    this.$store.commit('ProductStore/SET_CURRENTMARKET_C', this.$route.query.marketName)
+    this.$store.commit('ProductStore/SET_PAGE_C', this.$route.query.page)
+  }
 }
 </script>
 

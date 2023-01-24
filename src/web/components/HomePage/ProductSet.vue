@@ -19,11 +19,12 @@
           grow
         >
           <v-tab
-            v-for="marketname in marketNames"
-            :key="marketname"
-            :value="marketname"
+            v-for="marketName in marketNames"
+            :key="marketName"
+            :value="marketName"
+            @click="changeMarket(marketName)"
           >
-            {{ marketname }}
+            {{ marketName }}
           </v-tab>
         </v-tabs>
       </v-col>
@@ -39,11 +40,11 @@
         class="pa-0"
       >
         <product-container 
-          :product-name="product.name"
-          :product-price="product.price"
+          :name="product.name"
+          :price="product.price"
           :currency="product.currency"
           :discount-rate="product.discountRate"
-          :img-url="product.imageUrl"
+          :image-url="product.imageUrl"
           :category-name="product.categoryName"
           :market-name="product.marketName"
           :link="product.link"
@@ -90,8 +91,15 @@ export default {
   },
 
   watch: {
-    currentMarket: function() {
-      this.$store.dispatch('ProductStore/FETCH_TOP3_PRODUCTLIST')
+    currentMarket() {
+      this.$store.dispatch('ProductStore/FETCH_TOP3_PRODUCTLIST_API')
+    },
+  },
+
+  methods: {
+    changeMarket: function (marketName) {
+      console.log('클릭한 marketName : '+marketName)
+      this.$store.commit('ProductStore/SET_CURRENTMARKET', marketName)
     }
   }
 
