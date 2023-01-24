@@ -1,6 +1,6 @@
 <template>
   <div class="py-12">
-    <v-footer class="bg-grey-lighten-1">
+    <v-footer class="bg-brown-lighten-3">
       <v-row
         justify="center"
         no-gutters

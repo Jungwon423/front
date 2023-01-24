@@ -58,7 +58,7 @@
       >
         <v-icon
           icon="mdi-heart-outline"
-          color="blue"
+          color="#A1887F"
           size="large"
           class="heart-icon"
           @click="changeBtn()"
@@ -70,7 +70,7 @@
       >
         <v-icon
           icon="mdi-heart"
-          color="blue"
+          color="#A1887F"
           size="large"
           class="heart-icon"
           @click="changeBtn()"
