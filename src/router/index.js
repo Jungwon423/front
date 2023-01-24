@@ -9,6 +9,8 @@ import w_Login2Page from '@/web/components/LoginPage/LoginMain2.vue';
 import w_RegisterPage from '@/web/pages/RegisterPage.vue';
 import w_PolicyPage from '@/web/pages/PolicyPage.vue';
 import w_CompanyPage from '@/web/pages/CompanyPage.vue';
+import w_ProfilePage from '@/web/pages/ProfilePage.vue';
+import w_LikePage from '@/web/pages/LikePage.vue';
 
 const m_routes = [ //모바일 라우터
     {
@@ -59,6 +61,16 @@ const w_routes = [ //웹 라우터
       path: '/company',
       name: 'company',
       component: w_CompanyPage
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: w_ProfilePage
+    },
+    {
+      path: '/like',
+      name: 'like',
+      component: w_LikePage
     }
 ]
 
