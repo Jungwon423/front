@@ -82,23 +82,14 @@
     </v-row>
   </div>
     
-
   <div>
     <div class="group1">
       <navigation-drawer />
-      <v-img
-        src="/play/line3.svg"
-        alt="img002"
-        height="30px"
-        class="cate-img"
-        @click="goToCategoryPage"
-      />
-      <span
-        class="category-text px-10"
-        @click="goToCategoryPage"
-      >카테고리</span>
       <span class="v-line" />
-      <span class="group1-text px-10">홈</span>
+      <span
+        class="group1-text px-10"
+        @click="goToCategoryPage"
+      >홈</span>
       <span class="group1-text px-10">핫딜</span>
       <span
         class="group1-text px-10"
@@ -175,12 +166,6 @@ export default {
   text-align: center;
   vertical-align: middle;
 }
-.cate-img{
-  padding-left:150px;
-  position:absolute;
-  margin-top:7px;
-  cursor: pointer;
-}
 .group2-text {
   left: 30%;
   position: relative;
@@ -192,18 +177,6 @@ export default {
   letter-spacing: 0em;
   text-align: left;
   margin-top:4px;
-  cursor: pointer;
-}
-.category-text{
-  margin-left:70px;
-  margin-top:4px;
-  font-family: Poppins;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 36px;
-  letter-spacing: 0em;
-  text-align: left;
-  position: relative;
   cursor: pointer;
 }
 .group1-text{
