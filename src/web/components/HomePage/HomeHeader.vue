@@ -26,9 +26,16 @@
         name="hot"
         placeholder="최근 핫딜"
         class="search-bar"
-        width="300px"
-      >  
-      <search-dialog />
+      >
+      <div class="text-center">
+        <v-row
+          align-content="center"
+        >
+          <v-col>
+            <not-available-dialog />
+          </v-col>
+        </v-row>
+      </div>
     </div>
     <v-row
       class="text-center"
@@ -78,6 +85,7 @@
 
   <div>
     <div class="group1">
+      <navigation-drawer />
       <v-img
         src="/play/line3.svg"
         alt="img002"
@@ -105,12 +113,14 @@
 </template>
 
 <script>
-import SearchDialog from './SearchDialog.vue'
+import NotAvailableDialog from './NotAvailableDialog.vue'
+import NavigationDrawer from './NavigationDrawer.vue'
 
 export default {
   name: 'HomeHeader',
   components: {
-    SearchDialog
+    NotAvailableDialog,
+    NavigationDrawer
   },
   data () {
       return {
@@ -169,6 +179,7 @@ export default {
   padding-left:150px;
   position:absolute;
   margin-top:7px;
+  cursor: pointer;
 }
 .group2-text {
   left: 30%;
