@@ -6,8 +6,14 @@ export default {
   state: {
     currentCategory: "all",
     currentMarket: "all",
-    productList: [],
-    top3ProductList: []
+    top3ProductList: [],
+
+    currentCategory_c: "life_health",
+    currentMarket_c: "all",
+    productList_c: [],
+    productCount_c: 0,
+    page_c: 1,
+    pageNumber_c: 1,
   },
 
   getters: {},
@@ -25,9 +31,30 @@ export default {
       state.top3ProductList = payload;
     },
 
-    SET_PRODUCTLIST(state, payload) {
-      state.productList = payload;
+    SET_CURRENTCATEGORY_C(state, payload) {
+      state.currentCategory_c = payload;
+
     },
+
+    SET_CURRENTMARKET_C(state, payload) {
+      state.currentMarket_c = payload;
+    },
+
+    SET_PRODUCTLIST_C(state, payload) {
+      state.productList_c = payload;
+    },
+
+    SET_PRODUCTCOUNT_C(state, payload) {
+      state.productCount_c = payload
+    },
+
+    SET_PAGE_C(state, payload) {
+      state.page_c = payload;
+    },
+
+    SET_PAGENUMBER_C(state, payload) {
+      state.pageNumber_c = payload
+    }
   },
 
   actions: {
@@ -49,18 +76,24 @@ export default {
       }
     },
 
-    // category page에서 product list
+    // category page에서 product list & page_c 수정
     async FETCH_PRODUCTLIST_API(context) {
       try {
         let res = await axios.get(
           "http://localhost:8080/api/category/" +
-            context.state.currentCategory +
+            context.state.currentCategory_c +
             "/" +
-            context.state.currentMarket +
+            context.state.currentMarket_c +
+            "/" +
+            context.state.page_c +
             "/list"
         );
         console.log("FETCH_PRODUCTLIST_API SUCCESS");
-        context.commit("SET_PRODUCTLIST", res.data["result"]);
+
+        context.commit("SET_PRODUCTLIST_C", res.data["result"],);
+        context.commit("SET_PRODUCTCOUNT_C", res.data['productCount']);
+        context.commit("SET_PAGENUMBER_C", res.data['pageNumber']);
+
         console.log(res.data["result"])
 
       } catch (error) {

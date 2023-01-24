@@ -3,6 +3,7 @@
     <HomeHeader />
     <SideBox />
     <ProductList />
+    <CategoryPagination />
     <Footer />
   </div>
 </template>
@@ -11,6 +12,7 @@
 import HomeHeader from '@/web/components/HomePage/HomeHeader.vue'
 import SideBox from '@/web/components/CategoryPage/SideBox.vue';
 import ProductList from '@/web/components/CategoryPage/ProductList.vue';
+import CategoryPagination from '../components/CategoryPage/CategoryPagination.vue';
 import Footer from '@/web/components/Footer/KaguFooter.vue'
 
 export default {
@@ -19,8 +21,9 @@ export default {
     HomeHeader,
     SideBox,
     ProductList,
+    CategoryPagination,
     Footer,
-  }
+  },
 }
 </script>
 

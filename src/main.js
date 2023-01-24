@@ -25,8 +25,4 @@ categoryMap.set("fashion-clothes", "패션의류");
 
 app.config.globalProperties.$categoryMap = categoryMap;
 
-createApp(App)
-  .use(router)
-  .use(store)
-  .use(vuetify)
-  .mount('#app')
+app.use(router).use(store).use(vuetify).mount('#app')
