@@ -40,6 +40,7 @@
         v-for="item in items" 
         :key="item.title"
         class="navigate-content"
+        @click="goCategoryPage(item.title)"
       >
         <div class="icon-wrapper">
           <v-img
@@ -47,7 +48,7 @@
           />
         </div>
         <span class="px-3">
-          {{ item.title }}
+          {{ $categoryMap.get(item.title) }}
         </span>
       </div>
     </div>
@@ -100,17 +101,17 @@
       return {
         drawer: null,
         items: [
-          { title: '생활/건강', src: require('@/assets/drawerIcon/건강.png') },
-          { title: '스포츠/레저',src: require('@/assets/drawerIcon/스포츠.png') },
-          { title: '식품', src: require('@/assets/drawerIcon/식품.png') },
-          { title: '가구/인테리어', src: require('@/assets/drawerIcon/가구.png') },
-          { title: '디지털/가전', src: require('@/assets/drawerIcon/디지털.png')},
-          { title: '화장품/미용', src: require('@/assets/drawerIcon/미용.png')},
-          { title: '출산/육아', src: require('@/assets/drawerIcon/육아.png')},
-          { title: '패션 잡화', src: require('@/assets/drawerIcon/패션잡화.png') },
-          { title: '패션 의류', src: require('@/assets/drawerIcon/패션의류.png') },
-          { title: '면세점', src: require('@/assets/drawerIcon/면세.png') },
-          { title: '여행/문화', src: require('@/assets/drawerIcon/문화.png') },
+          { title: 'life_health', src: require('@/assets/drawerIcon/건강.png') },
+          { title: 'sports_leisure',src: require('@/assets/drawerIcon/스포츠.png') },
+          { title: 'food', src: require('@/assets/drawerIcon/식품.png') },
+          { title: 'furniture_interior', src: require('@/assets/drawerIcon/가구.png') },
+          { title: 'digital_consumer', src: require('@/assets/drawerIcon/디지털.png')},
+          { title: 'cosmetics_beauty', src: require('@/assets/drawerIcon/미용.png')},
+          { title: 'childbirth_parenting', src: require('@/assets/drawerIcon/육아.png')},
+          { title: 'fashion-accessories', src: require('@/assets/drawerIcon/패션잡화.png') },
+          { title: 'fashion-clothes', src: require('@/assets/drawerIcon/패션의류.png') },
+          // { title: 'duty-free', src: require('@/assets/drawerIcon/면세.png') },
+          // { title: 'travel_culture', src: require('@/assets/drawerIcon/문화.png') },
         ],
         brands:[
           { title: 'Amazon', src: require('@/assets/drawerIcon/amazon.png')},
@@ -120,6 +121,13 @@
         ]
       }
     },
+    methods: {
+      goCategoryPage(category) {
+      this.$router.push({
+        name: 'category',
+        query: {categoryName: category, marketName: "all", page: "1"}},)
+    },
+    }
   }
 </script>
 <style scoped>

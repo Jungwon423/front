@@ -26,13 +26,12 @@
     },
     methods: {
       changePage(page) {
-        console.log(page)
         this.$router.push({
         name: 'category',
         query: {
           categoryName: this.$store.state.ProductStore.currentCategory_c,
           marketName: this.$store.state.ProductStore.currentMarket_c,
-          page: page}},)        
+          page: page}},)
       }
     }
   }

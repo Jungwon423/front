@@ -1,12 +1,12 @@
 <template>
   <div class="side-box">
     <div class="pa-3 category-ex">
-      홈
+      핫딜
       <span
         class="px-3"
         style="color:grey"
       >></span>
-      가전/전자
+      {{ currentCategory_c }}
     </div>
     <div class="sidebar-sidebar">
       <div class="sidebar-group1">
@@ -28,8 +28,11 @@
           :key="item"
           class="sidebar-content"
         >
-          <span class="sidebar-text">
-            {{ item }}
+          <span
+            class="sidebar-text"
+            @click="changeCategory(item)"
+          >
+            {{ $categoryMap.get(item) }}
           </span>
         </div>
           
@@ -48,23 +51,15 @@
           </span>
         </div>
 
-        <div class="sidebar-content">
+        <div
+          v-for="marketName in marketNames"
+          :key="marketName"
+          class="sidebar-content"
+        >
           <label><input
             type="checkbox"
-            value="amazon"
-          > Amazon</label>
-        </div>
-        <div class="sidebar-content">
-          <label><input
-            type="checkbox"
-            value="ebay"
-          > <span class="sidebar-text">eBay</span></label>
-        </div>
-        <div class="sidebar-content">
-          <label><input
-            type="checkbox"
-            value="aliexpress"
-          > AliExpress</label>
+            @click="changeMarket(marketName)"
+          > {{ marketName }}</label>
         </div>
       </div>
     </div>
@@ -75,11 +70,37 @@
   export default {
     data() {
       return {
-        categoryNames: ['생활/건강','스포츠/레저','식품','가구/인테리어',
-        '디지털/가전','화장품/미용','출산/육아','패션 잡화', '패션 의류','면세점',
-        '여행/문화'],
+        categoryNames: ["life_health","travel_culture","food",
+        "furniture_interior","digital_consumer","cosmetics_beauty","fashion-accessories", "fashion-clothes"],
+
+        marketNames: ["Amazon", "eBay", "AliExpress"],
+
+        market : "all"
       }
     },
+    computed: {
+      currentCategory_c: function () {
+        return this.$categoryMap.get(this.$store.state.ProductStore.currentCategory_c)
+      },
+    },
+    methods: {
+      changeCategory(category) {
+        this.$router.push({
+        name: 'category',
+        query: {
+          categoryName: category,
+          marketName: this.$store.state.ProductStore.currentMarket_c,
+          page: 1}},)   
+      },
+      changeMarket(market) {
+        this.$router.push({ 
+        name: 'category',
+        query: {
+          categoryName: this.$store.state.ProductStore.currentCategory_c,
+          marketName: market,
+          page: 1}},)   
+      }
+    }
   }
 </script>
 
@@ -125,8 +146,9 @@
   background-color:white;
 }
 .sidebar-text{
-    font-size:15px;
-    font-weight: 400;
+  cursor: pointer;
+  font-size:15px;
+  font-weight: 400;
 }
 .sidebar-add{
     width:240px;
