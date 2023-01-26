@@ -16,19 +16,18 @@
           <v-col cols="10">
             <div class="login-bar-wrapper">
               <input
-                v-model="user_id"
+                v-model="id"
                 type="text"
                 name="id"
                 placeholder="아이디"
                 class="login-bar"
-                label="id"
               >
             </div>
           </v-col>
           <v-col>
             <div class="login-bar-wrapper">
               <input
-                v-model="user_pw"
+                v-model="password"
                 name="password"
                 placeholder="비밀번호"
                 class="login-bar"
@@ -37,19 +36,20 @@
               >
             </div>
           </v-col>
+          <div class="keep-login">
+            <input
+              type="checkbox"
+              value="ebay"
+            > 로그인 상태 유지
+          </div>
+          <v-btn
+            type="submit"
+            class="login-btn"
+            @click="loginSubmit()"
+          >
+            로그인
+          </v-btn>
         </form>
-        <div class="keep-login">
-          <input
-            type="checkbox"
-            value="ebay"
-          > 로그인 상태 유지
-        </div>
-        <v-btn
-          type="submit"
-          class="login-btn"
-        >
-          로그인
-        </v-btn>
         <hr class="h-line1">
         <LoginSub />
       </div>
@@ -57,6 +57,7 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
 import LoginSub from '@/web/components/LoginPage/LoginSub.vue';
 export default {
   components : {
@@ -64,28 +65,47 @@ export default {
   },
   data() {
     return {
-      user_id: '',
-      user_pw: ''
+      id: '',
+      password: ''
     }
   },
-  methods: {
-    fnLogin() {
-      if (this.user_id === '') {
-        alert('ID를 입력하세요.')
-        return
-      }
+  computed: {
 
-      if (this.user_pw === '') {
-        alert('비밀번호를 입력하세요.')
-        return
-      }
-
-      alert('로그인 되었습니다.')
+// vuex store에서 top3 product list 읽어옴
+},
+  watch: {
+    currentId() {
+      this.$store.dispatch('UserStore/FETCH_id')
     },
+  },
+  methods: {
     goRegister() {
         this.$router.push('/register')
       },
-  }
+    loginSubmit() {
+      let saveData = {};
+      saveData.id = this.id;
+      saveData.password = this.password;
+
+      try {
+        axios.post("http://localhost:8080/api/user/login", JSON.stringify(saveData), {
+            headers: {
+              "Content-Type": `application/json`,
+            },
+          })
+          .then((res) => {
+            if (res.status === 200) {
+              // 로그인 성공시 처리해줘야할 부분
+              this.$store.commit("login", res.data);
+              //this.$router.push("/");
+              console.log(res.data);
+            }
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
 }
 </script>
 <style scoped>
