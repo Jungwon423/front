@@ -14,6 +14,7 @@
 
   <v-btn
     class="brand2-btn-wrapper"
+    @click="doNaverLogin()"
   >
     <v-img
       src="@/assets/네이버로고.png"
@@ -59,16 +60,48 @@
 export default {
   data() {
     return {
+      id: null,
+      password: null,
     }
   },
   methods: {
     goRegister() {
-        this.$router.push('/register')
+      this.$router.push('/register')
     },
     goLogin2() {
-        this.$router.push('/Login2')
+      this.$router.push('/Login2')
     },
-}
+    doNaverLogin() {
+      const url = 'https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=' +
+        'g45Um10Zkbqc0tRDbvsW' +
+        '&redirect_uri=' +
+        'http://localhost:8080/NaverLogin' +
+        '&state=1234';
+
+      this.showSocialLoginPopup(url)
+    },
+    showSocialLoginPopup(url) {
+      const popupHeight = '500'
+      const popupWidth = '500'
+      let popupOptions = 'height=--popupHeight--,width=--popupWidth--,left=--popupX--,top=--popupY--,scrollbars=yes,resizable=yes'
+      popupOptions = popupOptions.replace('--popupHeight--', popupHeight)
+      popupOptions = popupOptions.replace('--popupWidth--', popupWidth)
+      this.openPopup(url, popupOptions)
+      return false
+    },
+    openPopup(url, options) {
+      window.open(
+          url,
+          '_blank',
+          options
+      )
+    },
+    doLogout() {
+      this.$cookie.removeCookie('user-key')
+      this.userKey = ''
+      this.user = {}
+    },
+  }
 }
 </script>
 
