@@ -71,12 +71,6 @@ export default {
   },
   computed: {
 
-// vuex store에서 top3 product list 읽어옴
-},
-  watch: {
-    currentId() {
-      this.$store.dispatch('UserStore/FETCH_id')
-    },
   },
   methods: {
     goRegister() {
