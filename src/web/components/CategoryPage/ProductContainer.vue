@@ -1,5 +1,8 @@
 <template>
-  <div class="product-container">
+  <div
+    class="product-container"
+    @click="logger"
+  >
     <img
       class="product-image"
       :src="imageUrl"
@@ -60,7 +63,7 @@
           color="#A1887F"
           size="large"
           class="heart-icon"
-          @click="changeBtn()"
+          @click.stop="changeBtn()"
         />
       </div>
       <div
@@ -72,7 +75,7 @@
           color="#A1887F"
           size="large"
           class="heart-icon"
-          @click="changeBtn()"
+          @click.stop="changeBtn()"
         />
       </div>
       
@@ -156,6 +159,9 @@ export default {
     changeBtn(){
       this.empty = !this.empty;
       this.fill = !this.fill;
+    },
+    logger() {
+      console.log('테스트입니다')
     }
   }
 }

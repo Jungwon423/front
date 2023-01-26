@@ -103,7 +103,7 @@ export default {
       name: "김정원",
       id: "rlawjddnjs",
       rating:4.5,
-      content: '최고다 이기야 개추노 앙노무띠',
+      content: '좋습니다!',
       src: require('@/assets/개추.png'),
       date: '2023.01.21',
     }
