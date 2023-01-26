@@ -1,5 +1,8 @@
 <template>
-  <div @click="changeCategory">
+  <div
+    class="cursor"
+    @click="changeCategory"
+  >
     <v-avatar
       :color="color"
       size="60"
@@ -44,14 +47,21 @@ export default {
         },
     },
     methods: {
-        changeCategory: function(evt) {
-            console.log(this.value + '를 클릭했습니다')
-            this.$store.commit('ProductStore/SET_CURRENTCATEGORY', this.value)
-    }
+      changeCategory() {
+        this.$router.push({
+        name: 'category',
+        query: {
+          categoryName: this.value,
+          marketName: this.$store.state.ProductStore.currentMarket_c,
+          page: 1}},)   
+      },
     }
 }
 </script>
 
 <style scoped>
   @import '@/assets/styles/CategoryMain.css';
+  .cursor {
+    cursor: pointer;
+  }
 </style>

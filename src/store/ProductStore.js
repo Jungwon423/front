@@ -68,10 +68,7 @@ export default {
           context.state.currentMarket +
           "/top3"
         );
-        console.log('현재 marketName : '+context.state.currentMarket)
         console.log("FETCH_TOP3_PRODUCTLIST_API SUCCESS");
-        console.log('초특가 핫딜 products : ')
-        console.log(res.data["result"])
 
         context.commit("SET_TOP3_PRODUCTLIST", res.data["result"]);
 
