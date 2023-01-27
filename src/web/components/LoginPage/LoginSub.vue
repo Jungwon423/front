@@ -1,9 +1,10 @@
 <template>
   <v-btn
     class="brand1-btn-wrapper"
+    @click="loginWithKakao"
   >
     <v-img
-      src="@/assets/카카오로고.png"
+      src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg"
       class="brand-btn"
     />
     <span
@@ -65,6 +66,12 @@ export default {
     }
   },
   methods: {
+    loginWithKakao() {
+      Kakao.Auth.authorize({
+      redirectUri: 'http://localhost:8081/kakao',
+    });
+    },
+
     goRegister() {
       this.$router.push('/register')
     },

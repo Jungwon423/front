@@ -56,6 +56,7 @@
     </v-row>
   </div>
 </template>
+
 <script>
 import axios from 'axios';
 import LoginSub from '@/web/components/LoginPage/LoginSub.vue';

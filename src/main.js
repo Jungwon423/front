@@ -26,3 +26,5 @@ categoryMap.set("fashion-clothes", "패션의류");
 app.config.globalProperties.$categoryMap = categoryMap;
 
 app.use(router).use(store).use(vuetify).mount('#app')
+
+window.Kakao.init("3883130351701d2ef44acb349ce4e77c")

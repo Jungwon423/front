@@ -11,6 +11,7 @@ import w_PolicyPage from '@/web/pages/PolicyPage.vue';
 import w_CompanyPage from '@/web/pages/CompanyPage.vue';
 import w_ProfilePage from '@/web/pages/ProfilePage.vue';
 import w_LikePage from '@/web/pages/LikePage.vue';
+import w_KakaoLoginRedirect from '@/web/pages/KakaoLoginRedirect.vue'
 
 const m_routes = [ //모바일 라우터
     {
@@ -71,6 +72,11 @@ const w_routes = [ //웹 라우터
       path: '/like',
       name: 'like',
       component: w_LikePage
+    },
+    {
+      path: '/kakao',
+      name: w_KakaoLoginRedirect,
+      component: w_KakaoLoginRedirect
     }
 ]
 
