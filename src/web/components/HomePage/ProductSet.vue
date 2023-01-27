@@ -81,25 +81,24 @@ export default {
 
     // vuex store에서 top3 product list 읽어옴
     top3ProductList: function () {
-      return this.$store.state.ProductStore.top3ProductList
+      return this.$store.state.Home.top3ProductList
     },
 
     // vuex store에서 current market 읽어옴
     currentMarket: function() {
-      return this.$store.state.ProductStore.currentMarket
+      return this.$store.state.Home.currentMarket
     }
   },
 
   watch: {
     currentMarket() {
-      this.$store.dispatch('ProductStore/FETCH_TOP3_PRODUCTLIST_API')
+      this.$store.dispatch('Home/FETCH_TOP3_PRODUCTLIST_API')
     },
   },
 
   methods: {
     changeMarket: function (marketName) {
-      console.log('클릭한 marketName : '+marketName)
-      this.$store.commit('ProductStore/SET_CURRENTMARKET', marketName)
+      this.$store.commit('Home/SET_CURRENTMARKET', marketName)
     }
   }
 

@@ -2,7 +2,7 @@
   <div class="text-center">
     <v-pagination
       v-model="page"
-      :length="totalPage_c"
+      :length="totalPage"
       @update:model-value="changePage"
     />
   </div>
@@ -10,18 +10,13 @@
 
 <script>
   export default {
-    data() {
-      return {
-        page: 1,
-      }
-    },
     computed: {
-      page_c: function() {
+      page: function() {
         // 왠지 모르겠는데 String으로 받아와서 warning이 떠서 *1로 숫자형으로 변환
-        return this.$store.state.ProductStore.page_c*1
+        return this.$store.state.Category.page*1
       },
-      totalPage_c: function () {
-        return this.$store.state.ProductStore.totalPage_c
+      totalPage: function () {
+        return this.$store.state.Category.totalPage
       }
     },
     methods: {
@@ -29,8 +24,8 @@
         this.$router.push({
         name: 'category',
         query: {
-          categoryName: this.$store.state.ProductStore.currentCategory_c,
-          marketName: this.$store.state.ProductStore.currentMarket_c,
+          categoryName: this.$store.state.Category.currentCategory,
+          marketName: this.$store.state.Category.currentMarket,
           page: page}},)
       }
     }

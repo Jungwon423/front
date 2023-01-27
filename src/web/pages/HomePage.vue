@@ -1,5 +1,6 @@
 <template>
   <div class="home-page">
+    <div> {{ token }}</div>
     <HomeHeader />
     <AdvertisingBox />
     <CategoryButtons />
@@ -27,8 +28,13 @@ export default {
     // ExhibitionSet,
     Footer,
   },
+  computed : {
+    token : function() {
+      return '토큰값 : ' + this.$store.state.Login.token
+    }
+  },
   async created () {
-    await this.$store.dispatch('ProductStore/FETCH_TOP3_PRODUCTLIST_API')
+    await this.$store.dispatch('Home/FETCH_TOP3_PRODUCTLIST_API')
   }
 }
 </script>

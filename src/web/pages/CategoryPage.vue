@@ -26,17 +26,17 @@ export default {
   },
   watch: {
     '$route' () {
-      this.$store.commit('ProductStore/SET_CURRENTCATEGORY_C', this.$route.query.categoryName)
-      this.$store.commit('ProductStore/SET_CURRENTMARKET_C', this.$route.query.marketName)
-      this.$store.commit('ProductStore/SET_PAGE_C', this.$route.query.page)
-      this.$store.dispatch('ProductStore/FETCH_PRODUCTLIST_API')
+      this.$store.commit('Category/SET_CURRENTCATEGORY', this.$route.query.categoryName)
+      this.$store.commit('Category/SET_CURRENTMARKET', this.$route.query.marketName)
+      this.$store.commit('Category/SET_PAGE', this.$route.query.page)
+      this.$store.dispatch('Category/FETCH_PRODUCTLIST_API')
     },
     
   },
   created(){
-    this.$store.commit('ProductStore/SET_CURRENTCATEGORY_C', this.$route.query.categoryName)
-    this.$store.commit('ProductStore/SET_CURRENTMARKET_C', this.$route.query.marketName)
-    this.$store.commit('ProductStore/SET_PAGE_C', this.$route.query.page)
+    this.$store.commit('Category/SET_CURRENTCATEGORY', this.$route.query.categoryName)
+    this.$store.commit('Category/SET_CURRENTMARKET', this.$route.query.marketName)
+    this.$store.commit('Category/SET_PAGE', this.$route.query.page)
   }
 }
 </script>

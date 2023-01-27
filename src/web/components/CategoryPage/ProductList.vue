@@ -1,10 +1,10 @@
 <template>
   <div class="inline-block">
     <div class="item-box px-2">
-      {{ productCount_c }} items in <strong> {{ currentMarket_c }}</strong>
+      {{ productCount }} items in <strong> {{ currentMarket }}</strong>
     </div>
     <ProductContainer 
-      v-for="product in productList_c"
+      v-for="product in productList"
       :key="product.name"
       :name="product.name"
       :image-url="product.imageUrl"
@@ -29,19 +29,19 @@ export default {
     ProductContainer
   },
   computed: {
-    currentMarket_c: function () {
-      return this.$categoryMap.get(this.$store.state.ProductStore.currentCategory_c)
+    currentMarket: function () {
+      return this.$categoryMap.get(this.$store.state.Category.currentCategory)
     },
-    productList_c: function () {
-      return this.$store.state.ProductStore.productList_c
+    productList: function () {
+      return this.$store.state.Category.productList
     },
-    productCount_c: function () {
-      return this.$store.state.ProductStore.productCount_c
+    productCount: function () {
+      return this.$store.state.Category.productCount
     },
   },
   
   async created() {
-    await this.$store.dispatch('ProductStore/FETCH_PRODUCTLIST_API')
+    await this.$store.dispatch('Category/FETCH_PRODUCTLIST_API')
   }
   
 }

@@ -52,7 +52,7 @@ export default {
         name: 'category',
         query: {
           categoryName: this.value,
-          marketName: this.$store.state.ProductStore.currentMarket_c,
+          marketName: this.$store.state.Category.currentMarket,
           page: 1}},)   
       },
     }

@@ -1,10 +1,12 @@
 import { createStore } from 'vuex'
-import ProductStore from './ProductStore'
-import userStore from './userStore.js'
+import Home from './Home'
+import Category from './Category'
+import Login from './Login.js'
 
 export default createStore({
   modules: {
-    ProductStore,
-    userStore
+    Home,
+    Category,
+    Login
   }
 })

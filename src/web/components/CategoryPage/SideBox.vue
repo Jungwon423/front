@@ -80,7 +80,7 @@
     },
     computed: {
       currentCategory_c: function () {
-        return this.$categoryMap.get(this.$store.state.ProductStore.currentCategory_c)
+        return this.$categoryMap.get(this.$store.state.Category.currentCategory)
       },
     },
     methods: {
@@ -89,14 +89,14 @@
         name: 'category',
         query: {
           categoryName: category,
-          marketName: this.$store.state.ProductStore.currentMarket_c,
+          marketName: this.$store.state.Category.currentMarket,
           page: 1}},)   
       },
       changeMarket(market) {
         this.$router.push({ 
         name: 'category',
         query: {
-          categoryName: this.$store.state.ProductStore.currentCategory_c,
+          categoryName: this.$store.state.Category.currentCategory,
           marketName: market,
           page: 1}},)   
       }
