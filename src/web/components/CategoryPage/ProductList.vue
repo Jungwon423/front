@@ -29,15 +29,15 @@ export default {
     ProductContainer
   },
   computed: {
-    currentMarket: function () {
-      return this.$categoryMap.get(this.$store.state.Category.currentCategory)
-    },
     productList: function () {
       return this.$store.state.Category.productList
     },
     productCount: function () {
       return this.$store.state.Category.productCount
     },
+    currentMarket: function () {
+      return this.$categoryMap.get(this.$store.state.Category.currentMarket)
+    }
   },
   
   async created() {

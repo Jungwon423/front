@@ -48,6 +48,8 @@ export default {
     },
     methods: {
       changeCategory() {
+        axios.post('http://localhost:8080/api/category/' + this.value + '/click')
+
         this.$router.push({
         name: 'category',
         query: {

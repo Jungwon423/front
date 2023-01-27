@@ -96,8 +96,7 @@
       >핫딜</span>
       <span
         class="group1-text px-10"
-        @click="goProduct"
-      >기획전</span>
+      >브랜드관</span>
       <span
         class="group2-text px-10"
         @click="goLogin"
@@ -129,9 +128,6 @@ export default {
       this.$router.push({
         name: 'category',
         query: {categoryName: "life_health", marketName: "all", page: "1"}},)
-    },
-    goProduct() {
-      this.$router.push('/product')
     },
     goLogin() {
       this.$router.push('/login')

@@ -5,13 +5,12 @@
     </div>
     <div class="product-description1 pa-8">
       <div class="text-group2 px-5">
-        <span>셔츠를 보니까 그냥 옷 핏이 사네요 개쩌는 제품입니다 아아아아아</span>
+        <span>{{ name }}</span>
       </div>
       <div class="text-group3">
         <v-rating
           v-model="rating"
           class="px-5"
-          value="3.5"
           color="#FFB300"
           empty-icon="mdi-star-outline"
           full-icon="mdi-star"
@@ -20,7 +19,7 @@
           readonly
           size="15"
         />
-        <span class="text-group4 py-2">3.5</span>
+        <span class="text-group4 py-2"> {{ rating }}</span>
         <span class="v-line2" />
         <span class="img-message py-2">
           <v-img
@@ -29,17 +28,17 @@
             height="20px"
           />
         </span>
-        <span class="py-2">리뷰 : 35개</span>
+        <span class="py-2">리뷰 : {{ comment }}개</span>
       </div>
       
-      <span class="mx-5 py-3"> 6500원 </span>
-      <span class="originPrice"> 12000원 </span>
-      <span class="px-5 discountPrice"> 24% </span>
+      <span class="mx-5 py-3"> {{ price }}원 </span>
+      <span class="originPrice"> {{ naverPrice }}원 </span>
+      <span class="px-5 discountRate"> {{ discountRate }}% </span>
       <div class="px-5">
-        네이버 최저가: 190000원
+        네이버 최저가: {{ naverPrice }}원
       </div>
       <div class="px-5">
-        카테고리:  shirt
+        카테고리:  {{ category }}
       </div>
 
       <div class="ddabong-card pa-4">
@@ -61,12 +60,34 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
-    name: 'ProductInfo',
-    data() {
+  name: 'ProductInfo',
+  data() {
     return {
-      rating: 3
+      name: '',
+      rating: 0,
+      comment: 0,
+      price: 0,
+      naverPrice: 0,
+      category: '생활/건강',
+      good: 0,
+      bad: 0,
     }
+  },
+  computed: {
+    discountRate: function() {
+      return (1-this.price/this.naverPrice)*100
+    }
+  },
+  async created() {
+    axios.get('http://localhost:8080/api/product/detail?name=' + this.$route.query.name)
+    .then((res) => {
+      this.name = res.data['result']['name']
+      this.price = res.data['result']['price'],
+      this.naverPrice = res.data['result']['naverPrice']
+      this.category = res.data['result']['categoryName']
+    })
   }
 }
 </script>
@@ -118,7 +139,7 @@ export default {
   font-size:11px;
   text-decoration-line: line-through;
 }
-.discountPrice{
+.discountRate{
   font-size:14px;
   font-weight: 600;
   color:#EF5350;

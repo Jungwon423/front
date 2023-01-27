@@ -1,7 +1,7 @@
 <template>
   <div
     class="product-container"
-    @click="logger"
+    @click="goProduct"
   >
     <img
       class="product-image"
@@ -133,7 +133,7 @@ export default {
     bad: {
       type: Number,
       default: 0
-    }
+    },
   },
   data() {
       return {
@@ -160,9 +160,13 @@ export default {
       this.empty = !this.empty;
       this.fill = !this.fill;
     },
-    logger() {
-      console.log('테스트입니다')
-    }
+    goProduct() {
+      this.$router.push({
+        name: 'product',
+        query: {
+          name: this.name,
+        }},)  
+    },
   }
 }
 </script>
@@ -178,6 +182,7 @@ export default {
   border-width:1px;
   border-color:#E0E0E0;
   border-radius: 8px;
+  cursor: pointer;
 }
 .origin-price{
   padding-left:3px;
