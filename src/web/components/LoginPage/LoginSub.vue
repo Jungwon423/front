@@ -69,7 +69,7 @@ export default {
     loginWithKakao() {
       Kakao.Auth.authorize({
       redirectUri: 'http://localhost:8081/kakao',
-    });
+      });
     },
 
     goRegister() {
