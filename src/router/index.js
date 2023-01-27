@@ -12,6 +12,8 @@ import w_CompanyPage from '@/web/pages/CompanyPage.vue';
 import w_ProfilePage from '@/web/pages/ProfilePage.vue';
 import w_LikePage from '@/web/pages/LikePage.vue';
 import w_KakaoLoginRedirect from '@/web/pages/KakaoLoginRedirect.vue'
+import w_NaverLoginRedirect from '@/web/pages/NaverLoginRedirect.vue'
+import w_GoogleLoginRedirect from '@/web/pages/GoogleLoginRedirect.vue'
 
 const m_routes = [ //모바일 라우터
     {
@@ -77,7 +79,17 @@ const w_routes = [ //웹 라우터
       path: '/kakao',
       name: w_KakaoLoginRedirect,
       component: w_KakaoLoginRedirect
-    }
+    },
+    {
+      path: '/naver',
+      name: w_NaverLoginRedirect,
+      component: w_NaverLoginRedirect
+    },
+    {
+      path: '/google',
+      name: w_GoogleLoginRedirect,
+      component: w_GoogleLoginRedirect
+    },
 ]
 
 const m_router = new createRouter({
