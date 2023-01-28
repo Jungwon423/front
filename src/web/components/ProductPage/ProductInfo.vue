@@ -1,7 +1,7 @@
 <template>
   <div class="product-wrapper pa-12">
     <div class="img-wrapper1">
-      <v-img src="@/assets/proExample.png" />
+      <v-img :src="imageUrl" />
     </div>
     <div class="product-description1 pa-8">
       <div class="text-group2 px-5">
@@ -31,11 +31,11 @@
         <span class="py-2">리뷰 : {{ comment }}개</span>
       </div>
       
-      <span class="mx-5 py-3"> {{ price }}원 </span>
-      <span class="originPrice"> {{ naverPrice }}원 </span>
-      <span class="px-5 discountRate"> {{ discountRate }}% </span>
+      <span class="mx-5 py-3"> {{ Math.floor(price).toLocaleString('ko-KR') }}원 </span>
+      <span class="originPrice"> {{ Math.floor(naverPrice).toLocaleString('ko-KR') }}원 </span>
+      <span class="px-5 discountRate"> {{ Math.floor(discountRate) }}% </span>
       <div class="px-5">
-        네이버 최저가: {{ naverPrice }}원
+        네이버 최저가: {{ Math.floor(naverPrice).toLocaleString('ko-KR') }}원
       </div>
       <div class="px-5">
         카테고리:  {{ category }}
@@ -46,13 +46,13 @@
           <div class="ddabong">
             <v-img src="@/assets/개추.png" />
           </div>
-          <span class="ddabong-text">추천 7개</span>
+          <span class="ddabong-text">추천 {{ good }}개</span>
         </div>
         <div class="ddabong-card2 text-center">
           <div class="ddabong">
             <v-img src="@/assets/비추.png" />
           </div>
-          <span>비추천 0개</span>
+          <span>비추천 {{ bad }}개</span>
         </div>
       </div>
       <hr class="h-line1">
@@ -65,6 +65,7 @@ export default {
   name: 'ProductInfo',
   data() {
     return {
+      imageUrl: '',
       name: '',
       rating: 0,
       comment: 0,
@@ -73,6 +74,7 @@ export default {
       category: '생활/건강',
       good: 0,
       bad: 0,
+
     }
   },
   computed: {
@@ -83,6 +85,7 @@ export default {
   async created() {
     axios.get('http://localhost:8080/api/product/detail?name=' + this.$route.query.name)
     .then((res) => {
+      this.imageUrl = res.data['result']['imageUrl']
       this.name = res.data['result']['name']
       this.price = res.data['result']['price'],
       this.naverPrice = res.data['result']['naverPrice']

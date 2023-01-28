@@ -1,5 +1,8 @@
 <template>
-  <div class="card-group1 px-3">
+  <div
+    class="card-group1 px-3"
+    @click="goProduct"
+  >
     <div class="card-img">
       <img
         :src="imageUrl"
@@ -53,7 +56,7 @@
             color="#A1887F"
             size="large"
             class="heart-icon"
-            @click="changeBtn()"
+            @click.stop="changeBtn()"
           />
         </div>
         <div
@@ -65,7 +68,7 @@
             color="#A1887F"
             size="large"
             class="heart-icon"
-            @click="changeBtn()"
+            @click.stop="changeBtn()"
           />
         </div>
       </div>
@@ -174,7 +177,14 @@ export default {
     changeBtn(){
       this.empty = !this.empty;
       this.fill = !this.fill;
-    }
+    },
+    goProduct() {
+      this.$router.push({
+        name: 'product',
+        query: {
+          name: this.name,
+        }},)  
+    },
   }
 }
 </script>
@@ -185,6 +195,7 @@ export default {
   height: 500px;
   display: block;
   position: relative;
+  cursor: pointer;
 }
 .card-img{
   width:300px;
