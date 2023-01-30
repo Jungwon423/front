@@ -24,18 +24,23 @@
       style="font-size:14px; font-weight:600;"
     >네이버로 계속하기</span>
   </v-btn>
-  <v-btn
-    class="brand3-btn-wrapper"
+  <a
+    class="decoration-none" 
+    href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email&response_type=code&client_id=862259299846-ham1sak40i9ampguua9m9mrnqqdonfa8.apps.googleusercontent.com&redirect_uri=http://localhost:8081/google"
   >
-    <v-img
-      src="@/assets/구글로고.svg"
-      class="brand-btn"
-    />
-    <span
-      class="px-12"
-      style="font-size:14px; font-weight:600;"
-    >구글로 계속하기</span>
-  </v-btn>
+    <v-btn
+      class="brand3-btn-wrapper"
+    >
+      <v-img
+        src="@/assets/구글로고.svg"
+        class="brand-btn"
+      />
+      <span
+        class="px-12"
+        style="font-size:14px; font-weight:600;"
+      >구글로 계속하기</span>
+    </v-btn>
+  </a>
   <v-col>
     <div class="text-link1">
       비밀번호 찾기
@@ -53,50 +58,6 @@
       간편로그인 디자인 보기
     </div>
   </v-col>
-  <a href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email&response_type=code&client_id=862259299846-ham1sak40i9ampguua9m9mrnqqdonfa8.apps.googleusercontent.com&redirect_uri=http://localhost:8081/google">
-    <v-btn
-      class="brand3-btn-wrapper"
-    >
-      <v-img
-        src="@/assets/구글로고.svg"
-        class="brand-btn"
-      />
-      <span
-        class="px-12"
-        style="font-size:14px; font-weight:600;"
-      >구글로 계속하기</span>
-    </v-btn>
-  </a>
-  
-  <div
-    id="g_id_onload"
-    data-client_id="862259299846-ham1sak40i9ampguua9m9mrnqqdonfa8"
-    data-context="signin"
-    data-ux_mode="popup"
-    data-login_uri="http://localhost:8081/google"
-    data-auto_prompt="false"
-  />
-
-  <div
-    class="g_id_signin"
-    data-type="standard"
-    data-shape="rectangular"
-    data-theme="filled_blue"
-    data-text="signin_with"
-    data-size="large"
-    data-logo_alignment="left"
-  />
-  
-  <div
-    id="g_id_onload"
-    data-client_id="862259299846-ham1sak40i9ampguua9m9mrnqqdonfa8"
-    data-callback="handleCredentialResponse"
-  />
-  <div
-    class="g_id_signin"
-    data-type="icon"
-    data-shape="circle"
-  />
 </template>
 <script>
 export default {
@@ -130,6 +91,7 @@ export default {
       //console.log(el);
       el.getElementsByTagName("a")[0].click(); //버튼 누르면 naver_id_login id가진 div도 눌리게
     },
+    /*
     handleCredentialResponse(response) {
       // decodeJwtResponse() is a custom function defined by you
       // to decode the credential response.
@@ -149,17 +111,18 @@ export default {
           return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
       }).join(''));
       return JSON.parse(jsonPayload);
-    },
-    /*doLogout() {
-      this.$cookie.removeCookie('user-key')
-      this.userKey = ''
-      this.user = {}
     },*/
   }
 }
 </script>
 
 <style scoped>
+.decoration-none {
+  color: #000;
+  font-size: 22px;
+  font-family: dream;
+  text-decoration : none !important; 
+}
 .brand1-btn-wrapper{
   margin-top:20px;
   margin-left:12px;

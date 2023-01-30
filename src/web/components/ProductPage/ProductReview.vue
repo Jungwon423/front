@@ -47,7 +47,18 @@
       </div>  
       <div class="ddabong-card10">
         <div class="ddabong">
-          <v-img src="@/assets/개추.png" />
+          <div v-if="fill1">
+            <v-img
+              src="@/assets/thumbs/따봉2.png"
+              @click.stop="changeBtn1()"
+            />
+          </div>
+          <div v-if="empty1">
+            <v-img
+              src="@/assets/thumbs/추천.png"
+              @click.stop="changeBtn1()"
+            />
+          </div>
         </div>
         <div class="ddabong-text">
           7
@@ -55,7 +66,18 @@
       </div>
       <div class="ddabong-card11">
         <div class="ddabong">
-          <v-img src="@/assets/비추.png" />
+          <div v-if="fill2">
+            <v-img
+              src="@/assets/thumbs/우우2.png"
+              @click.stop="changeBtn2()"
+            />
+          </div>
+          <div v-if="empty2">
+            <v-img
+              src="@/assets/thumbs/비추천.png"
+              @click.stop="changeBtn2()"
+            />
+          </div>
         </div>
         <div class="ddabong-text">
           0
@@ -83,10 +105,15 @@
   </div>
 </template>
 <script>
+
 export default {
   name: 'ProductInfo',
   data() {
   return {
+    empty1: true,
+    empty2: true,
+    fill1: false,
+    fill2: false,
     rating: 4.5,
     context:'',
     users:[
@@ -104,12 +131,21 @@ export default {
       id: "rlawjddnjs",
       rating:4.5,
       content: '좋습니다!',
-      src: require('@/assets/개추.png'),
+      src: require('@/assets/thumbs/개추.png'),
       date: '2023.01.21',
-    }
-    ]
+    }]
   }
-},
+  },
+  methods:{
+    changeBtn1(){
+      this.empty1 = !this.empty1;
+      this.fill1 = !this.fill1;
+    },
+    changeBtn2(){
+      this.empty2 = !this.empty2;
+      this.fill2 = !this.fill2;
+    },
+  }
 }
 </script>
 <style scoped>
