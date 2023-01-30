@@ -39,7 +39,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+@font-face{
+  font-family: 'dohyeun';
+  src:url('@/assets/font/BMDOHYEON_ttf.ttf') format('truetype');
+}
 .home-page {
   width: 980px;
   margin-left: auto;

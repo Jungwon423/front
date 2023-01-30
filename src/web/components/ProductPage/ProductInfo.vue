@@ -43,16 +43,24 @@
 
       <div class="ddabong-card pa-4">
         <div class="ddabong-card1 text-center">
-          <div class="ddabong">
-            <v-img src="@/assets/개추.png" />
+          <div class="ddabong pa-1">
+            <v-img
+              width="20px"
+              height="20px"
+              src="@/assets/thumbs/따봉1.png"
+            />
           </div>
-          <span class="ddabong-text">추천 {{ good }}개</span>
+          <span class="ddabong-text">추천 {{ good }}</span>
         </div>
         <div class="ddabong-card2 text-center">
-          <div class="ddabong">
-            <v-img src="@/assets/비추.png" />
+          <div class="ddabong pa-1">
+            <v-img
+              width="20px"
+              height="20px"
+              src="@/assets/thumbs/우우1.png"
+            />
           </div>
-          <span>비추천 {{ bad }}개</span>
+          <span class="ddabong-text">비추 {{ bad }}</span>
         </div>
       </div>
       <hr class="h-line1">
@@ -148,28 +156,55 @@ export default {
   color:#EF5350;
 }
 .ddabong{
-  display: inline-block;
   width:50px;
+  position: relative;
+  top:10%;
+  left:10%;
 } 
+.ddabong-text{
+  position:relative;
+  bottom:60%;
+  left:13%;
+  font-size:12px;
+}
 .ddabong-card{
   width:500px;
 }
 .ddabong-card1{
   display:inline-block;
   border-style:solid;
-  border-width: 1px 0px 1px 1px;
-  border-color:black;
-  width:150px;
-  height:70px;
+  border-radius:6px;
+  border-width:2px;
+  border-color:#757575;
+  width:90px;
+  height:40px;
   align-self: center;
+  cursor:pointer;
+  transition:all 0.9s, color 0.3;  
 }
 .ddabong-card2{
   display:inline-block;
   border-style:solid;
-  border-width: 1px;
-  border-color:black;
-  width:150px;
-  height:70px;
+  position:relative;
+  left:4%;
+  border-radius:6px;
+  border-width:2px;
+  border-color:#757575;
+  width:90px;
+  height:40px;
   align-self: center;
+  cursor:pointer;
+}
+.ddabong-card1:hover{
+  box-shadow:200px 0 0 0 rgba(0,0,0,0.3) inset;
+}
+.ddabong-card2:hover{
+  box-shadow:200px 0 0 0 rgba(0,0,0,0.3) inset;
+}
+.ddabong-card1:active{
+  background-color: #757575;
+}
+.ddabong-card2:active{
+  background-color: #757575;
 }
 </style>

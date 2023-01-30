@@ -1,8 +1,11 @@
 <template>
-  <div class="pa-10 flex-titlebar">
-    <router-link
-      to="/"
+  <div
+    class="pa-10 flex-titlebar"
+  >
+    <div
+      style="cursor:pointer;"
       class="decoration-none"
+      @click="goHomePage"
     >
       <v-avatar
         color="white"
@@ -18,7 +21,7 @@
       <span>
         Kagu
       </span>
-    </router-link>
+    </div>
   
     <div class="search-bar-wrapper">
       <input
@@ -92,10 +95,11 @@
       >홈</span>
       <span
         class="group1-text px-10"
-        @click="goCategoryPage"
+        @click="goProductPage"
       >핫딜</span>
       <span
         class="group1-text px-10"
+        @click="goBrandPage"
       >브랜드관</span>
       <span
         class="group2-text px-10"
@@ -122,12 +126,23 @@ export default {
     },
   methods: {
     goHomePage() {
-      this.$router.push('/')
+      if(window.location.pathname=="/"){  //현재 홈페이지 일 경우
+        location.reload();
+      }
+      else{
+        this.$router.push('/')
+      }
     },
     goCategoryPage() {
       this.$router.push({
         name: 'category',
         query: {categoryName: "life_health", marketName: "all", page: "1"}},)
+    },
+    goBrandPage() {
+      this.$router.push('/brand')
+    },
+    goProductPage() {
+      this.$router.push('/product')
     },
     goLogin() {
       this.$router.push('/login')
@@ -150,6 +165,11 @@ export default {
 }
 .width-980{
   width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.width-1200{
+  width: 1200px;
   margin-left: auto;
   margin-right: auto;
 }
