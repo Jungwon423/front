@@ -1,6 +1,6 @@
 <template>
   <div class="home-page">
-    <div> {{ token }}</div>
+    <div> 로그인 여부 : {{ logined }}</div>
     <HomeHeader />
     <AdvertisingBox />
     <CategoryButtons />
@@ -29,8 +29,8 @@ export default {
     Footer,
   },
   computed : {
-    token : function() {
-      return '토큰값 : ' + this.$store.state.Login.token
+    logined : function() {
+      return this.$store.state.Login.logined
     }
   },
   async created () {

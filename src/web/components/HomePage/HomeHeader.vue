@@ -104,7 +104,7 @@
       <span
         class="group2-text px-10"
         @click="goLogin"
-      >로그인</span>
+      >로그인 : {{ logined }}</span>
     </div>
   </div>
 </template>
@@ -120,9 +120,6 @@ export default {
     NavigationDrawer
   },
   data () {
-      return {
-        dialog: false,
-      }
     },
   methods: {
     goHomePage() {
@@ -148,12 +145,12 @@ export default {
       this.$router.push('/login')
     },
     goProfile() {
-      this.$router.push('/profile')
+        this.$router.push('/profile')
     },
     goLike() {
       this.$router.push('/like')
     },
-  },
+  }
 }
 </script>
 <style>
