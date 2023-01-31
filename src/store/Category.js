@@ -1,4 +1,4 @@
-import axios from "axios";
+import jwtAxios from '@/jwtAxios'
 
 export default {
   namespaced: true,
@@ -45,9 +45,8 @@ export default {
     // category page에서 product list & page_c 수정
     async FETCH_PRODUCTLIST_API(context) {
       try {
-        let res = await axios.get(
-          "http://localhost:8080/api/category/" +
-          // "https://www.zigdeal.shop:8080/api/category/" +
+        let res = await jwtAxios.get(
+          "/category/" +
           context.state.currentCategory +
           "/" +
           context.state.currentMarket +

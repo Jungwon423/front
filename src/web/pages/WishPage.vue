@@ -1,18 +1,18 @@
 <template>
-  <LikeHeader />
-  <LikeList />
+  <WishHeader />
+  <WishList />
 </template>
       
 <script>
-import LikeHeader from '@/web/components/LikePage/LikeHeader.vue';
-import LikeList from '@/web/components/LikePage/LikeList.vue';
+import WishHeader from '@/web/components/WishPage/WishHeader.vue';
+import WishList from '@/web/components/WishPage/WishList.vue';
 
 export default {
-    name: 'LikePage',
-    components : {
-        LikeHeader,
-        LikeList,
-    },
+  name: 'WishPage',
+  components : {
+    WishHeader,
+    WishList,
+  },
 }
 </script>
 

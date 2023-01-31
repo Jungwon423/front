@@ -1,4 +1,4 @@
-import axios from "axios";
+import jwtAxios from '@/jwtAxios'
 
 export default {
   namespaced: true,
@@ -30,9 +30,8 @@ export default {
     // home page에서 product list
     async FETCH_TOP3_PRODUCTLIST_API(context) {
       try {
-        let res = await axios.get(
-          "http://localhost:8080/api/category/" +
-          // "https://www.zigdeal.shop:8080/api/category/" +
+        let res = await jwtAxios.get(
+          "/category/" +
           context.state.currentMarket +
           "/top3"
         );
@@ -40,6 +39,7 @@ export default {
         context.commit("SET_TOP3_PRODUCTLIST", res.data["result"]);
 
       } catch (error) {
+        console.log(error)
       }
     },
   },

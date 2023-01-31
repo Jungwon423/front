@@ -23,22 +23,9 @@
       </div>
       <div class="default-table">
         <div class="pa-6">
-          <div class="default-table-title2">
-            사진
-          </div> <span class="px-6">사진을 추가하세요</span>
-          <div class="default-image">
-            <v-img
-              src="@/assets/profile/account-badge-48.png"
-            />
-          </div>
-          <hr class="h-line3">
           <div class="default-table-title">
-            이름
-          </div><span class="px-6">오동근</span>
-          <hr class="h-line3">
-          <div class="default-table-title">
-            성별
-          </div><span class="px-6">성별이 공개되지 않음</span>
+            닉네임
+          </div><span class="px-6"> {{ nickname }}</span>
           <span class="default-mdi"><v-icon
             class="px-12 icon1"
             color="black"
@@ -50,7 +37,7 @@
           <hr class="h-line3">
           <div class="default-table-title">
             별명
-          </div><span class="px-6">앤비</span>
+          </div><span class="px-6"> {{ "data-binding X" }}</span>
           <span class="default-mdi"><v-icon
             class="px-12 icon1"
             color="black"
@@ -62,69 +49,44 @@
         </div>
       </div>
     </div>
-    <div class="my-12 default-info2">
-      <div class="pa-6 default-title">
-        연락처 정보
-      </div>
-      <div class="default-table">
-        <div class="pa-5">
-          <div class="default-table-title">
-            이메일
-          </div><span class="px-6">ohsimon0@naver.com</span>
-          <hr class="h-line3">
-          <div class="default-table-title">
-            전화번호
-          </div><span class="px-1">010-5689-xxxx</span>
-        </div>
-      </div>
-    </div>
-    <div>구현해야 할 사항 : 이미지 업로드</div>
-    <div class="file-upload">
-      <input
-        type="file"
-        accept="image/*"
-        @change="onFileChange"
-      >
-      <button
-        class="upload-button"
-        :disabled="!selectedFile"
-        @click="onUploadFile"
-      >
-        Upload file
-      </button>
-    </div>
+    <profile-good />
   </div>
 </template>
+
 <script>
+
+import jwtAxios from '@/jwtAxios'
+import profileGood from '@/web/components/ProfilePage/ProfileGood.vue'
+
 export default {
-    data() {
-      return {
-        selectedFile: "",
-      };
-    },
-    methods: {
-      onFileChange(e) {
-        const selectedFile = e.target.files[0]; // accessing file
-        this.selectedFile = selectedFile;
-      },
-      onUploadFile() {
-        const formData = new FormData();
-        formData.append("image", this.selectedFile);  // appending file
+  components: {
+    profileGood
+  },
+  data() {
+    return {
+      nickname: '엔비',
+      good: [],
+      comment: []
+    };
+  },
   
-       // sending file to the backend
-        axios
-          .post("/upload", formData)
-          .then(res => {
-            console.log(res);
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      }
-    }
-  };
+  async created() {
+    let res = await jwtAxios.get('/user/profile')
+
+    this.nickname = res.data['nickname']
+    this.good = res.data['good']
+    this.comment = res.data['comment']
+
+    console.log(this.nickname)
+    console.log(this.good)
+    console.log(this.comment)
+
+
+  }
+};
 </script>
-<style scoped>
+
+<style>
 .profile-title-box{
     display:flex;
 }

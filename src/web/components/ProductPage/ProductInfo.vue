@@ -68,7 +68,7 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
+import jwtAxios from '@/jwtAxios'
 export default {
   name: 'ProductInfo',
   data() {
@@ -91,7 +91,7 @@ export default {
     }
   },
   async created() {
-    axios.get('http://localhost:8080/api/product/detail?name=' + this.$route.query.name)
+    jwtAxios.get('/product/detail?name=' + this.$route.query.name)
     .then((res) => {
       this.imageUrl = res.data['result']['imageUrl']
       this.name = res.data['result']['name']

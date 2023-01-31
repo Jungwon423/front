@@ -5,19 +5,18 @@
     </div>
     <hr class="h-line5">
     
-    <LikeContainer />
-    <LikeContainer />
-    <LikeContainer />
+    <WishContainer />
+    <WishContainer />
+    <WishContainer />
   </div>
 </template>
   
   <script>
-  import LikeContainer from '@/web/components/LikePage/LikeContainer.vue';
+  import WishContainer from '@/web/components/WishPage/WishContainer.vue';
   
   export default {
-    name: 'ProductList',
     components: {
-      LikeContainer,
+      WishContainer,
     },
   }
   </script>
