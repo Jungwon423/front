@@ -93,7 +93,6 @@ export default {
               // 로그인 성공시 처리해줘야할 부분
               this.$store.commit("login", res.data);
               //this.$router.push("/");
-              console.log(res.data);
             }
           });
       } catch (error) {

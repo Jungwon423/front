@@ -66,7 +66,7 @@
       <v-col>
         <div
           class="icon-group2"
-          @click="goLike()"
+          @click="goWish()"
         >
           <v-icon
             large
@@ -95,7 +95,7 @@
       >홈</span>
       <span
         class="group1-text px-10"
-        @click="goProductPage"
+        @click="goCategoryPage"
       >핫딜</span>
       <span
         class="group1-text px-10"
@@ -104,7 +104,7 @@
       <span
         class="group2-text px-10"
         @click="goLogin"
-      >로그인 : {{ logined }}</span>
+      > {{ logined ? "로그아웃" : "로그인" }}</span>
     </div>
   </div>
 </template>
@@ -119,11 +119,14 @@ export default {
     NotAvailableDialog,
     NavigationDrawer
   },
-  data () {
-    },
+  computed: {
+    logined () {
+      return this.$store.getters['Login/logined']
+    }
+  },
   methods: {
     goHomePage() {
-      if(window.location.pathname=="/"){  //현재 홈페이지 일 경우
+      if (window.location.pathname == "/") {  //현재 홈페이지 일 경우
         location.reload();
       }
       else{
@@ -131,24 +134,52 @@ export default {
       }
     },
     goCategoryPage() {
-      this.$router.push({
-        name: 'category',
-        query: {categoryName: "life_health", marketName: "all", page: "1"}},)
+      if (window.location.pathname == '/category') {
+        location.reload()
+      }
+      else {
+        this.$router.push({
+          name: 'category',
+          query: {categoryName: "life_health", marketName: "all", page: "1"}},)
+      }
     },
     goBrandPage() {
-      this.$router.push('/brand')
+      if (window.location.pathname == '/brand') {
+        location.reload()
+      }
+      else {
+        this.$router.push('/brand')
+      }
     },
     goProductPage() {
       this.$router.push('/product')
     },
     goLogin() {
-      this.$router.push('/login')
+      if (!this.logined) {
+        this.$router.push('/login')
+      }
+      else {
+        // 로그아웃
+        this.$store.commit('Login/LOGOUT')
+        localStorage.clear()
+        window.location.reload()
+      }
     },
     goProfile() {
+      if (!this.logined) {
+        this.$router.push('/login')
+      }
+      else {
         this.$router.push('/profile')
+      }
     },
-    goLike() {
-      this.$router.push('/like')
+    goWish() {
+      if (!this.logined) {
+        this.$router.push('/login')
+      }
+      else {
+      this.$router.push('/wish')
+      }
     },
   }
 }

@@ -1,6 +1,5 @@
 <template>
   <div class="home-page">
-    <div> 로그인 여부 : {{ logined }}</div>
     <HomeHeader />
     <AdvertisingBox />
     <CategoryButtons />
@@ -29,8 +28,8 @@ export default {
     Footer,
   },
   computed : {
-    logined : function() {
-      return this.$store.state.Login.logined
+    logined () {
+      return this.$store.getters['Login/logined']
     }
   },
   async created () {

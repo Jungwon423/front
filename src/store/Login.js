@@ -3,10 +3,15 @@ export default {
 
   state: {
     token : localStorage.getItem('token') || '',
-    nickname: localStorage.getItem('nickname') || ''
+    nickname: localStorage.getItem('nickname') || '',
+    redirectPath: ''
   },
 
-  getters: {},
+  getters: {
+    logined (state) {
+      return state.token != ''
+    }
+  },
 
   mutations: {
     SET_TOKEN(state, payload) {
@@ -14,6 +19,13 @@ export default {
     },
     SET_NICKNAME(state, payload) {
       state.nickname = payload;
+    },
+    SET_REDIRECTPATH(state, payload) {
+      state.redirectPath = payload;
+    },
+    LOGOUT(state) {
+      state.token = '',
+      state.nickname = ''
     }
   },
 

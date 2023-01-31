@@ -10,7 +10,7 @@ import w_RegisterPage from '@/web/pages/RegisterPage.vue';
 import w_PolicyPage from '@/web/pages/PolicyPage.vue';
 import w_CompanyPage from '@/web/pages/CompanyPage.vue';
 import w_ProfilePage from '@/web/pages/ProfilePage.vue';
-import w_LikePage from '@/web/pages/LikePage.vue';
+import w_WishPage from '@/web/pages/WishPage.vue';
 import w_KakaoLoginRedirect from '@/web/pages/KakaoLoginRedirect.vue'
 import w_NaverLoginRedirect from '@/web/pages/NaverLoginRedirect.vue'
 import w_GoogleLoginRedirect from '@/web/pages/GoogleLoginRedirect.vue'
@@ -72,9 +72,9 @@ const w_routes = [ //웹 라우터
       component: w_ProfilePage
     },
     {
-      path: '/like',
-      name: 'like',
-      component: w_LikePage
+      path: '/wish',
+      name: 'wish',
+      component: w_WishPage
     },
     {
       path: '/kakao',
@@ -111,11 +111,9 @@ const w_router = new createRouter({
 let router;
 const md = new MobileDetect(window.navigator.userAgent);
 if(md.mobile()){
-  console.log("CONNECTION WITH MOBILE");
   router = m_router;
 }
 else{
-  console.log("CONNECTION WITH WEB");
   router = w_router;
 }
 
