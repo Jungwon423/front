@@ -103,6 +103,58 @@
       {{ user.content }}
     </div>
   </div>
+  <div class="comment-rating">
+    <v-rating
+      v-model="rating"
+      class="px-5"
+      :value="rating"
+      color="#FFB300"
+      empty-icon="mdi-star-outline"
+      full-icon="mdi-star"
+      half-icon="mdi-star-half"
+      half-increments
+      readonly
+      size="20"
+    />
+    <span>{{ rating }}점</span>
+  </div>
+  <div
+    class="text-wrapper"
+  >
+    <v-textarea
+      variant="solo"
+      bg-color="#FAFAFA"
+      no-resize
+      label="로그인 후에 댓글을 작성하세요."
+      counter="200"
+      color="transparent"
+      class="comment-text"
+    />
+  </div>
+  <div class="btn-wrapper">
+    <v-btn
+      variant="tonal"
+      class="write-btn"
+    >
+      저장
+    </v-btn>
+  </div>
+  <!--  
+  <div class="py-10 user-write">
+    <div class="search-bar-wrapper">
+      <textarea
+        class="comment"
+        name="content"
+        cols="40"
+        rows="8"
+      >
+        폼의 기본 내용 값이 들어갑니다.
+        줄 바꿈 및
+        공란도 그대로 인식하고,
+        <strong>이런 태그도</strong> 소스가 그대로 노출됩니다.
+      </textarea>
+    </div>
+  </div>-->
 </template>
 <script>
 
@@ -187,11 +239,7 @@ export default {
   border-width:1px;
   border-color:#E0E0E0;
 }
-.date-time{
-  color:#546E7A;
-  font-size:14px;
-  text-align: end;
-}
+
 .ddabong-card10{
   text-align:end;
   position:relative;
@@ -215,5 +263,30 @@ export default {
 .ddabong-text{
   text-align: center;
   margin:3px;
+}
+
+.text-wrapper{
+  display: flex;
+  border-style:solid;
+  border-radius:10px;
+  border-color:#FAFAFA;
+  border-width:1px;
+  width:950px;
+  height:150px;
+}
+.comment-text{
+  width:850px;
+  border: none;
+}
+.btn-wrapper{
+  height:70px;
+}
+.write-btn{
+  float:right;
+  position:relative;
+  right:3%;
+  top:10%;
+  font-size:15px;
+  font-weight: 600;
 }
 </style>
