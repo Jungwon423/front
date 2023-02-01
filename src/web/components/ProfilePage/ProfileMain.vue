@@ -19,33 +19,26 @@
         기본 정보
       </div>
       <div class="px-6">
-        일부 정보가 다른 이용자에게 표시될 수 있습니다.
+        일부 정보가 다른 이용자에게 표시될 수 있습니다. 
       </div>
+      <change-nickname />
       <div class="default-table">
         <div class="pa-6">
           <div class="default-table-title">
             닉네임
           </div><span class="px-6"> {{ nickname }}</span>
-          <span class="default-mdi"><v-icon
-            class="px-12 icon1"
-            color="black"
-            size="xx-large"
-          >
-            mdi-arrow-right-bold-box-outline
-          </v-icon>
-          </span>
+          <hr class="h-line3">
+          <div class="default-table-title">
+            이메일
+          </div><span class="px-6"> {{ email }}</span>
+          <hr class="h-line3">
+          <div class="default-table-title">
+            전화번호
+          </div><span class="px-6"> {{ phoneNumber }}</span>
           <hr class="h-line3">
           <div class="default-table-title">
             별명
           </div><span class="px-6"> {{ "data-binding X" }}</span>
-          <span class="default-mdi"><v-icon
-            class="px-12 icon1"
-            color="black"
-            size="xx-large"
-          >
-            mdi-arrow-right-bold-box-outline
-          </v-icon>
-          </span>
         </div>
       </div>
     </div>
@@ -57,9 +50,11 @@
 
 import jwtAxios from '@/jwtAxios'
 import profileGood from '@/web/components/ProfilePage/ProfileGood.vue'
+import ChangeNickname from '@/web/components/ProfilePage/ChangeNickname.vue'
 
 export default {
   components: {
+    ChangeNickname,
     profileGood
   },
   data() {
@@ -74,7 +69,9 @@ export default {
     let res = await jwtAxios.get('/user/profile')
 
     this.nickname = res.data['nickname']
+    this.email = res.data['email']
     this.good = res.data['good']
+    this.phoneNumber =res.data['phoneNumber']
     this.comment = res.data['comment']
 
     console.log(this.nickname)

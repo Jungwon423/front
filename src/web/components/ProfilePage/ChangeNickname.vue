@@ -5,27 +5,52 @@
     height="500px"
   >
     <template #activator="{ attrs }">
-      <v-btn
-        class="search-btn1"
+      <span class="default-mdi"><v-icon
+        class="px-12 icon1"
+        color="black"
+        size="xx-large"
         v-bind="attrs"
         @click.stop="dialog = true"
       >
-        검색
-      </v-btn>
+        mdi-arrow-right-bold-box-outline
+      </v-icon>
+      </span>
     </template>
     <v-row>
       <v-col>
         <div class="card01">
-          <!-- <div class="pa-10 card-title"> 
-            죄송...
-          </div>-->
-          <v-img
-            class="card-img"
-            src="@/assets/randomImage/음.png"
-          />
-          
-          <div class="pa-10 card-content">
-            검색 기능은 아직 지원하지 않습니다.
+          <div class="pa-10 card-title"> 
+            개인정보 수정
+          </div>
+            
+          <div
+            class="mx-10"
+            style="margin-top:30px; font-size:18px;"
+          >
+            닉네임
+          </div>
+          <div class="mx-10 search-bar-wrapper">
+            <input
+              type="text"
+              name="hot"
+              placeholder="건방진 제이미"
+              class="search-bar"
+            >
+          </div>
+
+          <div
+            class="mx-10"
+            style="margin-top:50px; font-size:18px;"
+          >
+            전화번호
+          </div>
+          <div class="mx-10 search-bar-wrapper">
+            <input
+              type="text"
+              name="hot"
+              placeholder="010-xxxx-xxxx"
+              class="search-bar"
+            >
           </div>
           <v-spacer />
           <div
@@ -60,38 +85,27 @@
     data () {
       return {
         dialog: false,
-        imageUrl:'',
       }
     },
-    /*
-    beforeCreate(){
-      const ran = Math.floor(Math.random() * 10 + 1);
-      console.log(ran)
-      const imageUrl = "@/assets/randomImage/배달"+ran+".png";
-      this.imageUrl += imageUrl;
-    },
-    methods : {
-      getRandomImage(){
-        const ran = Math.floor(Math.random() * 10 + 1);
-        console.log(ran)
-        const imageUrl = "@/assets/randomImage/배달"+ran+".png";
-        this.imageUrl += imageUrl;
-      }
-    }*/
   }
 </script>
 
 <style scoped>
-.search-btn1{
-  display:flex;
-  height:55px;
-  width:100px;
-  margin-left:20px;
+.search-bar-wrapper{
+  display: flex;
+  border-style:solid;
+  border-radius:10px;
   border-color:#6D4C41;
-  border-radius:0px 9px 9px 0px;
-  background-color:#8D6E63;
   border-width:1px;
-  color:white;
+  padding: 10px;
+  width:400px;
+  height:56px;
+}
+.search-bar{
+  position:relative;
+  bottom:30%;
+  width:380px;
+  height:55px;
 }
 .card01{
   height:500px;
@@ -104,13 +118,9 @@
   font-size:40px;
   font-family: "dohyeon";
 }
-.card-img{
-  position:relative;
-  left:10%;
-  width:100px;
-  height:100px;
-}
 .card-footer{
+    position:relative;
+    top : 25%;
   height:80px;
   background-color: grey;
 }
@@ -124,3 +134,4 @@
   width:250px;
 }
 </style>
+  

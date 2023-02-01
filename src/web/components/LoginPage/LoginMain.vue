@@ -91,8 +91,9 @@ export default {
           .then((res) => {
             if (res.status === 200) {
               // 로그인 성공시 처리해줘야할 부분
-              this.$store.commit("login", res.data);
-              //this.$router.push("/");
+              this.$store.commit('Login/SET_TOKEN', res.data['token'])
+              localStorage.setItem('token', res.data['token'])
+              this.$router.push("/");
             }
           });
       } catch (error) {
