@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import jwtAxios from '@/jwtAxios';
 export default {
   props: {
       value: {
@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     changeCategory() {
-      axios.post('http://localhost:8080/api/category/' + this.value + '/click')
+      jwtAxios.post('/category/' + this.value + '/click')
 
       this.$router.push({
       name: 'category',

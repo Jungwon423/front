@@ -157,10 +157,15 @@ export default {
   },
   methods:{
     changeBtn(){
+      jwtAxios.post()
+
+
       this.empty = !this.empty;
       this.fill = !this.fill;
     },
     goProduct() {
+      jwtAxios.post('/product/' + this.name + '/click')
+
       this.$router.push({
         name: 'product',
         query: {

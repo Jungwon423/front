@@ -1,5 +1,5 @@
 <template>
-  <div>카카오 로그인 성공!</div>
+  <div />
 </template>
 
 <script>

@@ -20,7 +20,7 @@
         <span class="originPrice-group"> {{ roundedNaverPrice }}원 </span>
       </div>
       <div class="naver-price">
-        네이버 최저가 : {{ roundedNaverPrice }}원
+        네이버 최저가 : {{ roundedNaverPrice }}
       </div>
     </div>
     <div class="rating-group">
@@ -77,6 +77,8 @@
 </template>
   
 <script>
+import jwtAxios from '@/jwtAxios';
+
 export default {
   name: 'ProductContainer',
 
@@ -175,10 +177,14 @@ export default {
   },
   methods:{
     changeBtn(){
+      jwtAxios.post('/product/' + this.name + '/wishlist')
+
       this.empty = !this.empty;
       this.fill = !this.fill;
     },
     goProduct() {
+      jwtAxios.post('/product/' + this.name + '/wishlist')
+
       this.$router.push({
         name: 'product',
         query: {

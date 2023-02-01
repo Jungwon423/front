@@ -42,7 +42,10 @@
       </div>
 
       <div class="ddabong-card pa-4">
-        <div class="ddabong-card1 text-center">
+        <div
+          class="ddabong-card1 text-center"
+          @click="clickGood"
+        >
           <div class="ddabong pa-1">
             <v-img
               width="20px"
@@ -52,7 +55,10 @@
           </div>
           <span class="ddabong-text">추천 {{ good }}</span>
         </div>
-        <div class="ddabong-card2 text-center">
+        <div
+          class="ddabong-card2 text-center"
+          @click="clickBad"
+        >
           <div class="ddabong pa-1">
             <v-img
               width="20px"
@@ -67,8 +73,10 @@
     </div>
   </div>
 </template>
+
 <script>
 import jwtAxios from '@/jwtAxios'
+
 export default {
   name: 'ProductInfo',
   data() {
@@ -99,6 +107,16 @@ export default {
       this.naverPrice = res.data['result']['naverPrice']
       this.category = res.data['result']['categoryName']
     })
+  },
+  methods: {
+    clickGood() {
+      jwtAxios.post('/product/' + this.$route.query.name + '/recommend', { recommend: "good"})
+      .then((res) => {})
+    },
+    clickbad() {
+      jwtAxios.post('/product/' + this.$route.query.name + 'recommend', { recommend: "bad" } )
+      .then((res) => {})
+    }
   }
 }
 </script>
