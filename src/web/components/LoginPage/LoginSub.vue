@@ -26,7 +26,7 @@
   </v-btn>
   <a
     class="decoration-none" 
-    href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email&response_type=code&client_id=862259299846-ham1sak40i9ampguua9m9mrnqqdonfa8.apps.googleusercontent.com&redirect_uri=http://localhost:8081/google"
+    :href="google_redirect"
   >
     <v-btn
       class="brand3-btn-wrapper"
@@ -65,10 +65,11 @@ export default {
     return {
       id: null,
       password: null,
+      google_redirect : "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.email&response_type=code&client_id=862259299846-ham1sak40i9ampguua9m9mrnqqdonfa8.apps.googleusercontent.com&redirect_uri=" +process.env.VUE_APP_HOME_URL +'/google',
     }
   },
   mounted (){
-    const naver_id_login = new window.naver_id_login("g45Um10Zkbqc0tRDbvsW", "http://localhost:8081/naver");
+    const naver_id_login = new window.naver_id_login("g45Um10Zkbqc0tRDbvsW", process.env.VUE_APP_HOME_URL + "/naver");
     const state = naver_id_login.getUniqState();
     naver_id_login.setState(state);
     // naver_id_login.setPopup(); // popup 설정을 위한 코드
@@ -77,7 +78,7 @@ export default {
   methods: {
     loginWithKakao() {
       Kakao.Auth.authorize({
-      redirectUri: 'http://localhost:8081/kakao',
+      redirectUri: process.env.VUE_APP_HOME_URL + '/kakao',
       });
     },
     goRegister() {

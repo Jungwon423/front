@@ -83,7 +83,7 @@ export default {
       saveData.password = this.password;
 
       try {
-        axios.post("http://localhost:8080/api/user/login", JSON.stringify(saveData), {
+        axios.post(process.env.VUE_APP_API_ROOT + "/user/login", JSON.stringify(saveData), {
             headers: {
               "Content-Type": `application/json`,
             },

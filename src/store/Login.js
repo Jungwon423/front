@@ -4,12 +4,16 @@ export default {
   state: {
     token : localStorage.getItem('token') || '',
     nickname: localStorage.getItem('nickname') || '',
-    redirectPath: ''
+    redirectPath: '',
+    isAdminUser: false || true,
   },
 
   getters: {
     logined (state) {
       return state.token != ''
+    },
+    isAdminUser (state) {
+      return state.isAdminUser ==true;
     }
   },
 
