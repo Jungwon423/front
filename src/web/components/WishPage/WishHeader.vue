@@ -5,7 +5,7 @@
         to="/"
         class="decoration-none"
       >
-        <span style="color:white; font-size:27px">
+        <span style="color:#F06292; font-size:27px">
           Kagu
         </span>
       </router-link>
@@ -14,8 +14,6 @@
 </template>
 <style scoped>
 .flex-titlebar{
-  color:white;
   height:120px;
-  background-color:#F06292;
 }
 </style>
