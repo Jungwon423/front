@@ -15,6 +15,7 @@ import w_KakaoLoginRedirect from '@/web/pages/KakaoLoginRedirect.vue'
 import w_NaverLoginRedirect from '@/web/pages/NaverLoginRedirect.vue'
 import w_GoogleLoginRedirect from '@/web/pages/GoogleLoginRedirect.vue'
 import w_BrandPage from '@/web/pages/BrandPage.vue';
+import w_AdminPage from '@/web/pages/AdminPage.vue';
 
 const m_routes = [ //모바일 라우터
     {
@@ -30,6 +31,11 @@ const w_routes = [ //웹 라우터
       path: '/',
       name: 'home',
       component: w_HomePage
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: w_AdminPage
     },
     {
       path: '/category',

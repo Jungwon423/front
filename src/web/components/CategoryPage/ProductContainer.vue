@@ -164,7 +164,7 @@ export default {
       this.fill = !this.fill;
     },
     goProduct() {
-      jwtAxios.post('/product/' + this.name + '/click')
+      //jwtAxios.post('/product/' + this.name + '/click')
 
       this.$router.push({
         name: 'product',
