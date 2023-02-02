@@ -36,7 +36,7 @@ export default {
       },
       src: {
           type: String,
-          default: require('@/assets/categoryImage/computer.png'),
+          default: require('@/assets/drawerIcon/건강.png'),
       },
       imageSize: {
           type: String,

@@ -111,7 +111,10 @@ const m_router = new createRouter({
 
 const w_router = new createRouter({
   history : createWebHistory(), //process.env.BASE_URL
-  routes : w_routes
+  routes : w_routes,
+  scrollBehavior (to, from, savedPosition) {
+    return { top: 0 }
+  }
 })
 
 let router;

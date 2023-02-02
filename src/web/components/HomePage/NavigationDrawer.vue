@@ -53,45 +53,32 @@
       </div>
     </div>
     <hr class="hr-line10">
-    <div class="navigate-list">
-      <div class="navigate-title pa-2">
-        브랜드
-      </div>
-      <div
-        v-for="brand in brands" 
-        :key="brand.title"
-        class="navigate-content"
-      >
-        <div class="icon-wrapper">
-          <v-img
-            :src="brand.src"
-          />
-        </div>
-
-        <span class="px-3">
-          {{ brand.title }}
-        </span>
-      </div>
+    <div class="brand-title px-5 py-2">
+      브랜드몰
     </div>
-
-    <!--  
-    <v-list
-      dense
-    >
-      <v-list-item
-        v-for="item in items"
-        :key="item.title"
-        link
-      >
-        <v-list color="transparent">
-          <v-list-item
-            :prepend-icon="item.icon"
-            :title="item.title"
-          />
-        </v-list>
-      </v-list-item>
-    </v-list>
-    -->
+    <v-row class="text-start">
+      <v-col>
+        <div
+          v-for="brand in brands" 
+          :key="brand.title"
+          class="brand-content"
+        >
+          <div
+            class="text-center brand-wrapper"
+            @click="goBrandPage"
+          >
+            <div class="brand-btn">
+              <v-img
+                :src="brand.src"
+              />
+            </div>
+            <div style="font-size:14px;">
+              {{ brand.title }}
+            </div>
+          </div>
+        </div>
+      </v-col>
+    </v-row>
   </v-navigation-drawer>
 </template>
 
@@ -99,7 +86,7 @@
   export default {
     data () {
       return {
-        drawer: null,
+        drawer: false,
         items: [
           { title: 'life_health', src: require('@/assets/drawerIcon/건강.png') },
           { title: 'sports_leisure',src: require('@/assets/drawerIcon/스포츠.png') },
@@ -114,10 +101,11 @@
           // { title: 'travel_culture', src: require('@/assets/drawerIcon/문화.png') },
         ],
         brands:[
-          { title: 'Amazon', src: require('@/assets/drawerIcon/amazon.png')},
-          { title: 'eBay', src: require('@/assets/drawerIcon/ebay.svg') },
-          { title: 'AliExpress', src: require('@/assets/drawerIcon/aliExpress.png') },
-          { title: 'LTK', src: require('@/assets/drawerIcon/ltk.png') },
+          { title: 'Gap', src: require('@/assets/brand/gap.svg')},
+          { title: 'Horchow', src: require('@/assets/brand/horchow.jpg') },
+          { title: 'Macys', src: require('@/assets/brand/macys.webp') },
+          { title: 'Oldnavy', src: require('@/assets/brand/oldnavy.webp') },
+          { title: 'Wallmart', src: require('@/assets/brand/wallmart.jpeg') },
         ]
       }
     },
@@ -127,6 +115,9 @@
         name: 'category',
         query: {categoryName: category, marketName: "all", page: "1"}},)
     },
+      goBrandPage(){
+        this.$router.push('/brand')
+      }
     }
   }
 </script>
@@ -184,12 +175,41 @@
 .navigate-content:hover{
   background-color:#F5F5F5;
 }
-.icon-group{
-  margin-top: 9px;
-}
 .icon-wrapper{
   margin-top:10px;
   width:20px;
   height:20px;
+}
+.brand-title{
+  margin-top:5px;
+  height: 40px;
+  position: static;
+  font-size:17px;
+  font-weight:700;
+  align-items: flex-start;
+  text-align: start;
+}
+.brand-wrapper{
+  margin-top:10px;
+  width:70px;
+  height:70px;
+  align-self: center;
+}
+.brand-content{
+  width:100px;
+  height: 120px;
+  display: inline-block;
+  position:relative;
+  padding-left:30px;
+  font-weight:500;
+  background-color:white;
+  line-height:40px;
+  cursor: pointer;
+}
+.brand-btn{
+  height:50px;
+  display:flex;
+  align-items: center;
+  justify-content:center;
 }
 </style>
