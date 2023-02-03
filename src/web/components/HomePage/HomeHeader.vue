@@ -103,6 +103,10 @@
       >브랜드관</span>
       <span
         class="group2-text px-10"
+        @click="goAdmin"
+      > {{ logined ? "관리자" : "" }}</span>
+      <span
+        class="group2-text px-10"
         @click="goLogin"
       > {{ logined ? "로그아웃" : "로그인" }}</span>
     </div>
@@ -165,6 +169,10 @@ export default {
         window.location.reload()
       }
     },
+    goAdmin() {
+      if (this.logined)
+        this.$router.push('/admin')
+      },
     goProfile() {
       if (!this.logined) {
         this.$router.push('/login')
@@ -216,7 +224,7 @@ export default {
   vertical-align: middle;
 }
 .group2-text {
-  left: 30%;
+  left: 15%;
   position: relative;
   background-color: transparent;
   font-family: Poppins;

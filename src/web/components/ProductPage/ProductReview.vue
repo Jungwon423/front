@@ -45,6 +45,14 @@
           @{{ user.id }}
         </div>
       </div>  
+      <div>
+        <v-btn
+          variant="tonal"
+          class="mx-4 edit-btn"
+        >
+          수정
+        </v-btn>
+      </div>
       <div class="ddabong-card10">
         <div class="ddabong">
           <div v-if="fill1">
@@ -125,6 +133,7 @@
       variant="solo"
       bg-color="#FAFAFA"
       no-resize
+      rows="5"
       label="로그인 후에 댓글을 작성하세요."
       counter="200"
       color="transparent"
@@ -217,6 +226,13 @@ export default {
   font-size:12px;
   color:#B0BEC5;
 }
+.edit-btn{
+  position:relative;
+  top:10%;
+  left:10%;
+  font-size:13px;
+  font-weight:600;
+}
 .user-block{
   position:relative;
   height:70px;
@@ -244,7 +260,7 @@ export default {
   text-align:end;
   position:relative;
   margin-top:10px;
-  left:70%;
+  left:65%;
   display:flex;
   width:100px;
 }
@@ -252,7 +268,7 @@ export default {
   text-align:end;
   position:relative;
   margin-top:10px;
-  left:65%;
+  left:60%;
   display:flex;
   width:100px;
 }
@@ -282,6 +298,7 @@ export default {
   height:70px;
 }
 .write-btn{
+  background-color:#FAFAFA;
   float:right;
   position:relative;
   right:3%;

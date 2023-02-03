@@ -42,6 +42,7 @@
         </div>
       </div>
     </div>
+    <profile-comment />
     <profile-good />
   </div>
 </template>
@@ -50,11 +51,13 @@
 
 import jwtAxios from '@/jwtAxios'
 import profileGood from '@/web/components/ProfilePage/ProfileGood.vue'
+import profileComment from '@/web/components/ProfilePage/ProfileComment.vue'
 import ChangeNickname from '@/web/components/ProfilePage/ChangeNickname.vue'
 
 export default {
   components: {
     ChangeNickname,
+    profileComment,
     profileGood
   },
   data() {
@@ -77,80 +80,78 @@ export default {
     console.log(this.nickname)
     console.log(this.good)
     console.log(this.comment)
-
-
   }
 };
 </script>
 
 <style>
 .profile-title-box{
-    display:flex;
+  display:flex;
 }
 .profile-title{
-    display:inline-block;
-    font-size:38px;
-    font-weight: 600;
-    width:400px;
-    height:80px;
-    line-height: 40px;
+  display:inline-block;
+  font-size:38px;
+  font-weight: 600;
+  width:400px;
+  height:80px;
+  line-height: 40px;
 }
 .profile-title2{
-    display:inline-block;
-    font-size:20px;
-    width:400px;
-    height:80px;
-    line-height: 40px;
+  display:inline-block;
+  font-size:20px;
+  width:400px;
+  height:80px;
+  line-height: 40px;
 }
 .default-info{
-    margin-left:40px;
-    width:900px;
-    height:450px;
-    border-style:solid;
-    border-width:2px;
-    border-color:#E0E0E0;
-    border-radius:8px;
-    font-size:20px;
-    color:#424242;
+  margin-left:40px;
+  width:900px;
+  height:450px;
+  border-style:solid;
+  border-width:2px;
+  border-color:#E0E0E0;
+  border-radius:8px;
+  font-size:20px;
+  color:#424242;
 }
 .default-info2{
-    margin-left:40px;
-    width:900px;
-    height:250px;
-    border-style:solid;
-    border-width:2px;
-    border-color:#E0E0E0;
-    border-radius:8px;
-    font-size:20px;
-    color:#424242;
+  margin-left:40px;
+  width:900px;
+  height:250px;
+  border-style:solid;
+  border-width:2px;
+  border-color:#E0E0E0;
+  border-radius:8px;
+  font-size:20px;
+  color:#424242;
 }
 .default-title{
-    font-size:30px;
-    font-weight:600;
+  font-size:30px;
+  font-weight:600;
 }
 .default-table{
-    display: flex;
+  display: flex;
 }
 .default-table-title{
-    padding: 10px 20px 20px 20px;
-    display: inline-block;
-    font-weight:600;
+  padding: 10px 20px 20px 20px;
+  display: inline-block;
+  font-weight:600;
 }
 .default-table-title2{
-    padding: 10px 20px 40px 20px;
-    display: inline-block;
-    font-weight:600;
+  padding: 10px 20px 40px 20px;
+  display: inline-block;
+  font-weight:600;
 }
 .default-mdi{
-    float:right;
-    cursor: pointer;
+  float:right;
+  cursor: pointer;
 }
 .default-image{
-    position:relative;
-    top:7%;
-    margin-left:100px;
-    display:inline-block;
-    width:60px;
+  position:relative;
+  top:7%;
+  margin-left:100px;
+  display:inline-block;
+  width:60px;
 }
 .h-line3{
   border-left: solid;

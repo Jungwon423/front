@@ -124,7 +124,7 @@ export default {
       saveData.nickname = this.nickname;
 
       try {
-        axios.post("http://localhost:8080/api/user/register", JSON.stringify(saveData), {
+        axios.post(process.env.VUE_APP_API_ROOT + "/user/register", JSON.stringify(saveData), {
           headers: {
             "Content-Type": `application/json`,
           },
