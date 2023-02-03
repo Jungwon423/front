@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import MobileDetect from 'mobile-detect';
+import mobile_router from './mobile';
 
 import w_HomePage from '@/web/pages/HomePage.vue';
 import w_CategoryPage from '@/web/pages/CategoryPage.vue';
@@ -17,14 +18,7 @@ import w_GoogleLoginRedirect from '@/web/pages/GoogleLoginRedirect.vue'
 import w_BrandPage from '@/web/pages/BrandPage.vue';
 import w_AdminPage from '@/web/pages/AdminPage.vue';
 
-const m_routes = [ //모바일 라우터
-    {
-      path: '/',
-      name: 'home',
-      component: w_HomePage
-    }
-]
-
+const m_router = mobile_router;
 
 const w_routes = [ //웹 라우터
     {
@@ -104,13 +98,8 @@ const w_routes = [ //웹 라우터
     },
 ]
 
-const m_router = new createRouter({
-    history : createWebHistory(), //process.env.BASE_URL
-    routes : m_routes
-})
-
 const w_router = new createRouter({
-  history : createWebHistory(), //process.env.BASE_URL
+  history : createWebHistory(),
   routes : w_routes,
   scrollBehavior (to, from, savedPosition) {
     return { top: 0 }
@@ -118,6 +107,8 @@ const w_router = new createRouter({
 })
 
 let router;
+//let router = w_router;
+
 const md = new MobileDetect(window.navigator.userAgent);
 if(md.mobile()){
   router = m_router;
