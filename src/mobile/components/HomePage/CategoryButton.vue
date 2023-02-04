@@ -68,7 +68,7 @@ export default {
   cursor: pointer;
 }
 .imgText{
-  font-size: 19px;
+  font-size: 27px;
   font-family: "dream";
   color : black;
   text-align: center;

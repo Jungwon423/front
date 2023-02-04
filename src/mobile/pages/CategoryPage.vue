@@ -1,7 +1,7 @@
 <template>
-  <div class="category-page">
+  <div class="width-980">
+    <SimpleHeader />
     <HomeHeader />
-    <SideBox />
     <ProductList />
     <CategoryPagination />
     <Footer />
@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import SimpleHeader from '@/mobile/components/HomePage/SimpleHeader.vue';
 import HomeHeader from '@/mobile/components/HomePage/HomeHeader.vue'
 import SideBox from '@/mobile/components/CategoryPage/SideBox.vue';
 import ProductList from '@/mobile/components/CategoryPage/ProductList.vue';
@@ -18,8 +19,8 @@ import Footer from '@/mobile/components/Footer/KaguFooter.vue'
 export default {
   name: 'CategoryPage',
   components : {
-    HomeHeader,
-    SideBox,
+    SimpleHeader,
+   // HomeHeader,
     ProductList,
     CategoryPagination,
     Footer,
@@ -42,9 +43,4 @@ export default {
 </script>
 
 <style scoped>
-.category-page {
-  width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
 </style>

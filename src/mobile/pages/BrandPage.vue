@@ -1,5 +1,5 @@
 <template>
-  <div class="width-1200">
+  <div class="width-980">
     <TitleHeader />
     <BrandMain />
   </div>
@@ -10,11 +10,11 @@ import BrandMain from '@/mobile/components/BrandPage/BrandMain.vue';
 import TitleHeader from '@/mobile/components/HomePage/HomeHeader.vue';
 
 export default {
-    name: 'BrandPage',
-    components : {
+  name: 'BrandPage',
+  components : {
     TitleHeader,
     BrandMain,
-},
+  },
 }
 </script>
 

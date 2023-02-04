@@ -1,5 +1,6 @@
 <template>
   <div class="product-page">
+    <SimpleHeader />
     <HomeHeader />
     <ProductInfo />
     <ProductTab />
@@ -8,7 +9,7 @@
 </template>
 
 <script>
-
+import SimpleHeader from '@/mobile/components/HomePage/SimpleHeader.vue';
 import HomeHeader from '@/mobile/components/HomePage/HomeHeader.vue'
 import ProductTab from '@/mobile/components/ProductPage/ProductTab.vue'
 import ProductInfo from '@/mobile/components/ProductPage/ProductInfo.vue'
@@ -19,7 +20,8 @@ import Footer from '@/mobile/components/Footer/KaguFooter.vue'
 export default {
   name: 'ProductPage',
   components : {
-    HomeHeader,
+    SimpleHeader,
+    //HomeHeader,
     ProductTab,
     ProductInfo,
     //ProductReview,

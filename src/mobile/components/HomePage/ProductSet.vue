@@ -32,36 +32,31 @@
         </v-tabs>
       </v-col>
     </v-row>
-    <v-row
-      justify="center"
-    >
-      <v-col
-        v-for="product in top3ProductList"
-        :key="product"
-        cols="12"
-      >
-        <product-container 
-          :name="product.name"
-          :price="product.price"
-          :currency="product.currency"
-          :discount-rate="product.discountRate"
-          :image-url="product.imageUrl"
-          :category-name="product.categoryName"
-          :market-name="product.marketName"
-          :link="product.link"
-          :tax="product.tax"
-          :shipping-fee="product.shippingFee"
-          :click-count="product.clickCount"
-          :locale="product.locale"
-          :naver-price="product.naverPrice"
-        />
-      </v-col>
-    </v-row>
   </div>
+  <span
+    v-for="product in top3ProductList"
+    :key="product"
+  >
+    <product-container 
+      :name="product.name"
+      :price="product.price"
+      :currency="product.currency"
+      :discount-rate="product.discountRate"
+      :image-url="product.imageUrl"
+      :category-name="product.categoryName"
+      :market-name="product.marketName"
+      :link="product.link"
+      :tax="product.tax"
+      :shipping-fee="product.shippingFee"
+      :click-count="product.clickCount"
+      :locale="product.locale"
+      :naver-price="product.naverPrice"
+    />
+  </span>
 </template>
 
 <script>
-import ProductContainer from '@/web/components/HomePage/ProductContainer.vue'
+import ProductContainer from '@/mobile/components/HomePage/ProductContainer.vue'
 
 export default {
 
@@ -107,10 +102,8 @@ export default {
 </script>
 
 <style scoped>
-.h-line1{
-  border-color:#D7CCC8;
-  border-width:7px;
-  border-style: solid;
+.product-wrapper{
+  display:flex;
 }
 .best-text {
   position: relative;

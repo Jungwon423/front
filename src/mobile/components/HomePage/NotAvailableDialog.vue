@@ -1,8 +1,9 @@
 <template>
   <v-dialog
     v-model="dialog"
-    max-width="500px"
-    height="500px"
+    class="dialog"
+    height="100px"
+    :fullscreen="$vuetify.breakpoint.mobile"
   >
     <template #activator="{ attrs }">
       <v-btn
@@ -63,6 +64,39 @@
         imageUrl:'',
       }
     },
+    computed:{
+      height(){
+        switch(this.$vuetify.breakpoint,name){
+          case "xs":
+            return 100;
+          case "sm":
+            return 200;
+          case "md":
+            return 300;
+          case "lg":
+            return 400;
+          default:
+            return 500;
+        }
+      }
+    },
+    beforeUnmount () {
+      if (typeof window === 'undefined') return
+
+      window.removeEventListener('resize', this.onResize, { passive: true })
+    },
+
+    mounted () {
+      this.onResize()
+
+      window.addEventListener('resize', this.onResize, { passive: true })
+    },
+
+    methods: {
+      onResize () {
+        this.isMobile = window.innerWidth < 600
+      },
+    }
     /*
     beforeCreate(){
       const ran = Math.floor(Math.random() * 10 + 1);
@@ -82,6 +116,11 @@
 </script>
 
 <style scoped>
+.dialog{
+  width:100px;
+  margin-left:auto;
+  margin-top:auto;
+}
 .search-btn1{
   display:flex;
   height:55px;
@@ -93,7 +132,7 @@
   color:white;
 }
 .card01{
-  height:500px;
+  height:300px;
   position:relative;
   background-color:white;
   border-radius:8px;

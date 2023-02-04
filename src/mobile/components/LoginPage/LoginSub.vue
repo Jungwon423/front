@@ -82,37 +82,15 @@ export default {
       });
     },
     goRegister() {
-      this.$router.push('/register')
+      this.$router.push('/register/agree')
     },
     goLogin2() {
       this.$router.push('/Login2')
     },
     clickNaver(){
       var el = document.getElementById("naver_id_login");
-      //console.log(el);
       el.getElementsByTagName("a")[0].click(); //버튼 누르면 naver_id_login id가진 div도 눌리게
     },
-    /*
-    handleCredentialResponse(response) {
-      // decodeJwtResponse() is a custom function defined by you
-      // to decode the credential response.
-      const responsePayload = parseJwt(response.credential);
-
-      console.log("ID: " + responsePayload.sub);
-      console.log('Full Name: ' + responsePayload.name);
-      console.log('Given Name: ' + responsePayload.given_name);
-      console.log('Family Name: ' + responsePayload.family_name);
-      console.log("Image URL: " + responsePayload.picture);
-      console.log("Email: " + responsePayload.email); 
-    },  
-    parseJwt (token) {
-      var base64Url = token.split('.')[1];
-      var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join(''));
-      return JSON.parse(jsonPayload);
-    },*/
   }
 }
 </script>
@@ -126,24 +104,24 @@ export default {
 }
 .brand1-btn-wrapper{
   margin-top:20px;
-  margin-left:12px;
-  height:50px;
-  width:350px;
+  margin-left:80px;
+  height:70px;
+  width:450px;
   background-color:#FEE500;
 }
 .brand2-btn-wrapper{
   margin-top:20px;
-  margin-left:12px;
-  height:50px;
-  width:350px;
+  margin-left:80px;
+  height:70px;
+  width:450px;
   background-color:#1EC800;
   color:white;
 }
 .brand3-btn-wrapper{
   margin-top:20px;
-  margin-left:12px;
-  height:50px;
-  width:350px;
+  margin-left:80px;
+  height:70px;
+  width:450px;
   color:white;
   background-color:#4285F4;
 }
@@ -158,7 +136,8 @@ export default {
   margin-left:0px;
 }
 .text-link1{
-  font-size:medium;
+  margin-left:110px;
+  font-size: 20px;
   font-weight:700;
   color:#616161;
 }

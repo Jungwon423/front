@@ -1,8 +1,9 @@
 <template>
-  <div class="text-center">
+  <div class="text-center page-btn">
     <v-pagination
       v-model="page"
-      :length="totalPage"
+      
+      :length="10"
       @update:model-value="changePage"
     />
   </div>
@@ -31,3 +32,8 @@
     }
   }
 </script>
+<style scoped>
+.page-btn{
+  font-size:50px;
+}
+</style>

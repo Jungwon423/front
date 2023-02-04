@@ -5,6 +5,7 @@ import m_ProductPage from '@/mobile/pages/ProductPage.vue';
 import m_LoginPage from '@/mobile/pages/LoginPage.vue';
 import m_Login2Page from '@/mobile/components/LoginPage/LoginMain2.vue';
 import m_RegisterPage from '@/mobile/pages/RegisterPage.vue';
+import m_AgreePage from '@/mobile/components/RegisterPage/AgreeRegister.vue';
 import m_PolicyPage from '@/mobile/pages/PolicyPage.vue';
 import m_CompanyPage from '@/mobile/pages/CompanyPage.vue';
 import m_ProfilePage from '@/mobile/pages/ProfilePage.vue';
@@ -50,6 +51,11 @@ const m_routes = [ //모바일 라우터
       path: '/register',
       name: 'register',
       component: m_RegisterPage
+    },
+    {
+      path: '/register/agree',
+      name: 'terms_agree',
+      component: m_AgreePage
     },
     {
       path: '/policy',

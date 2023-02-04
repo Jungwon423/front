@@ -1,6 +1,6 @@
 <template>
   <div
-    class="card-group1 px-3"
+    class="card-group1 text-center"
     @click="goProduct"
   >
     <div class="card-img">
@@ -11,67 +11,53 @@
         width="250"
       >
     </div>
-    <div class="text-group1">
+    <div class="text-group1 text-start">
       <div class="product-name">
         {{ name }}
       </div>
       <div class="product-group">
         <span>{{ roundedPrice }}원</span>
-        <span class="originPrice-group"> {{ roundedNaverPrice }}원 </span>
       </div>
       <div class="naver-price">
         네이버 최저가 : {{ roundedNaverPrice }}
       </div>
     </div>
-    <div class="rating-group">
-      <v-rating
-        v-model="computed_rating"
-        value="3.5"
-        color="#FFB300"
-        empty-icon="mdi-star-outline"
-        full-icon="mdi-star"
-        half-icon="mdi-star-half"
-        half-increments
-        readonly
-        size="15"
-      />
-      <span class="px-1 rating-num2">
-        {{ computed_rating }}
-      </span>
-      <div class="py-3 review-group">
-        <span>
-          <v-img
-            src="@/assets/message.png"
-            width="20px"
-            height="20px"
-          />
-        </span>
-        <span>댓글 : {{ comment }}개</span>
-        <div
-          v-if="empty"
-          class="heart-box"
+    <div>
+      <div class="star-ratings">
+        <div 
+          class="star-ratings-fill space-x-2 text-lg"
+          :style="{ width: ratingToPercent + '%' }"
         >
-          <v-icon
-            icon="mdi-heart-outline"
-            color="#A1887F"
-            size="large"
-            class="heart-icon"
-            @click.stop="changeBtn()"
-          />
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
         </div>
-        <div
-          v-if="fill"
-          class="heart-box"
-        >
-          <v-icon
-            icon="mdi-heart"
-            color="#A1887F"
-            size="large"
-            class="heart-icon"
-            @click.stop="changeBtn()"
-          />
+        <div class="star-ratings-base space-x-2 text-lg">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
         </div>
       </div>
+    </div>
+    <div
+      v-if="empty"
+      class="heart-box"
+    >
+      <v-img
+        width="80"
+        height="80"
+        src="@/assets/mdi/heart-outline-custom.png"
+        class="heart-icon"
+        @click.stop="changeBtn()"
+      />
+    </div>
+    <div
+      v-if="fill"
+      class="heart-box"
+    >
+      <v-img
+        width="80"
+        height="80"
+        src="@/assets/mdi/heart-custom.png"
+        class="heart-icon"
+        @click.stop="changeBtn()"
+      />
     </div>
   </div>
 </template>
@@ -160,11 +146,16 @@ export default {
   },
   data () {
     return {
+      rating1:4.5,
       empty: true,
       fill: false,
     }
   },
   computed: {
+    ratingToPercent() {
+      const score = +this.rating1 * 20;
+      return score;
+    },
     roundedPrice: function() {
       return Math.floor(this.price).toLocaleString('ko-KR')
     },
@@ -197,59 +188,53 @@ export default {
 
 <style scoped>
 .card-group1{
-  height: 500px;
-  display: block;
+  width:480px;
+  display: inline-block;
   position: relative;
   cursor: pointer;
 }
 .card-img{
+  margin-top:100px;
+  display: inline-block;
   position:relative;
   margin-left:10%;
 }
 .text-group1{
-  width: 300px;
-  height: auto;
-  margin-left:3%;
+  display: inline-block;
+  font-size:30px;
+  width: 400px;
+  height: 100px;
+  margin-left:6%;
 }
 .product-name{
-  height:100px;
+  height:80px;
+  white-space:normal;
+  display:-webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 .product-group{
+  text-align: left;
+  display: inline-block;
   margin-top:10px;
-}
-.originPrice-group{
-  position:relative;
-  font-size: 12px;
-  text-decoration: line-through;
+  font-size:35px;
+  font-weight: 600;
 }
 .naver-price{
+  display: inline-block;
   color:#F4511E;
-  font-size:14px;
-}
-.rating-group{
-  position:relative;
-  left:3%;
-}
-.rating-num2{
-  position:relative;
-  color:#FFB300;
-  font-weight:500;
-}
-.review-group{
-  display:flex;
+  font-size:30px;
 }
 .heart-box{
   position:relative;
-  margin-top:-10px;
-  margin-left:130px;
-  display:flex;
+  bottom:70px;
+  left:150px;
+  display:inline-block;
   vertical-align: middle;
-  border-style:solid;
-  border-width:1px;
-  border-color:#BDBDBD;
-  border-radius:7px;
-  width:40px;
-  height:40px;
+  width:100px;
+  height:100px;
   color: #000;
   background-color: #fff;
   box-shadow: 0px 8px 15px white;
@@ -261,7 +246,33 @@ export default {
 }
 .heart-icon{
   position:relative;
-  left:13%;
-  top:13%;
+  top:6%;
+  left:10%;
+}
+.star-ratings {
+  font-size:50px;
+  color: #aaa9a9; 
+  position: relative;
+  left:10%;
+  width: max-content;
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1.3px;
+}
+.star-ratings-fill {
+  color: #FFB300;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  -webkit-text-fill-color: #FFB300;
+}
+ 
+.star-ratings-base {
+  z-index: 0;
+  padding: 0;
+  -webkit-text-fill-color: white;
 }
 </style>

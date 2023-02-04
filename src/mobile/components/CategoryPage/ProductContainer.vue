@@ -6,53 +6,32 @@
     <img
       class="product-image"
       :src="imageUrl"
-      width="180"
-      height="180"
+      width="300"
+      height="350"
     >
     <span class="product-info py-2">
-      <div> {{ name }}</div>
+      <div class="product-title"> {{ name }}</div>
       <div class="py-2">
-        <span style="font-size:15px;">{{ roundedPrice }}원</span>
-        <span class="origin-price">{{ roundedNaverPrice }} 원</span>
+        <span class="product-price">{{ roundedPrice }}원</span>
         <div class="naver-price">네이버 최저가 : {{ roundedNaverPrice }} 원</div>
       </div>
       <div class="rating-review">
-        <v-rating
-          v-model="computed_rating"
-          class="px-5"
-          color="#FFB300"
-          empty-icon="mdi-star-outline"
-          full-icon="mdi-star"
-          half-icon="mdi-star-half"
-          half-increments
-          readonly
-          size="15"
-        />
-        <div class="rating-num"> {{ rating }}</div>
+        <span
+          style="color: #FFB300;"
+        >★</span>
+        <div class="mx-1"> {{ rating }}/5.0</div>
         <div class="v-line3" />
-        <span class="img-message py-2">
+        <span class="px-5"> 댓글 : {{ comment }}개</span>
+        <div class="shopping-mall py-4">
           <v-img
-            src="@/assets/message.png"
-            width="20px"
-            height="20px"
+            :src="market_image"
+            width="115"
+            height="115"
           />
-        </span>
-        <span class="py-2"> 댓글 : {{ comment }}개</span>
-      </div>
-      <div>
-        조회수 : {{ view }}
+        </div>
       </div>
     </span>
-
-    <div class="shopping-mall py-4">
-      <v-img
-        :src="market_image"
-        width="50"
-      />
-      <div class="shopping-mall-text">
-        {{ marketName }}
-      </div>
-    </div>
+    <!--
     <div class="community-info">
       <div
         v-if="empty"
@@ -78,17 +57,10 @@
           @click.stop="changeBtn()"
         />
       </div>
-      
-      <div class="recommend">
-        <div class="recommend-text">
-          추천 {{ good }}
-        </div>
-        <div class="recommend-text">
-          비추천 {{ bad }}
-        </div>
-      </div>
     </div>
+      -->
   </div>
+  <hr class="h-line1">
 </template>
 
 <script>
@@ -112,7 +84,7 @@ export default {
     },
     rating: {
       type: Number,
-      default: 0
+      default: 4.5
     },
     comment: {
       type: Number,
@@ -158,8 +130,6 @@ export default {
   methods:{
     changeBtn(){
       jwtAxios.post()
-
-
       this.empty = !this.empty;
       this.fill = !this.fill;
     },
@@ -179,65 +149,53 @@ export default {
 <style scoped>
 .product-container {
   display: flex;
-  padding: 10px;
-  margin: 10px;
-  width: 950px;
-  height: 200px;
-  border: 1px solid;
-  border-width:1px;
-  border-color:#E0E0E0;
-  border-radius: 8px;
+  width: 980px;
+  height: 400px;
   cursor: pointer;
-}
-.origin-price{
-  padding-left:3px;
-  color:#757575;
-  text-decoration-line: line-through;
-  font-size:12px;
 }
 .v-line3{
   margin-top:10px;
-  padding-right:10px;
+  margin-left:10px;
   border-left: solid;
-  border-width:1px;
+  border-width:5px;
   border-color:#E0E0E0;
-  height:20px;
+  height:40px
+}
+.product-price{
+  font-size:40px; 
+  font-weight:800;
 }
 .naver-price{
   color:#F4511E;
-  font-size:14px;
-}
-.rating-num{
-  position:relative;
-  color:#FFB300;
+  font-size:33px;
   font-weight:500;
-  margin-top:1%;
-  left:-2%;
 }
 .rating-review{
   display: flex;
   position:relative;
-  top:-8%;
-  left:-5%;
-}
-.shopping-mall-text{
-  font-size:14px;
-  color:#BDBDBD;
-}
-.recommend{
-  margin-top:60px;
-}
-.recommend-text{
-  font-size:15px;
-  font-weight:600;
-  text-align: end;
 }
 .product-image {
-  vertical-align:middle;
+  vertical-align:center;
+  margin-top:20px;
+  margin-left:40px;
+}
+.product-title{
+  width:600px;
+  margin-top:30px;
+  font-size:35px;
+  font-weight:500;
+  white-space:normal;
+  display:-webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 .product-info {
   padding-left: 30px;
   width: 500px;
+  height: 150px;
+  font-size:35px;
 }
 .heart-box{
   position:relative;
@@ -256,19 +214,14 @@ export default {
   box-shadow: 0px 8px 15px white;
   cursor: pointer;
 }
-.heart-box:hover {
-  background-color: #EEEEEE;
-  box-shadow: 0px 2px 2px #E0E0E0;
-}
 .heart-icon{
   position:relative;
   left:13%;
   top:13%;
 }
 .shopping-mall {
-  width: 80px;
-}
-.community-info {
-  width: 100px;
+  width: 120px;
+  position:relative;
+  left:28%;
 }
 </style>
