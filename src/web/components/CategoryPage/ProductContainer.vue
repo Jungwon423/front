@@ -67,7 +67,7 @@
         />
       </div>
       <div
-        v-if="fill"
+        v-if="!empty"
         class="heart-box"
       >
         <v-icon
@@ -92,6 +92,8 @@
 </template>
 
 <script>
+import jwtAxios from '@/jwtAxios'
+
 export default {
   props: {
     imageUrl: {
@@ -138,7 +140,6 @@ export default {
   data() {
       return {
         empty: true,
-        fill: false,
       }
   },
   computed: {
@@ -157,14 +158,12 @@ export default {
   },
   methods:{
     changeBtn(){
-      jwtAxios.post()
-
+      jwtAxios.post('/product/' + this.name + '/wishlist', { wish: this.empty ? "wish" : "unwish"})
 
       this.empty = !this.empty;
-      this.fill = !this.fill;
     },
     goProduct() {
-      //jwtAxios.post('/product/' + this.name + '/click')
+      jwtAxios.post('/product/' + this.name + '/click')
 
       this.$router.push({
         name: 'product',

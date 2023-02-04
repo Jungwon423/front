@@ -84,13 +84,21 @@ export default {
       imageUrl: '',
       name: '',
       rating: 0,
-      comment: 0,
+      comment: [],
       price: 0,
       naverPrice: 0,
       category: '생활/건강',
-      good: 0,
-      bad: 0,
-
+      market: "",
+      link: "",
+      tax: 0,
+      shippingFee: 0,
+      clickCount: 0,
+      goodNumber: 0,
+      good: [],
+      badNumber: 0,
+      bad: [],
+      wishUserList :[],
+      subImageUrl: []
     }
   },
   computed: {
@@ -103,9 +111,22 @@ export default {
     .then((res) => {
       this.imageUrl = res.data['result']['imageUrl']
       this.name = res.data['result']['name']
+      this.rating = res.data['result']['rating']
+      this.comment = res.data['result']['comment']
       this.price = res.data['result']['price'],
       this.naverPrice = res.data['result']['naverPrice']
       this.category = res.data['result']['categoryName']
+      this.market = res.data['result']['marketName']
+      this.link = res.data['result']['link']
+      this.tax = res.data['result']['tax']
+      this.shippingFee = res.data['result']['shippingFee']
+      this.clickCount = res.data['result']['clickCount'],
+      this.goodNumber = res.data['result']['good'].length
+      this.good = res.data['result']['good']
+      this.badNumber = res.data['result']['bad'].length
+      this.bad = res.data['result']['bad']
+      this.wishUserList = res.data['result']['wishUserList']
+      this.subImageUrl = res.datg['result']['subImageUrl']
     })
   },
   methods: {

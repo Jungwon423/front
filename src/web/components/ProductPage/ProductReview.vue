@@ -169,33 +169,43 @@
 
 export default {
   name: 'ProductInfo',
+  props: {
+    name: {
+      type: String,
+      default: ''
+    }
+  },
   data() {
-  return {
-    empty1: true,
-    empty2: true,
-    fill1: false,
-    fill2: false,
-    rating: 4.5,
-    context:'',
-    users:[
-    {
-      name: "오동근",
-      id: "oreo1001",
-      rating:3.0,
-      content: 'Play 스토어에서 Android 앱, 게임, 기타 콘텐츠를 평가하고 검토할 수 있습니다. Google Play에서 리뷰를 작성하면 리뷰가 Google 계정에 연결되며 다른 사용자에게 공개됩니다.\
-      리뷰를 공개하고 싶지 않다면 삭제하면 됩니다.진짜 어이없넹 이게 맞냐?',
-      src: require('@/assets/account.png'),
-      date: '2023.01.22',
-    },
-    {
-      name: "김정원",
-      id: "rlawjddnjs",
-      rating:4.5,
-      content: '좋습니다!',
-      src: require('@/assets/thumbs/개추.png'),
-      date: '2023.01.21',
-    }]
-  }
+    return {
+      empty1: true,
+      empty2: true,
+      fill1: false,
+      fill2: false,
+      rating: 4.5,
+      users:[
+      {
+        name: "오동근",
+        id: "oreo1001",
+        rating:3.0,
+        content: 'Play 스토어에서 Android 앱, 게임, 기타 콘텐츠를 평가하고 검토할 수 있습니다. Google Play에서 리뷰를 작성하면 리뷰가 Google 계정에 연결되며 다른 사용자에게 공개됩니다.\
+        리뷰를 공개하고 싶지 않다면 삭제하면 됩니다.진짜 어이없넹 이게 맞냐?',
+        src: require('@/assets/account.png'),
+        date: '2023.01.22',
+      },
+      {
+        name: "김정원",
+        id: "rlawjddnjs",
+        rating:4.5,
+        content: '좋습니다!',
+        src: require('@/assets/thumbs/개추.png'),
+        date: '2023.01.21',
+      }]
+    }
+  },
+  created() {
+    jwtAxios.get('/product/' + this.name + '/comments')
+    .then((res) => {
+    })
   },
   methods:{
     changeBtn1(){

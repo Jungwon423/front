@@ -20,7 +20,7 @@
         <span class="originPrice-group"> {{ roundedNaverPrice }}원 </span>
       </div>
       <div class="naver-price">
-        네이버 최저가 : {{ roundedNaverPrice }}
+        네이버 최저가: {{ roundedNaverPrice }}
       </div>
     </div>
     <div class="rating-group">
@@ -60,7 +60,7 @@
           />
         </div>
         <div
-          v-if="fill"
+          v-if="!empty"
           class="heart-box"
         >
           <v-icon
@@ -161,7 +161,6 @@ export default {
   data () {
     return {
       empty: true,
-      fill: false,
     }
   },
   computed: {
@@ -177,13 +176,14 @@ export default {
   },
   methods:{
     changeBtn(){
-      jwtAxios.post('/product/' + this.name + '/wishlist')
+      jwtAxios.post('/product/' + this.name + '/wishlist', { wish: this.empty ? "wish" : "unwish"})
 
       this.empty = !this.empty;
-      this.fill = !this.fill;
     },
     goProduct() {
-      jwtAxios.post('/product/' + this.name + '/wishlist')
+      jwtAxios.post('/product/' + this.name + '/click')
+      .then((res) => {
+      })
 
       this.$router.push({
         name: 'product',
