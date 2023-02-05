@@ -46,8 +46,8 @@ export default {
     productCount: function () {
       return this.$store.state.Category.productCount
     },
-    currentMarket: function () {
-      return this.$categoryMap.get(this.$store.state.Category.currentMarket)
+    currentCategory: function () {
+      return this.$categoryMap.get(this.$store.state.Category.currentCategory)
     }
   },
   

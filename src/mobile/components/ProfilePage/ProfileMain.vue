@@ -49,7 +49,7 @@
 
 <script>
 
-import jwtAxios from '@/jwtAxios'
+import jwtAxios from '@/library/jwtAxios'
 import profileGood from '@/web/components/ProfilePage/ProfileGood.vue'
 import profileComment from '@/web/components/ProfilePage/ProfileComment.vue'
 import ChangeNickname from '@/web/components/ProfilePage/ChangeNickname.vue'

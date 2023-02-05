@@ -1,7 +1,7 @@
 <template>
   <div class="inline-block">
     <div class="item-box px-2">
-      {{ productCount }} items in <strong> {{ currentMarket }}</strong>
+      {{ productCount }} items in <strong> {{ currentCategory }}</strong>
     </div>
     <ProductContainer 
       v-for="product in productList"
@@ -35,8 +35,8 @@ export default {
     productCount: function () {
       return this.$store.state.Category.productCount
     },
-    currentMarket: function () {
-      return this.$categoryMap.get(this.$store.state.Category.currentMarket)
+    currentCategory: function () {
+      return this.$categoryMap.get(this.$store.state.Category.currentCategory)
     }
   },
   

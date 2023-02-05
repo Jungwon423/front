@@ -1,11 +1,17 @@
-import jwtAxios from '@/jwtAxios'
+import jwtAxios from '@/library/jwtAxios'
+import library from '@/library/library';
 
 export default {
   namespaced: true,
 
   state: {
     currentCategory: "life_health",
-    currentMarket: "all",
+    currentMarket: {
+      "Amazon" : true,
+      "eBay" : true,
+      "AliExpress" : true
+    },
+    marketAllChecked: false,
     productList: [],
     productCount: 0,
     page: 1,
@@ -22,6 +28,10 @@ export default {
 
     SET_CURRENTMARKET(state, payload) {
       state.currentMarket = payload;
+    },
+
+    SET_MARKETALLCHECKED(state, payload) {
+      state.marketAllChecked = payload
     },
 
     SET_PRODUCTLIST(state, payload) {
@@ -42,17 +52,23 @@ export default {
   },
 
   actions: {
-    // category page에서 product list & page_c 수정
     async FETCH_PRODUCTLIST_API(context) {
+      const config = {"Content-Type": 'application/json'};
       try {
-        let res = await jwtAxios.get(
+        console.log("/category/" +
+        context.state.currentCategory +
+        "/" +
+        context.state.page +
+        "/list",
+        context.state.currentMarket, config)
+
+        let res = await jwtAxios.post(
           "/category/" +
           context.state.currentCategory +
           "/" +
-          context.state.currentMarket +
-          "/" +
           context.state.page +
-          "/list"
+          "/list",
+          context.state.currentMarket, config
         );
 
         context.commit("SET_PRODUCTLIST", res.data["result"],);

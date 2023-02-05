@@ -1,10 +1,9 @@
-import jwtAxios from '@/jwtAxios'
+import jwtAxios from '@/library/jwtAxios'
 
 export default {
   namespaced: true,
 
   state: {
-    currentCategory: "all",
     currentMarket: "all",
     top3ProductList: [],
   },
@@ -12,10 +11,6 @@ export default {
   getters: {},
 
   mutations: {
-    SET_CURRENTCATEGORY(state, payload) {
-      state.currentCategory = payload;
-    },
-
     SET_CURRENTMARKET(state, payload) {
       state.currentMarket = payload;
     },

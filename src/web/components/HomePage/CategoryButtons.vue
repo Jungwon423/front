@@ -46,7 +46,7 @@ export default {
           color: '#D1C4E9',
         },
         {
-          value: 'furniture_interior food',
+          value: 'furniture_interior',
           title: '가구/인테리어',
           src: require('@/assets/drawerIcon/가구.png'),
           imageSize: '40px',

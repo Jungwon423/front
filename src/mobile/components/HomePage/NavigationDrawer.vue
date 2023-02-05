@@ -147,21 +147,24 @@ import ButtonNavigation from '@/mobile/components/HomePage/ButtonNavigation.vue'
     },
     methods: {
       goCategoryPage(category) {
-      this.$router.push({
-        name: 'category',
-        query: {categoryName: category, marketName: "all", page: "1"}},)
-      },
-      goLogin() {
-        if (!this.logined) {
-          this.$router.push('/login')
-        }
-        else {
-          // 로그아웃
-          this.$store.commit('Login/LOGOUT')
-          localStorage.clear()
-          window.location.reload()
-        }
-      },
+        this.$router.push({
+          name: 'category',
+          query: {
+            categoryName: category,
+            marketName: library.currentMarketToString(this.$store.state.Category.currentMarket),
+            page: "1"}},)
+    },
+    goLogin() {
+      if (!this.logined) {
+        this.$router.push('/login')
+      }
+      else {
+        // 로그아웃
+        this.$store.commit('Login/LOGOUT')
+        localStorage.clear()
+        window.location.reload()
+      }
+    },
       goBrandPage(){
         this.$router.push('/brand')
       },

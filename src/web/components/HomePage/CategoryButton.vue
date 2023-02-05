@@ -22,7 +22,9 @@
 </template>
 
 <script>
-import jwtAxios from '@/jwtAxios';
+import jwtAxios from '@/library/jwtAxios';
+import library from '@/library/library';
+
 export default {
   props: {
       value: {
@@ -49,13 +51,14 @@ export default {
   },
   methods: {
     changeCategory() {
+      console.log('/category/' + this.value + '/click')
       jwtAxios.post('/category/' + this.value + '/click')
 
       this.$router.push({
       name: 'category',
       query: {
         categoryName: this.value,
-        marketName: this.$store.state.Category.currentMarket,
+        marketName: library.currentMarketToString(this.$store.state.Category.currentMarket),
         page: 1}},)   
     },
   }
