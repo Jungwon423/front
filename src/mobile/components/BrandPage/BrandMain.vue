@@ -144,15 +144,15 @@ export default {
 }
 .brand-card1{
   display:inline-block;
-  width:500px;
+  width:400px;
   height:700px;
 }
 .brand-img{
-  width:500px;
+  width:400px;
   height:600px;
 }
 .brand-content{
-  width:500px;
+  width:400px;
   font-size:35px;
   line-height: 50px;
   text-align: center;

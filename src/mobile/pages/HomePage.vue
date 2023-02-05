@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page">
+  <div class="width-980">
     <HomeHeader />
     <AdvertisingBox />
     <CategoryButtons />
@@ -47,12 +47,7 @@ export default {
   text-decoration : none !important; 
 }
 .width-980{
-  width: 640px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.home-page {
-  width: 640px;
+  width: 980px;
   margin-left: auto;
   margin-right: auto;
 }

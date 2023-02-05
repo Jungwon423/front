@@ -14,7 +14,10 @@
           :value="tabName"
           color="#E0E0E0"
         >
-          <span style="color:grey; font-size:30px">
+          <span
+            class="pa-3"
+            style="color:grey; font-size:36px"
+          >
             {{ tabName }}
           </span>
         </v-tab>
@@ -24,12 +27,14 @@
   <v-window v-model="tab">
     <v-window-item value="Description">
       <div
-        class="mx-5 my-3"
-        style="font-size:20; font-weight:600"
+        class="mx-5 my-3 product-detail"
       >
         상품 정보
       </div>
-      <div class="pa-2">
+      <div
+        style="font-size:25px;"
+        class="pa-2"
+      >
         1. 물품구매(제조)계약 특수조건의 기재사항은 다음과 같다.
         - 제20조 물가변동으로 인한 계약금액 조정방법 : 품목조정률
         - 제22조 단가계약의 경우 1회 최대납품요구금액 100분의 50   
@@ -47,7 +52,7 @@
         <v-img
           alt="hi musbi"
           :src="imgDetail.src"
-          class="py-2"
+          class="py-2 img-detail"
         />
       </div>
       <product-review />
@@ -83,4 +88,8 @@ export default {
 }
 </script>
 <style scoped>
+.product-detail{
+  font-size:45px;
+  font-weight:600;
+}
 </style>

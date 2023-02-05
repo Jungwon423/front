@@ -1,32 +1,43 @@
 <template>
-  <div class="inline-block">
-    <div class="item-box px-2">
-      {{ productCount }} items in <strong> {{ currentMarket }}</strong>
+  <div class="navigation-box">
+    <div class="cate-btn">
+      <DrawerCategory />
     </div>
-    <ProductContainer 
-      v-for="product in productList"
-      :key="product.name"
-      :name="product.name"
-      :image-url="product.imageUrl"
-      :price="product.price"
-      :naver-price="product.naverPrice"
-      :rating="0"
-      :comment="0"
-      :view="0"
-      :market-name="product.marketName"
-      :good="0"
-      :bad="0"
-    />
+    <div class="brand-btn">
+      <DrawerBrand />
+    </div>
   </div>
+  <div class="item-box px-2">
+    <div class="item-text">
+      {{ productCount }}개의 검색 결과
+    </div>
+  </div>
+  <ProductContainer 
+    v-for="product in productList"
+    :key="product.name"
+    :name="product.name"
+    :image-url="product.imageUrl"
+    :price="product.price"
+    :naver-price="product.naverPrice"
+    :rating="0"
+    :comment="0"
+    :view="0"
+    :market-name="product.marketName"
+    :good="0"
+    :bad="0"
+  />
 </template>
 
 <script>
-import ProductContainer from '@/web/components/CategoryPage/ProductContainer.vue';
-
+import ProductContainer from '@/mobile/components/CategoryPage/ProductContainer.vue';
+import DrawerCategory from '@/mobile/components/CategoryPage/DrawerCategory.vue';
+import DrawerBrand from '@/mobile/components/CategoryPage/DrawerBrand.vue';
 export default {
   name: 'ProductList',
   components: {
-    ProductContainer
+    DrawerCategory,
+    DrawerBrand,
+    ProductContainer,
   },
   computed: {
     productList: function () {
@@ -51,17 +62,55 @@ export default {
 .inline-block {
   display: inline-block;
   position: relative;
-  width:950px;
+}
+.navigation-box{
+  display:flex;
+  height:100px;
 }
 .item-box{
+  height:100px;
+  background-color:#EEEEEE;
+}
+.item-text{
+  font-size:33px;
   line-height:50px;
+  padding-top:15px;
+  margin-left:50px;
+}
+.cate-btn{
+  margin-left:20px;
   margin-top:10px;
-  margin-left:10px;
-  height:50px;
-  width:950px;
+  display:inline-block;
+  font-size:30px;
+  width:200px;
+  height:80px;
+  border-color:#E0E0E0;
+  border-width:3px;
   border-style:solid;
-  border-width:1px;
-  border-color: #E0E0E0;
-  border-radius:5px;
+  border-radius:20px;
+  text-align: center;
+}
+.brand-btn{
+  display:inline-block;
+  margin-top:10px;
+  margin-left:20px;
+  font-size:33px;
+  width:180px;
+  height:80px;
+  border-color:#E0E0E0;
+  border-width:3px;
+  border-style:solid;
+  border-radius:20px;
+  text-align: center;
+}
+.btn-text{
+  position:relative;
+  margin-top:6%;
+  margin-left:10%;
+}
+.icon1{
+  position:relative;
+  margin-top:50%;
+  margin-left:0%;
 }
 </style>

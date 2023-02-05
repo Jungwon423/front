@@ -4,7 +4,7 @@
     @click.stop="drawer = !drawer"
   >
     <v-img
-      src="/play/line3.svg"
+      src="@/assets/mdi/menu-custom.png"
       alt="img002"
       height="80px"
       class="cate-img"
@@ -16,16 +16,16 @@
     width="980"
   >
     <div
-      class="pa-12"
-      style="text-align:start; font-size:40px; font-weight:600"
-      @click="goLoginPage"
+      class="pa-12 text-start"
+      style="font-size:40px; font-weight:600"
+      @click="goLogin"
     >
-      로그인을 해주세요 >
+      {{ logined ? "로그아웃" : "로그인을 해주세요 >" }}
       <span
-        style="float:right; cursor: pointer;"
+        style="float:right; cursor: pointer; font-size:40px"
         @click.stop="drawer = !drawer"
       >
-        <v-icon>mdi-alpha-x</v-icon>
+        X
       </span>
     </div>
     <hr class="h-line1">
@@ -35,6 +35,36 @@
       <div class="navigate-title pa-2">
         카테고리
       </div>
+      <v-row class="text-start">
+        <v-col>
+          <div
+            v-for="item in items" 
+            :key="item.title"
+            class="brand-content"
+            @click="goCategoryPage(item.title)"
+          >
+            <div
+              class="text-center item-wrapper"
+              @click="goBrandPage"
+            >
+              <div class="brand-btn">
+                <v-img
+                  :src="item.src"
+                  width="120"
+                  height="120"
+                />
+              </div>
+              <div
+                class="item-title"
+                style="font-size:40px;"
+              >
+                {{ $categoryMap.get(item.title) }}
+              </div>
+            </div>
+          </div>
+        </v-col>
+      </v-row>
+      <!--
       <div
         v-for="item in items" 
         :key="item.title"
@@ -51,33 +81,35 @@
         </span>
       </div>
     </div>
-    <hr class="h-line1">
-    <div class="brand-title px-5 py-2">
-      브랜드몰
-    </div>
-    <v-row class="text-start">
-      <v-col>
-        <div
-          v-for="brand in brands" 
-          :key="brand.title"
-          class="brand-content"
-        >
+      -->
+      <hr class="h-line1">
+      <div class="brand-title px-5 py-2">
+        브랜드몰
+      </div>
+      <v-row class="text-start">
+        <v-col>
           <div
-            class="text-center brand-wrapper"
-            @click="goBrandPage"
+            v-for="brand in brands" 
+            :key="brand.title"
+            class="brand-content"
           >
-            <div class="brand-btn">
-              <v-img
-                :src="brand.src"
-              />
-            </div>
-            <div style="font-size:40px;">
-              {{ brand.title }}
+            <div
+              class="text-center brand-wrapper"
+              @click="goBrandPage"
+            >
+              <div class="brand-btn">
+                <v-img
+                  :src="brand.src"
+                />
+              </div>
+              <div style="font-size:40px;">
+                {{ brand.title }}
+              </div>
             </div>
           </div>
-        </div>
-      </v-col>
-    </v-row>
+        </v-col>
+      </v-row>
+    </div>
   </v-navigation-drawer>
 </template>
 
@@ -118,18 +150,18 @@ import ButtonNavigation from '@/mobile/components/HomePage/ButtonNavigation.vue'
       this.$router.push({
         name: 'category',
         query: {categoryName: category, marketName: "all", page: "1"}},)
-    },
-    goLogin() {
-      if (!this.logined) {
-        this.$router.push('/login')
-      }
-      else {
-        // 로그아웃
-        this.$store.commit('Login/LOGOUT')
-        localStorage.clear()
-        window.location.reload()
-      }
-    },
+      },
+      goLogin() {
+        if (!this.logined) {
+          this.$router.push('/login')
+        }
+        else {
+          // 로그아웃
+          this.$store.commit('Login/LOGOUT')
+          localStorage.clear()
+          window.location.reload()
+        }
+      },
       goBrandPage(){
         this.$router.push('/brand')
       },
@@ -188,6 +220,9 @@ import ButtonNavigation from '@/mobile/components/HomePage/ButtonNavigation.vue'
 }
 .navigate-content:active{
   background-color:#F5F5F5;
+}
+.item-title{
+  height:100px;
 }
 
 .icon-wrapper{
