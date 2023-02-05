@@ -3,7 +3,6 @@
     v-model="dialog"
     class="dialog"
     height="100px"
-    :fullscreen="$vuetify.breakpoint.mobile"
   >
     <template #activator="{ attrs }">
       <v-btn
