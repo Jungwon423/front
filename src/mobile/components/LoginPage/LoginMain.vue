@@ -1,18 +1,23 @@
 <template>
-  <div id="bg">
+  <div>
     <v-row
       justify="center"
-      class="pa-12 text-center"
+      class="text-center"
     >
+      <v-col>
+        <div class="login-header">
+          <div class="login-title">
+            Kagu
+          </div>
+          <div class="login-sub">
+            모바일 핫딜 쇼핑
+          </div>
+        </div>
+      </v-col>
       <div
         class="login-box"
       >
         <form @submit.prevent="fnLogin">
-          <v-col>
-            <div class="login-title">
-              로그인
-            </div>
-          </v-col>
           <v-col cols="10">
             <div class="login-bar-wrapper">
               <input
@@ -39,8 +44,12 @@
           <div class="keep-login">
             <input
               type="checkbox"
-              value="ebay"
-            > 로그인 상태 유지
+              value="login"
+            > 
+            <span
+              class="mx-5"
+              style="font-size:17px;"
+            >로그인 상태 유지</span>
           </div>
           <v-btn
             type="submit"
@@ -59,7 +68,7 @@
 
 <script>
 import axios from 'axios';
-import LoginSub from '@/web/components/LoginPage/LoginSub.vue';
+import LoginSub from '@/mobile/components/LoginPage/LoginSub.vue';
 export default {
   components : {
     LoginSub,
@@ -104,16 +113,24 @@ export default {
 }
 </script>
 <style scoped>
-#bg{
-  background-color:#F5F5F5;
-  height:1050px;
+.login-header{
+  height:70px;
+}
+.login-sub{
+  margin-left:120px;
+  font-size:17px;
+  color:#6D4C41;
+  font-weight: 500;
 }
 .login-title{
-  font-size:25px;
+  width:500px;
+  margin-top:50px;
+  font-size:30px;
+  color:#6D4C41;
   font-weight: 600;
 }
 .login-box{
-  margin-top:150px;
+  margin-top:0px;
   display: block;
   width:500px;
   height:700px;
@@ -130,7 +147,8 @@ export default {
   border-color:transparent;
   margin-left:70px;
   background-color: #F5F5F5;
-  width:350px;
+  width:450px;
+  height:80px;
 }
 .login-bar-wrapper:hover{
   border-radius:6px;
@@ -144,8 +162,8 @@ export default {
 }
 .login-bar{
   position:relative;
-  width:350px;
-  height:60px;
+  width:450px;
+  height:80px;
   font-size:20px;
   text-align:left;
 }
@@ -159,24 +177,29 @@ input::placeholder {
   font-size:20px;
 }
 .login-btn{
-  height:50px;
-  width:350px;
+  height:80px;
+  width:450px;
   margin-top:20px;
-  margin-left:15px;
+  margin-left:80px;
   background-color:#8D6E63;
   border-width:1px;
+  font-size:24px;
   color:white;
 }
 .keep-login{
-    position:relative;
-    left:-19.5%;
+  position:relative;
+  left:-14%;
 }
 .h-line1{
     margin-top:50px;
     margin-left:50px;
     border-left: solid;
-    border-width:0.5px;
-    border-color:#B0BEC5;
-    width:400px;
+    border-width:4px;
+    border-color:#EEEEEE;
+    width:500px;
+}
+input[type=checkbox] {
+  margin-left:10px;
+  transform : scale(2.0);
 }
 </style>

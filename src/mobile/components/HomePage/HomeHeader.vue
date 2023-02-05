@@ -1,25 +1,27 @@
 <template>
-  <div
-    style="cursor:pointer;"
-    class="decoration-none text-center"
-    @click="goHomePage"
-  >
-    <navigation-drawer />
-    <span style="font-size:80px; color:#6D4C41">
-      Kagu
-    </span>
-  </div>
-  
-  <div class="search-bar-wrapper text-center">
-    <input
-      type="text"
-      name="hot"
-      placeholder="최근 핫딜"
-      class="search-bar"
+  <div>
+    <div
+      style="cursor:pointer;"
+      class="decoration-none text-center"
+      @click="goHomePage"
     >
-    <div class="search-btn">
-      <v-img src="@/assets/mdi/magnify.svg" />
+      <navigation-drawer />
+      <span style="font-size:80px; color:#6D4C41">
+        Kagu
+      </span>
     </div>
+  
+    <div class="search-bar-wrapper text-center">
+      <input
+        type="text"
+        name="hot"
+        placeholder="최근 핫딜"
+        class="search-bar"
+      >
+      <not-available-dialog />
+      <div class="search-btn">
+        <v-img src="@/assets/mdi/magnify.svg" />
+      </div>
     <!-- 
     <div class="text-center">
       <v-row
@@ -31,33 +33,30 @@
       </v-row>
     </div>
      -->
-  </div>
+    </div>
     
-  <div>
-    <div class="group1">
-      <span
-        class="group1-text px-10"
-        @click="goHomePage"
-      >홈</span>
-      <span
-        class="group1-text px-10"
-        @click="goCategoryPage"
-      >핫딜</span>
-      <span
-        class="group1-text px-10"
-        @click="goBrandPage"
-      >브랜드관</span>
-      <span
-        class="group2-text px-10"
-        @click="goAdmin"
-      > {{ logined ? "관리자" : "" }}</span>
-      <span
-        class="group2-text px-10"
-        @click="goLogin"
-      > {{ logined ? "로그아웃" : "로그인" }}</span>
+    <div>
+      <div class="group1">
+        <span
+          class="group1-text px-10"
+          @click="goHomePage"
+        >홈</span>
+        <span
+          class="group1-text px-10"
+          @click="goCategoryPage"
+        >핫딜</span>
+        <span
+          class="group1-text px-10"
+          @click="goBrandPage"
+        >브랜드관</span>
+        <span
+          class="group2-text px-10"
+          @click="goAdmin"
+        > {{ logined ? "관리자" : "" }}</span>
+      </div>
     </div>
   </div>
-  <hr class="h-line1">
+  <hr class="h-line2">
 </template>
 
 <script>
@@ -67,7 +66,7 @@ import NavigationDrawer from './NavigationDrawer.vue'
 export default {
   name: 'HomeHeader',
   components: {
-    //NotAvailableDialog,
+    NotAvailableDialog,
     NavigationDrawer
   },
   computed: {
@@ -128,8 +127,13 @@ export default {
 </script>
 <style>
 .h-line1{
-  border-color:#D7CCC8;
+  border-color:#EEEEEE;
   border-width:7px;
+  border-style: solid;
+}
+.h-line2{
+  border-color:#EEEEEE;
+  border-width:3px;
   border-style: solid;
 }
 </style>
@@ -159,7 +163,7 @@ export default {
 .group1-text{
   margin-top:20px;
   font-family: Poppins;
-  font-size: 45px;
+  font-size: 40px;
   font-weight: 400;
   line-height: 50px;
   letter-spacing: 0em;
@@ -170,7 +174,7 @@ export default {
 .group2-text{
   margin-top:20px;
   font-family: Poppins;
-  font-size: 45px;
+  font-size: 40px;
   font-weight: 400;
   line-height: 50px;
   letter-spacing: 0em;
@@ -194,14 +198,14 @@ input::placeholder{
 }
 .search-bar{
   position:relative;
-  width:750px;
+  width:700px;
   height:100px;
   top:5%;
   left:7%;
 }
 .search-btn{
   width:70px;
-  margin-left:10px;
+  margin-left:70px;
   margin-top:10px;
 }
 </style>

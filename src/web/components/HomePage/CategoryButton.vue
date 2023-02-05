@@ -66,8 +66,12 @@ export default {
 </script>
 
 <style scoped>
-  @import '@/assets/styles/CategoryMain.css';
-  .cursor {
-    cursor: pointer;
-  }
+@import '@/assets/styles/CategoryMain.css';
+.cursor {
+  cursor: pointer;
+}
+.imgText{
+  font-size:13px;
+  margin-top:0px;
+}
 </style>

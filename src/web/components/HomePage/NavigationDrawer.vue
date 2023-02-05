@@ -27,7 +27,7 @@
         style="float:right; cursor: pointer;"
         @click.stop="drawer = !drawer"
       >
-        <v-icon>mdi-alpha-x</v-icon>
+        X
       </span>
     </div>
     <hr class="hr-line10">

@@ -1,8 +1,7 @@
 <template>
-  <div id="bg">
+  <div>
     <v-row
       justify="center"
-      class="pa-12"
     >
       <div
         class="login-box"
@@ -161,7 +160,7 @@ export default {
   font-weight: 600;
 }
 .login-box{
-  margin-top:150px;
+  margin-top:50px;
   display: block;
   width:500px;
   height:800px;
@@ -176,7 +175,7 @@ export default {
   border-style:solid;
   border-radius:6px;
   border-color:transparent;
-  margin-left:70px;
+  margin-left:30px;
   background-color: #F5F5F5;
   width:350px;
 }
@@ -198,37 +197,37 @@ export default {
   text-align:left;
 }
 .login-bar:hover{
-    cursor: pointer;
+  cursor: pointer;
 }
 input::placeholder {
-    color: #616161;
-    position:relative;
-    left:20px;
-    font-size:20px;
+  color: #616161;
+  position:relative;
+  left:20px;
+  font-size:20px;
 }
 .login-btn{
-    height:50px;
-    width:350px;
-    margin-top:20px;
-    margin-left:15px;
-    background-color:#8D6E63;
-    border-width:1px;
-    color:white;
+  height:50px;
+  width:350px;
+  margin-top:20px;
+  margin-left:25px;
+  background-color:#8D6E63;
+  border-width:1px;
+  color:white;
 }
 
 .login-btn2{
-    height:50px;
-    width:350px;
-    margin-top:20px;
-    margin-left:15px;
-    background-color:#616161;
-    border-width:1px;
-    color:white;
+  height:50px;
+  width:350px;
+  margin-top:20px;
+  margin-left:25px;
+  background-color:#616161;
+  border-width:1px;
+  color:white;
 }
 .login-label{
-    font-size:20px;
-    font-weight:500;
-    position:relative;
-    left:15%;
+  font-size:20px;
+  font-weight:500;
+  position:relative;
+  left:10%;
 }
 </style>

@@ -1,44 +1,47 @@
 <template>
-  <div class="product-wrapper pa-12">
-    <div class="img-wrapper1">
-      <v-img :src="imageUrl" />
-    </div>
-    <div class="product-description1 pa-8">
+  <div
+    class="px-5"
+    style="font-size:35px; font-weight:600"
+  >
+    홈 >  {{ category }}
+  </div>
+  <div class="img-wrapper1">
+    <v-img :src="imageUrl" />
+  </div>
+  <div class="product-wrapper">
+    <div class="product-description1">
       <div class="text-group2 px-5">
         <span>{{ name }}</span>
       </div>
-      <div class="text-group3">
-        <v-rating
-          v-model="rating"
-          class="px-5"
-          color="#FFB300"
-          empty-icon="mdi-star-outline"
-          full-icon="mdi-star"
-          half-icon="mdi-star-half"
-          half-increments
-          readonly
-          size="15"
-        />
-        <span class="text-group4 py-2"> {{ rating }}</span>
-        <span class="v-line2" />
-        <span class="img-message py-2">
-          <v-img
-            src="@/assets/message.png"
-            width="20px"
-            height="20px"
+      <div class="texts">
+        <div class="text-group3">
+          <v-rating
+            v-model="rating"
+            class="px-5"
+            color="#FFB300"
+            empty-icon="mdi-star-outline"
+            full-icon="mdi-star"
+            half-icon="mdi-star-half"
+            half-increments
+            readonly
+            size="50"
           />
-        </span>
-        <span class="py-2">리뷰 : {{ comment }}개</span>
-      </div>
+          <span class="text-group4 py-2"> {{ rating }}</span>
+          <span class="v-line2" />
+          <span class="img-message py-2">
+            <v-img
+              src="@/assets/message.png"
+              width="50px"
+              height="50px"
+            />
+          </span>
+          <span class="px-5 py-2">리뷰 : {{ comment }}개</span>
+        </div>
       
-      <span class="mx-5 py-3"> {{ Math.floor(price).toLocaleString('ko-KR') }}원 </span>
-      <span class="originPrice"> {{ Math.floor(naverPrice).toLocaleString('ko-KR') }}원 </span>
-      <span class="px-5 discountRate"> {{ Math.floor(discountRate) }}% </span>
-      <div class="px-5">
-        네이버 최저가: {{ Math.floor(naverPrice).toLocaleString('ko-KR') }}원
-      </div>
-      <div class="px-5">
-        카테고리:  {{ category }}
+        <span class="mx-5 py-3"> {{ Math.floor(price).toLocaleString('ko-KR') }}원 </span>
+        <div class="naver-price px-5">
+          네이버 최저가: {{ Math.floor(naverPrice).toLocaleString('ko-KR') }}원
+        </div>
       </div>
 
       <div class="ddabong-card pa-4">
@@ -48,8 +51,8 @@
         >
           <div class="ddabong pa-1">
             <v-img
-              width="20px"
-              height="20px"
+              width="60px"
+              height="60px"
               src="@/assets/thumbs/따봉1.png"
             />
           </div>
@@ -61,12 +64,36 @@
         >
           <div class="ddabong pa-1">
             <v-img
-              width="20px"
-              height="20px"
+              width="60px"
+              height="60px"
               src="@/assets/thumbs/우우1.png"
             />
           </div>
           <span class="ddabong-text">비추 {{ bad }}</span>
+        </div>
+        <div
+          v-if="empty"
+          class="heart-box"
+        >
+          <v-img
+            width="80"
+            height="80"
+            src="@/assets/mdi/heart-outline-custom.png"
+            class="heart-icon"
+            @click.stop="changeBtn()"
+          />
+        </div>
+        <div
+          v-if="fill"
+          class="heart-box"
+        >
+          <v-img
+            width="80"
+            height="80"
+            src="@/assets/mdi/heart-custom.png"
+            class="heart-icon"
+            @click.stop="changeBtn()"
+          />
         </div>
       </div>
       <hr class="h-line1">
@@ -81,6 +108,9 @@ export default {
   name: 'ProductInfo',
   data() {
     return {
+      rating1:4.5,
+      empty: true,
+      fill: false,
       imageUrl: '',
       name: '',
       rating: 0,
@@ -90,7 +120,6 @@ export default {
       category: '생활/건강',
       good: 0,
       bad: 0,
-
     }
   },
   computed: {
@@ -116,7 +145,13 @@ export default {
     clickbad() {
       jwtAxios.post('/product/' + this.$route.query.name + 'recommend', { recommend: "bad" } )
       .then((res) => {})
-    }
+    },
+    changeBtn(){
+      jwtAxios.post('/product/' + this.name + '/wishlist')
+
+      this.empty = !this.empty;
+      this.fill = !this.fill;
+    },
   }
 }
 </script>
@@ -127,66 +162,59 @@ export default {
 }
 .img-wrapper1{
   display:flex;
-  width:300px;
+  width:100%;
 }
 .product-description1{
-  width:600px;
+  width:980px;
 }
 .text-group2{
-  font-size:20px;
+  font-size:40px;
   font-weight: 600;
 }
 .text-group4{
+  font-size:35px;
   position:relative;
-  left:-2%;
+  color:#FFB300;
 }
 .img-message{
   position:relative;
   margin-left:10px;
 }
 .text-group3{
+  font-size:40px;
   display:flex;
   align-self:center;
 }
+.texts{
+  font-size:40px;
+}
 .v-line2{
   margin-top:10px;
+  margin-left:40px;
   border-left: solid;
-  border-width:1px;
+  border-width:5px;
   border-color:#E0E0E0;
-  height:20px;
+  height:50px;
 }
-.h-line1{
-  margin-top:50px;
-  border-left: solid;
-  border-width:0.5px;
-  border-color:#E0E0E0;
-  width:500px;
-}
-.originPrice{
-  position:relative;
-  left:-4%;
-  font-size:11px;
-  text-decoration-line: line-through;
-}
-.discountRate{
-  font-size:14px;
+.naver-price{
+  font-size:40px;
   font-weight: 600;
   color:#EF5350;
 }
 .ddabong{
-  width:50px;
+  width:200px;
   position: relative;
   top:10%;
   left:10%;
 } 
 .ddabong-text{
   position:relative;
-  bottom:60%;
-  left:13%;
-  font-size:12px;
+  bottom:45%;
+  left:14%;
+  font-size:31px;
 }
 .ddabong-card{
-  width:500px;
+  width:900px;
 }
 .ddabong-card1{
   display:inline-block;
@@ -194,11 +222,10 @@ export default {
   border-radius:6px;
   border-width:2px;
   border-color:#757575;
-  width:90px;
-  height:40px;
+  width:200px;
+  height:100px;
   align-self: center;
   cursor:pointer;
-  transition:all 0.9s, color 0.3;  
 }
 .ddabong-card2{
   display:inline-block;
@@ -208,21 +235,37 @@ export default {
   border-radius:6px;
   border-width:2px;
   border-color:#757575;
-  width:90px;
-  height:40px;
+  width:200px;
+  height:100px;
   align-self: center;
   cursor:pointer;
-}
-.ddabong-card1:hover{
-  box-shadow:200px 0 0 0 rgba(0,0,0,0.3) inset;
-}
-.ddabong-card2:hover{
-  box-shadow:200px 0 0 0 rgba(0,0,0,0.3) inset;
 }
 .ddabong-card1:active{
   background-color: #757575;
 }
 .ddabong-card2:active{
   background-color: #757575;
+}
+.heart-box{
+  position:relative;
+  bottom:70px;
+  left:350px;
+  display:inline-block;
+  vertical-align: middle;
+  width:100px;
+  height:100px;
+  color: #000;
+  background-color: #fff;
+  box-shadow: 0px 8px 15px white;
+  cursor: pointer;
+}
+.heart-box:hover {
+  background-color: #EEEEEE;
+  box-shadow: 0px 2px 2px #E0E0E0;
+}
+.heart-icon{
+  position:relative;
+  top:6%;
+  left:10%;
 }
 </style>

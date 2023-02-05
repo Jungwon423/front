@@ -1,5 +1,7 @@
 <template>
-  <CompanyMain />
+  <div class="width-1200">
+    <CompanyMain />
+  </div>
 </template>
     
 <script>

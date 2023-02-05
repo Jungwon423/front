@@ -1,22 +1,20 @@
 <template>
   <div
-    class="py-4 px-5"
-    style="font-size:40; font-weight:600"
+    class="py-4 px-5 product-review"
   >
     상품 리뷰
   </div>
-  <span>
+  <span class="text-group3">
     <v-rating
       v-model="rating"
       class="px-5"
-      value="4.5"
       color="#FFB300"
       empty-icon="mdi-star-outline"
       full-icon="mdi-star"
       half-icon="mdi-star-half"
       half-increments
       readonly
-      size="30"
+      size="50"
     />
   </span>
   <span class="text-group5">4.5</span>
@@ -25,13 +23,12 @@
   <div
     v-for="user in users"
     :key="user"
-    style="display:inline"
     class="pa-8"
   >
     <div style="display:flex">
       <div class="img-block">
         <v-avatar
-          size="50"
+          size="100"
           class="rounded-xl"
           color="wheat"
           :image="user.src"
@@ -45,7 +42,7 @@
           @{{ user.id }}
         </div>
       </div>  
-      <div>
+      <div style="width:300px; height:100px;">
         <v-btn
           variant="tonal"
           class="mx-4 edit-btn"
@@ -103,7 +100,7 @@
         half-icon="mdi-star-half"
         half-increments
         readonly
-        size="20"
+        size="40"
       />
       <span>{{ user.rating }}점</span>
     </div>
@@ -122,7 +119,7 @@
       half-icon="mdi-star-half"
       half-increments
       readonly
-      size="20"
+      size="40"
     />
     <span>{{ rating }}점</span>
   </div>
@@ -210,7 +207,17 @@ export default {
 }
 </script>
 <style scoped>
+
+.product-review{
+  font-size:45px;
+  font-weight:600;
+}
+.text-group3{
+  font-size:40px;
+  align-self:center;
+}
 .text-group5{
+  font-size:40px;
   position:relative;
   bottom:0.5%;
 }
@@ -219,18 +226,17 @@ export default {
   height:70px;
 }
 .user-name{
-  font-size:14px;
+  font-size:30px;
   font-weight:600;
 }
 .user-id{
-  font-size:12px;
+  font-size:25px;
   color:#B0BEC5;
 }
 .edit-btn{
   position:relative;
   top:10%;
-  left:10%;
-  font-size:13px;
+  font-size:30px;
   font-weight:600;
 }
 .user-block{
@@ -238,19 +244,20 @@ export default {
   height:70px;
   margin-top:8px;
   margin-left:12px;
-  font-size:12px;
   font-weight: 500;
   display:block;
 }
 .user-rating{
   display:block;
+  height:50px;
+  margin-top:10px;
+  right:2%;
   position: relative;
-  height:10px;
-  left:-20px;
-  top:-15px;
+  font-size:30px;
 }
 .user-content{
-  width :980px;
+  width :900px;
+  font-size:30px;
   border-bottom:solid;
   border-width:1px;
   border-color:#E0E0E0;
@@ -259,26 +266,24 @@ export default {
 .ddabong-card10{
   text-align:end;
   position:relative;
-  margin-top:10px;
-  left:65%;
+  left:10%;
   display:flex;
-  width:100px;
+  width:200px;
 }
 .ddabong-card11{
   text-align:end;
   position:relative;
-  margin-top:10px;
-  left:60%;
   display:flex;
-  width:100px;
+  width:200px;
 }
 .ddabong{
   display: inline-block;
-  width:30px;
+  width:70px;
 } 
 .ddabong-text{
   text-align: center;
   margin:3px;
+  font-size:30px;
 }
 
 .text-wrapper{
@@ -287,15 +292,24 @@ export default {
   border-radius:10px;
   border-color:#FAFAFA;
   border-width:1px;
-  width:950px;
+  width:980px;
   height:150px;
 }
 .comment-text{
   width:850px;
   border: none;
+  font-size:40px;
+}
+.comment-rating{
+  font-size:30px;
+  position:relative;
+  bottom:0.5%;
 }
 .btn-wrapper{
-  height:70px;
+  height:200px;
+}
+v-textarea::input{
+  font-size:40px;
 }
 .write-btn{
   background-color:#FAFAFA;
@@ -303,7 +317,7 @@ export default {
   position:relative;
   right:3%;
   top:10%;
-  font-size:15px;
+  font-size:30px;
   font-weight: 600;
 }
 </style>

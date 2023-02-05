@@ -84,9 +84,4 @@ export default {
   },
 }
 </script>
-
-<style>
-  @import '@/assets/styles/CategoryMain.css';
-</style>
-    
     
