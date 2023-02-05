@@ -83,6 +83,7 @@
 </template>
 
 <script>
+import jwtAxios from '@/library/jwtAxios'
   export default {
     data () {
       return {
@@ -111,9 +112,11 @@
     },
     methods: {
       goCategoryPage(category) {
-      this.$router.push({
-        name: 'category',
-        query: {categoryName: category, marketName: "all", page: "1"}},)
+        console.log('/category/' + category + '/click')
+        jwtAxios.post('/category/' + category + '/click')
+        this.$router.push({
+          name: 'category',
+          query: {categoryName: category, marketName: 'Amazon+eBay+AliExpress', page: "1"}},)
     },
       goBrandPage(){
         this.$router.push('/brand')

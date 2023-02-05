@@ -28,7 +28,7 @@
             height="20px"
           />
         </span>
-        <span class="py-2">리뷰 : {{ comment }}개</span>
+        <span class="py-2">리뷰 : {{ comment.length }}개</span>
       </div>
       
       <span class="mx-5 py-3"> {{ Math.floor(price).toLocaleString('ko-KR') }}원 </span>
@@ -42,32 +42,68 @@
       </div>
 
       <div class="ddabong-card pa-4">
-        <div
-          class="ddabong-card1 text-center"
-          @click="clickGood"
+        <v-dialog
+          v-model="recommendDialog"
+          max-width="500px"
+          height="500px"
         >
-          <div class="ddabong pa-1">
-            <v-img
-              width="20px"
-              height="20px"
-              src="@/assets/thumbs/따봉1.png"
-            />
-          </div>
-          <span class="ddabong-text">추천 {{ good }}</span>
-        </div>
-        <div
-          class="ddabong-card2 text-center"
-          @click="clickBad"
+          <template #activator="{ attrs }">
+            <div
+              class="ddabong-card1 text-center"
+              v-bind="attrs"
+              @click="clickGood"
+            >
+              <div class="ddabong pa-1">
+                <v-img
+                  v-if="!empty1"
+                  width="20px"
+                  height="20px"
+                  src="@/assets/thumbs/따봉1.png"
+                />
+                <v-img
+                  v-if="empty1"                
+                  src="@/assets/thumbs/추천.png"
+                  v-bind="attrs"
+                  @click.stop="recommend()"
+                />
+              </div>
+              <span class="ddabong-text">추천 {{ good.length }}</span>
+            </div>
+          </template>
+          <please-login-dialog />
+        </v-dialog>
+
+        <v-dialog
+          v-model="disrecommendDialog"
+          max-width="500px"
+          height="500px"
         >
-          <div class="ddabong pa-1">
-            <v-img
-              width="20px"
-              height="20px"
-              src="@/assets/thumbs/우우1.png"
-            />
-          </div>
-          <span class="ddabong-text">비추 {{ bad }}</span>
-        </div>
+          <template #activator="{ attrs }">
+            <div
+              class="ddabong-card2 text-center"
+              v-bind="attrs"
+              
+              @click="clickBad"
+            >
+              <div class="ddabong pa-1">
+                <v-img
+                  v-if="!empty2"
+                  width="20px"
+                  height="20px"
+                  src="@/assets/thumbs/우우1.png"
+                />
+                <v-img
+                  v-if="empty2"
+                  src="@/assets/thumbs/비추천.png"
+                  v-bind="attrs"
+                  @click.stop="disrecommend()"
+                />
+              </div>
+              <span class="ddabong-text">비추천 {{ bad.length }}</span>
+            </div>
+          </template>
+          <please-login-dialog />
+        </v-dialog>
       </div>
       <hr class="h-line1">
     </div>
@@ -75,19 +111,24 @@
 </template>
 
 <script>
-import jwtAxios from '@/jwtAxios'
+import jwtAxios from '@/library/jwtAxios'
+import PleaseLoginDialog from '@/web/components/ProductPage/PleaseLoginDialog.vue'
 
 export default {
-  name: 'ProductInfo',
+  name: "ProductInfo",
+  components: {
+    PleaseLoginDialog
+  },
+  components: { PleaseLoginDialog },
   data() {
     return {
-      imageUrl: '',
-      name: '',
+      imageUrl: "",
+      name: "",
       rating: 0,
       comment: [],
       price: 0,
       naverPrice: 0,
-      category: '생활/건강',
+      category: "생활/건강",
       market: "",
       link: "",
       tax: 0,
@@ -97,46 +138,64 @@ export default {
       good: [],
       badNumber: 0,
       bad: [],
-      wishUserList :[],
-      subImageUrl: []
-    }
+      wishUserList: [],
+      subImageUrl: [],
+      recommendDialog: false,
+      disrecommendDialog: false,
+
+      empty1: false,
+      empty2: false,
+    };
   },
   computed: {
-    discountRate: function() {
-      return (1-this.price/this.naverPrice)*100
-    }
+    discountRate: function () {
+        return (1 - this.price / this.naverPrice) * 100;
+    },
   },
   async created() {
-    jwtAxios.get('/product/detail?name=' + this.$route.query.name)
-    .then((res) => {
-      this.imageUrl = res.data['result']['imageUrl']
-      this.name = res.data['result']['name']
-      this.rating = res.data['result']['rating']
-      this.comment = res.data['result']['comment']
-      this.price = res.data['result']['price'],
-      this.naverPrice = res.data['result']['naverPrice']
-      this.category = res.data['result']['categoryName']
-      this.market = res.data['result']['marketName']
-      this.link = res.data['result']['link']
-      this.tax = res.data['result']['tax']
-      this.shippingFee = res.data['result']['shippingFee']
-      this.clickCount = res.data['result']['clickCount'],
-      this.goodNumber = res.data['result']['good'].length
-      this.good = res.data['result']['good']
-      this.badNumber = res.data['result']['bad'].length
-      this.bad = res.data['result']['bad']
-      this.wishUserList = res.data['result']['wishUserList']
-      this.subImageUrl = res.datg['result']['subImageUrl']
-    })
+    jwtAxios.get("/product/detail?name=" + this.$route.query.name)
+      .then((res) => {
+      this.imageUrl = res.data["result"]["imageUrl"];
+      this.name = res.data["result"]["name"];
+      this.rating = res.data["result"]["rating"];
+      // this.comment = res.data['result']['comment']
+      this.price = res.data["result"]["price"],
+      this.naverPrice = res.data["result"]["naverPrice"];
+      this.category = res.data["result"]["categoryName"];
+      this.market = res.data["result"]["marketName"];
+      this.link = res.data["result"]["link"];
+      this.tax = res.data["result"]["tax"];
+      this.shippingFee = res.data["result"]["shippingFee"];
+      this.clickCount = res.data["result"]["clickCount"],
+      this.goodNumber = res.data["result"]["good"].length;
+      this.good = res.data["result"]["good"];
+      this.badNumber = res.data["result"]["bad"].length;
+      this.bad = res.data["result"]["bad"];
+      this.wishUserList = res.data["result"]["wishUserList"];
+      this.subImageUrl = res.data["result"]["subImageUrl"];
+    });
   },
   methods: {
     clickGood() {
-      jwtAxios.post('/product/' + this.$route.query.name + '/recommend', { recommend: "good"})
-      .then((res) => {})
+      if (this.$store.getters['Login/logined']) {
+        jwtAxios.post("/product/" + this.$route.query.name + "/recommend")
+
+        this.empty1 = !this.empty1;
+      }
+      else {
+        this.recommendDialog = true
+      }
+
+      
     },
-    clickbad() {
-      jwtAxios.post('/product/' + this.$route.query.name + 'recommend', { recommend: "bad" } )
-      .then((res) => {})
+    clickBad() {
+      if (this.$store.getters['Login/logined']) {
+        jwtAxios.post("/product/" + this.$route.query.name + "/disrecommend")
+        this.empty2 = !this.empty2;
+      }
+      else {
+        this.disrecommendDialog = true
+      }
     }
   }
 }

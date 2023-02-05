@@ -25,7 +25,7 @@
         name: 'category',
         query: {
           categoryName: this.$store.state.Category.currentCategory,
-          marketName: this.$store.state.Category.currentMarket,
+          marketName: library.currentMarketToString(this.$store.state.Category.currentMarket),
           page: page}},)
       }
     }

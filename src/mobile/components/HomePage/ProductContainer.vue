@@ -77,7 +77,7 @@
 </template>
   
 <script>
-import jwtAxios from '@/jwtAxios';
+import jwtAxios from '@/library/jwtAxios';
 
 export default {
   name: 'ProductContainer',

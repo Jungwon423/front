@@ -115,9 +115,12 @@ import ButtonNavigation from '@/mobile/components/HomePage/ButtonNavigation.vue'
     },
     methods: {
       goCategoryPage(category) {
-      this.$router.push({
-        name: 'category',
-        query: {categoryName: category, marketName: "all", page: "1"}},)
+        this.$router.push({
+          name: 'category',
+          query: {
+            categoryName: category,
+            marketName: library.currentMarketToString(this.$store.state.Category.currentMarket),
+            page: "1"}},)
     },
     goLogin() {
       if (!this.logined) {

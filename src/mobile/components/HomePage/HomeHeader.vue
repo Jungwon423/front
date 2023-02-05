@@ -91,7 +91,10 @@ export default {
       else {
         this.$router.push({
           name: 'category',
-          query: {categoryName: "life_health", marketName: "all", page: "1"}},)
+          query: {
+            categoryName: "life_health", 
+            marketName: library.currentMarketToString(this.$store.state.Category.currentMarket),
+            page: "1"}},)
       }
     },
     goBrandPage() {

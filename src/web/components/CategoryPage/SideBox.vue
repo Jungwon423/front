@@ -6,7 +6,7 @@
         class="px-3"
         style="color:grey"
       >></span>
-      {{ currentCategory_c }}
+      {{ currentCategory }}
     </div>
     <div class="sidebar-sidebar">
       <div class="sidebar-group1">
@@ -67,6 +67,8 @@
 </template>
 
 <script>
+import library from '@/library/library'
+
   export default {
     data() {
       return {
@@ -79,7 +81,7 @@
       }
     },
     computed: {
-      currentCategory_c: function () {
+      currentCategory: function () {
         return this.$categoryMap.get(this.$store.state.Category.currentCategory)
       },
     },
@@ -89,16 +91,43 @@
         name: 'category',
         query: {
           categoryName: category,
-          marketName: this.$store.state.Category.currentMarket,
+          marketName: library.currentMarketToString(this.$store.state.Category.currentMarket),
           page: 1}},)   
       },
       changeMarket(market) {
+        let changeMarketMap = {
+          "Amazon" : false,
+          "eBay" : false,
+          "AliExpress" : false
+        }
+        // 이미 Amazon eBay AliExpress 모두 true였던 경우 & 전부 다 클릭된 게 아닌 경우 -> changeMarketMap만 갱신해주면 된다
+        if (library.resetOrNot(this.$store.state.Category.currentMarket) && !this.$store.state.Category.marketAllChecked ) {
+          changeMarketMap[market] = true
+        }
+        // else if (library.resetOrNot(this.$store.state.Category.currentMarket) && this.$store.state.Category.marketAllChecked) {
+        //   changeMarketMap = this.$store.state.Category.currentMarket
+        //   changeMarketMap[market] = !changeMarketMap[market]
+        // }
+        // 둘 다 아닌 경우 클릭된 market만 toggle해주면 된다
+        else {
+          changeMarketMap = this.$store.state.Category.currentMarket
+          changeMarketMap[market] = !changeMarketMap[market]
+          if (changeMarketMap["Amazon"] && changeMarketMap["eBay"] && changeMarketMap["AliExpress"]) {
+            this.$store.commit('Category/SET_MARKETALLCHECKED', true)
+          }
+          if (!changeMarketMap["Amazon"] && !changeMarketMap["eBay"] && !changeMarketMap["AliExpress"]) {
+            changeMarketMap["Amazon"] = true
+            changeMarketMap["eBay"] = true
+            changeMarketMap["AliExpress"] = true
+          }
+        }
+
         this.$router.push({ 
         name: 'category',
         query: {
           categoryName: this.$store.state.Category.currentCategory,
-          marketName: market,
-          page: 1}},)   
+          marketName: library.currentMarketToString(changeMarketMap),
+          page: 1}},)
       }
     }
   }

@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import library from '@/library/library'
   export default {
     data() {
       return {
@@ -74,8 +75,6 @@
         "furniture_interior","digital_consumer","cosmetics_beauty","fashion-accessories", "fashion-clothes"],
 
         marketNames: ["Amazon", "eBay", "AliExpress"],
-
-        market : "all"
       }
     },
     computed: {
@@ -89,15 +88,27 @@
         name: 'category',
         query: {
           categoryName: category,
-          marketName: this.$store.state.Category.currentMarket,
+          marketName: library.currentMarketToString(this.$store.state.Category.currentMarket),
           page: 1}},)   
       },
       changeMarket(market) {
+        changeMarketMap = {
+          "Amazon" : false,
+          "eBay" : false,
+          "AliExpress" : false
+        }
+        if (library.resetOrNot(this.$store.state.Category.currentMarket)) {
+          changeMarketMap[market] = true
+        }
+        else {
+          changeMarketMap = this.$store.state.Category.currentMarket
+        }
+
         this.$router.push({ 
         name: 'category',
         query: {
           categoryName: this.$store.state.Category.currentCategory,
-          marketName: market,
+          marketName: library.currentMarketToString(this.$store.state.Category.changeMarketMap),
           page: 1}},)   
       }
     }

@@ -14,6 +14,7 @@ import SideBox from '@/web/components/CategoryPage/SideBox.vue';
 import ProductList from '@/web/components/CategoryPage/ProductList.vue';
 import CategoryPagination from '../components/CategoryPage/CategoryPagination.vue';
 import Footer from '@/web/components/Footer/KaguFooter.vue'
+import library from '@/library/library';
 
 export default {
   name: 'CategoryPage',
@@ -27,7 +28,7 @@ export default {
   watch: {
     '$route' () {
       this.$store.commit('Category/SET_CURRENTCATEGORY', this.$route.query.categoryName)
-      this.$store.commit('Category/SET_CURRENTMARKET', this.$route.query.marketName)
+      this.$store.commit('Category/SET_CURRENTMARKET', library.parseMarketString(this.$route.query.marketName))
       this.$store.commit('Category/SET_PAGE', this.$route.query.page)
       this.$store.dispatch('Category/FETCH_PRODUCTLIST_API')
     },
@@ -35,7 +36,7 @@ export default {
   },
   created(){
     this.$store.commit('Category/SET_CURRENTCATEGORY', this.$route.query.categoryName)
-    this.$store.commit('Category/SET_CURRENTMARKET', this.$route.query.marketName)
+    this.$store.commit('Category/SET_CURRENTMARKET', library.parseMarketString(this.$route.query.marketName))
     this.$store.commit('Category/SET_PAGE', this.$route.query.page)
   }
 }
