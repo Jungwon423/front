@@ -3,6 +3,25 @@
     <div class="item-box px-2">
       {{ productCount }} items in <strong> {{ currentCategory }}</strong>
     </div>
+    <v-row class="text-center">
+      <v-col>
+        <div class="glasses">
+          <v-img
+            width="80"
+            height="80"
+            src="@/assets/돋보기.png"
+          />
+        </div>
+        <div class="empty-text1">
+          조건에 맞는 상품이 없습니다.
+        </div>
+        <div class="empty-text2">
+          곧 더 좋은 상품으로 찾아오겠습니다.
+        </div>
+      </v-col>
+    </v-row>
+
+
     <ProductContainer 
       v-for="product in productList"
       :key="product.name"
@@ -63,5 +82,18 @@ export default {
   border-width:1px;
   border-color: #E0E0E0;
   border-radius:5px;
+}
+.glasses{
+  position:relative;
+  top:30%;
+  left:45.5%;
+}
+.empty-text1{
+  margin-top:100px;
+  font-size:20px;
+  font-weight: 600;
+}
+.empty-text2{
+  font-size:17px;
 }
 </style>

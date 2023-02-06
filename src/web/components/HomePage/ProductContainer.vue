@@ -17,7 +17,6 @@
       </div>
       <div class="product-group">
         <span>{{ roundedPrice }}원</span>
-        <span class="originPrice-group"> {{ roundedNaverPrice }}원 </span>
       </div>
       <div class="naver-price">
         네이버 최저가: {{ roundedNaverPrice }}

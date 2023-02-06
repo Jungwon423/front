@@ -10,7 +10,6 @@
       <div>Canon Cemra EOS 200D, Black 10x zoom</div>
       <div class="py-2">
         <span style="font-size:15px;">87,000원</span>
-        <span class="origin-price">110,000원</span>
         <div class="naver-price">네이버 최저가 : 103,000원</div>
       </div>
       <div class="rating-review">

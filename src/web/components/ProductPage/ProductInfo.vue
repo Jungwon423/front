@@ -32,7 +32,7 @@
       </div>
       
       <span class="mx-5 py-3"> {{ Math.floor(price).toLocaleString('ko-KR') }}원 </span>
-      <span class="originPrice"> {{ Math.floor(naverPrice).toLocaleString('ko-KR') }}원 </span>
+      <!-- <span class="originPrice"> {{ Math.floor(naverPrice).toLocaleString('ko-KR') }}원 </span> -->
       <span class="px-5 discountRate"> {{ Math.floor(discountRate) }}% </span>
       <div class="px-5">
         네이버 최저가: {{ Math.floor(naverPrice).toLocaleString('ko-KR') }}원
@@ -61,19 +61,25 @@
               @click="clickGood"
             >
               <div class="ddabong pa-1">
-                <v-img
-                  v-if="!recommendChecked"
-                  width="20px"
-                  height="20px"
-                  src="@/assets/thumbs/따봉1.png"
-                />
-                <v-img
-                  v-if="recommendChecked"                
-                  src="@/assets/thumbs/추천.png"
-                  v-bind="attrs"
-                />
+                <div class="ddabong-img1">
+                  <v-img
+                    v-if="!recommendChecked"
+                    width="25px"
+                    height="25px"             
+                    src="@/assets/thumbs/추천.png"
+                  />
+                </div>
+                <div class="ddabong-img2">
+                  <v-img
+                    v-if="recommendChecked"   
+                    width="20px"
+                    height="20px"
+                    src="@/assets/thumbs/따봉1.png"
+                    v-bind="attrs"
+                  />
+                </div>
+                <span class="ddabong-text">추천 {{ good.length }}</span>
               </div>
-              <span class="ddabong-text">추천 {{ good.length }}</span>
             </div>
           </template>
           
@@ -99,6 +105,27 @@
               @click="clickBad"
             >
               <div class="ddabong pa-1">
+                <div class="ddabong-img1">
+                  <v-img
+                    v-if="!disRecommendChecked"
+                    width="25px"
+                    height="25px"             
+                    src="@/assets/thumbs/비추천.png"
+                  />
+                </div>
+                <div class="ddabong-img2">
+                  <v-img
+                    v-if="disRecommendChecked"   
+                    width="20px"
+                    height="20px"
+                    src="@/assets/thumbs/우우1.png"
+                    v-bind="attrs"
+                  />
+                </div>
+                <span class="ddabong-text">비추천 {{ bad.length }}</span>
+              </div>
+              <!-- 
+              <div class="ddabong pa-1">
                 <v-img
                   v-if="!disRecommendChecked"
                   width="20px"
@@ -112,6 +139,7 @@
                 />
               </div>
               <span class="ddabong-text">비추천 {{ bad.length }}</span>
+               -->
             </div>
           </template>
           <please-login-dialog />
@@ -267,27 +295,31 @@ export default {
   border-color:#E0E0E0;
   width:500px;
 }
-.originPrice{
-  position:relative;
-  left:-4%;
-  font-size:11px;
-  text-decoration-line: line-through;
-}
 .discountRate{
   font-size:14px;
   font-weight: 600;
   color:#EF5350;
 }
 .ddabong{
-  width:50px;
-  position: relative;
-  top:10%;
-  left:10%;
-} 
-.ddabong-text{
+  width:100px;
+  height:30px;
+}
+.ddabong-img1{
+  display:inline-block;
+  width:30px;
   position:relative;
-  bottom:60%;
-  left:13%;
+}
+.ddabong-img2{
+  display:inline-block;
+  width:30px;
+  position:relative;
+  right:30%;
+  bottom:30%;
+}
+.ddabong-text{
+  display:inline-block;
+  position:relative;
+  width:30px;
   font-size:12px;
 }
 .ddabong-card{

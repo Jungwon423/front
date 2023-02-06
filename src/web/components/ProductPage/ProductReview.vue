@@ -7,6 +7,20 @@
   </div>
   <span class="text-group5">&nbsp; &nbsp; ( {{ comments.length }} 개의 한줄평)</span>
   <hr>
+  <v-row class="text-center">
+    <v-col>
+      <div class="messages">
+        <v-img
+          width="80"
+          height="80"
+          src="@/assets/empty-comment.jpg"
+        />
+      </div>
+      <div class="empty-review1">
+        등록된 댓글이 없습니다.
+      </div>
+    </v-col>
+  </v-row>
   <single-review
     v-for="comment in comments"
     :id="comment.id"
@@ -153,5 +167,14 @@ export default {
   top:10%;
   font-size:15px;
   font-weight: 600;
+}
+.messages{
+  position:relative;
+  margin-top:20px;
+  left:45.5%;
+}
+.empty-review1{
+  font-size:20px;
+  color: #BDBDBD;
 }
 </style>
