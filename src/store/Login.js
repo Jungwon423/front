@@ -3,6 +3,7 @@ export default {
 
   state: {
     token : localStorage.getItem('token') || '',
+    id: localStorage.getItem('id') || '',
     nickname: localStorage.getItem('nickname') || '',
     isAdminUser: false || true,
   },
@@ -19,6 +20,9 @@ export default {
   mutations: {
     SET_TOKEN(state, payload) {
       state.token = payload;
+    },
+    SET_ID(state, payload) {
+      state.id = payload
     },
     SET_NICKNAME(state, payload) {
       state.nickname = payload;

@@ -3,9 +3,9 @@
     class="py-4 px-5"
     style="font-size:20; font-weight:600"
   >
-    상품 리뷰
+    상품 한줄평
   </div>
-  <span class="text-group5">&nbsp; &nbsp; (30개의 리뷰)</span>
+  <span class="text-group5">&nbsp; &nbsp; ( {{ comments.length }} 개의 한줄평)</span>
   <hr>
   <single-review
     v-for="comment in comments"
@@ -33,15 +33,25 @@
       class="comment-text"
     />
   </div>
-  <div class="btn-wrapper">
-    <v-btn
-      variant="tonal"
-      class="write-btn"
-      @click="writeComment"
-    >
-      한줄평 등록
-    </v-btn>
-  </div>
+  <v-dialog
+    v-model="writeDialog"
+    max-width="500px"
+    height="500px"
+  >
+    <template #activator="{ attrs }">
+      <div class="btn-wrapper">
+        <v-btn
+          variant="tonal"
+          class="write-btn"
+          v-bind="attrs"
+          @click="writeComment"
+        >
+          한줄평 등록
+        </v-btn>
+      </div>
+    </template>
+    <please-login-dialog />
+  </v-dialog>
   <!--  
   <div class="py-10 user-write">
     <div class="search-bar-wrapper">
@@ -63,11 +73,13 @@
 <script>
 import jwtAxios from '@/library/jwtAxios'
 import SingleReview from './SingleReview.vue'
+import PleaseLoginDialog from './PleaseLoginDialog.vue';
 
 export default {
   name: 'ProductInfo',
   components: {
-    SingleReview
+    SingleReview,
+    PleaseLoginDialog
   },
   props: {
     name: {
@@ -77,36 +89,16 @@ export default {
   },
   data() {
     return {
-      rating: 4.5,
       productId: '',
-      comments:[
-      {
-        id: "oreo1001",
-        writerId: "오동근",
-        content: 'Play 스토어에서 Android 앱, 게임, 기타 콘텐츠를 평가하고 검토할 수 있습니다. Google Play에서 리뷰를 작성하면 리뷰가 Google 계정에 연결되며 다른 사용자에게 공개됩니다.\
-        리뷰를 공개하고 싶지 않다면 삭제하면 됩니다.진짜 어이없넹 이게 맞냐?',
-        good: 0,
-        bad: 0,
-        timestamp: '2023.01.22',
-        productId: ''
-        // src: require('@/assets/account.png'),
-      },
-      {
-        id: "rlawjddnjs",
-        writerId: "김정원",
-        content: '좋습니다!',
-        good: 0,
-        bad: 0,
-        timestamp: '2023.01.21',
-        productId: '',
-        // src: require('@/assets/thumbs/개추.png'),
-      }],
-      textfield: ""
+      comments:[],
+      textfield: "",
+      writeDialog: false
     }
   },
   created() {
     jwtAxios.get('/product/' + this.$route.query.name + '/comments')
     .then((res) => {
+      console.log(res.data['result'])
       this.comments = res.data['result']
       this.productId = res.data['result']['productId']
     
@@ -114,8 +106,20 @@ export default {
   },
   methods: {
     writeComment() {
-      jwtAxios.post('comment/' + this.productId +'/write', {'comment' : this.textfield})
-      this.textfield = ''
+      if (this.$store.getters['Login/logined']) {
+        jwtAxios.post('comment/' + this.$route.query.name +'/write', {'comment' : this.textfield})
+        .then((res) => {
+          this.textfield = ''
+          jwtAxios.get('/product/' + this.$route.query.name + '/comments')
+          .then((res) => {
+            this.comments = res.data['result']
+            this.productId = res.data['result']['productId']
+          })
+        })
+      }
+      else {
+          this.writeDialog = true
+      }
     }
   },
 }

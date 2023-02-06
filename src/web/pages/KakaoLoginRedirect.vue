@@ -10,6 +10,7 @@ export default {
     axios.get(process.env.VUE_APP_API_ROOT + '/login/kakao?code=' + this.$route.query.code)
     .then((res) => {
       this.$store.commit('Login/SET_TOKEN', res.data['token'])
+      this.$store.commit('Login/SET_ID', res.data['userid'])
       localStorage.setItem('token', res.data['token'])
 
       this.$router.push('/')

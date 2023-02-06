@@ -40,6 +40,7 @@
       <div class="px-5">
         카테고리:  {{ category }}
       </div>
+            
 
       <div class="ddabong-card pa-4">
         <v-dialog
@@ -48,6 +49,12 @@
           height="500px"
         >
           <template #activator="{ attrs }">
+            <v-snackbar
+              v-model="snackbar"
+              :timeout="2000"
+            >
+              이미 추천/비추천을 한 제품입니다.
+            </v-snackbar>
             <div
               class="ddabong-card1 text-center"
               v-bind="attrs"
@@ -55,13 +62,13 @@
             >
               <div class="ddabong pa-1">
                 <v-img
-                  v-if="!empty1"
+                  v-if="!recommendChecked"
                   width="20px"
                   height="20px"
                   src="@/assets/thumbs/따봉1.png"
                 />
                 <v-img
-                  v-if="empty1"                
+                  v-if="recommendChecked"                
                   src="@/assets/thumbs/추천.png"
                   v-bind="attrs"
                 />
@@ -69,6 +76,7 @@
               <span class="ddabong-text">추천 {{ good.length }}</span>
             </div>
           </template>
+          
           <please-login-dialog />
         </v-dialog>
 
@@ -78,6 +86,12 @@
           height="500px"
         >
           <template #activator="{ attrs }">
+            <v-snackbar
+              v-model="snackbar"
+              :timeout="2000"
+            >
+              이미 추천/비추천을 한 제품입니다.
+            </v-snackbar>
             <div
               class="ddabong-card2 text-center"
               v-bind="attrs"
@@ -86,13 +100,13 @@
             >
               <div class="ddabong pa-1">
                 <v-img
-                  v-if="!empty2"
+                  v-if="!disRecommendChecked"
                   width="20px"
                   height="20px"
                   src="@/assets/thumbs/우우1.png"
                 />
                 <v-img
-                  v-if="empty2"
+                  v-if="disRecommendChecked"
                   src="@/assets/thumbs/비추천.png"
                   v-bind="attrs"
                 />
@@ -141,8 +155,10 @@ export default {
       recommendDialog: false,
       disrecommendDialog: false,
 
-      empty1: false,
-      empty2: false,
+      recommendChecked: false,
+      disRecommendChecked: false,
+
+      snackbar: false
     };
   },
   computed: {
@@ -171,18 +187,22 @@ export default {
       this.bad = res.data["result"]["bad"];
       this.wishUserList = res.data["result"]["wishUserList"];
       this.subImageUrl = res.data["result"]["subImageUrl"];
+
+      // this.recommendChecked = res.data['result'].includes()
     });
   },
   methods: {
     clickGood() {
-      if (this.$store.getters['Login/logined']) {
+      if (this.$store.getters['Login/logined'] && !this.recommendChecked && !this.disrecommendChecked) {
         jwtAxios.post("/product/" + this.$route.query.name + "/recommend")
-
-        // this.good += this.empty1 ? 1 : 0
-        this.goodNumber += 1
-
-        this.empty1 = !this.empty1;
-
+        .then((res) => {
+          this.good = res.data['users']
+          this.goodNumber = res.data['users'].length
+          this.recommendChecked = res.data['recommendChecked']
+        })
+      }
+      else if (this.$store.getters['Login/logined']) {
+        this.snackbar = true
       }
       else {
         this.recommendDialog = true
@@ -194,6 +214,9 @@ export default {
       if (this.$store.getters['Login/logined']) {
         jwtAxios.post("/product/" + this.$route.query.name + "/disrecommend")
         this.empty2 = !this.empty2;
+      }
+      else if (this.$store.getters['Login/logined']) {
+        this.snackbar = true
       }
       else {
         this.disrecommendDialog = true

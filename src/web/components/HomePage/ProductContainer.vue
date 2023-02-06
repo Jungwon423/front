@@ -98,11 +98,6 @@ export default {
       required: true
     },
 
-    discountRate: {
-      type: Number,
-      required: true,
-    },
-
     imageUrl: {
       type: String,
       required: true,
@@ -181,6 +176,7 @@ export default {
       this.empty = !this.empty;
     },
     goProduct() {
+      console.log(this.$store.state.Login.token)
       jwtAxios.post('/product/' + this.name + '/click')
       .then((res) => {
       })
