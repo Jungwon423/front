@@ -64,7 +64,6 @@
                   v-if="empty1"                
                   src="@/assets/thumbs/추천.png"
                   v-bind="attrs"
-                  @click.stop="recommend()"
                 />
               </div>
               <span class="ddabong-text">추천 {{ good.length }}</span>
@@ -96,7 +95,6 @@
                   v-if="empty2"
                   src="@/assets/thumbs/비추천.png"
                   v-bind="attrs"
-                  @click.stop="disrecommend()"
                 />
               </div>
               <span class="ddabong-text">비추천 {{ bad.length }}</span>
@@ -180,7 +178,11 @@ export default {
       if (this.$store.getters['Login/logined']) {
         jwtAxios.post("/product/" + this.$route.query.name + "/recommend")
 
+        // this.good += this.empty1 ? 1 : 0
+        this.goodNumber += 1
+
         this.empty1 = !this.empty1;
+
       }
       else {
         this.recommendDialog = true

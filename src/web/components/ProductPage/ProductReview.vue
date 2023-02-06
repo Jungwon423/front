@@ -23,11 +23,11 @@
     class="text-wrapper"
   >
     <v-textarea
+      v-model="textfield"
       variant="solo"
       bg-color="#FAFAFA"
       no-resize
       rows="5"
-      label="로그인 후에 댓글을 작성하세요."
       counter="200"
       color="transparent"
       class="comment-text"
@@ -37,6 +37,7 @@
     <v-btn
       variant="tonal"
       class="write-btn"
+      @click="writeComment"
     >
       한줄평 등록
     </v-btn>
@@ -77,6 +78,7 @@ export default {
   data() {
     return {
       rating: 4.5,
+      productId: '',
       comments:[
       {
         id: "oreo1001",
@@ -98,14 +100,23 @@ export default {
         timestamp: '2023.01.21',
         productId: '',
         // src: require('@/assets/thumbs/개추.png'),
-      }]
+      }],
+      textfield: ""
     }
   },
   created() {
-    // jwtAxios.get('/product/' + this.$route.query.name + '/comments')
-    // .then((res) => {
-    //   this.comments = res.data['result']
-    // })
+    jwtAxios.get('/product/' + this.$route.query.name + '/comments')
+    .then((res) => {
+      this.comments = res.data['result']
+      this.productId = res.data['result']['productId']
+    
+    })
+  },
+  methods: {
+    writeComment() {
+      jwtAxios.post('comment/' + this.productId +'/write', {'comment' : this.textfield})
+      this.textfield = ''
+    }
   },
 }
 </script>
