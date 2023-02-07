@@ -112,7 +112,7 @@ import jwtAxios from '@/library/jwtAxios'
     },
     methods: {
       goCategoryPage(category) {
-        jwtAxios.post('/category/' + encodeURIComponent(category) + '/click')
+        jwtAxios.post('/category/' + category + '/click')
         this.$router.push({
           name: 'category',
           query: {categoryName: category, marketName: 'Amazon+eBay+AliExpress', page: "1"}},)
