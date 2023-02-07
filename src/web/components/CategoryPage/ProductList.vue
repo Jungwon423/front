@@ -37,6 +37,7 @@
       :market-name="product.marketName"
       :good="0"
       :bad="0"
+      :checked="product.wishUserList.includes($store.state.Login.id)"
     />
   </div>
 </template>

@@ -55,6 +55,7 @@
           :naver-price="product.naverPrice"
           :rating="product.rating"
           :comment="product.comments.length"
+          :checked="product.wishUserList.includes($store.state.Login.id)"
         />
       </v-col>
     </v-row>
@@ -83,6 +84,7 @@ export default {
 
     // vuex store에서 top3 product list 읽어옴
     top3ProductList: function () {
+      console.log(this.$store.state.Home.top3ProductList)
       return this.$store.state.Home.top3ProductList
     },
 

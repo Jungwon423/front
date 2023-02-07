@@ -46,8 +46,14 @@
           />
         </span>
         <span>댓글 : {{ comment }}개</span>
+        <v-snackbar
+          v-model="snackbar"
+          :timeout="2000"
+        >
+          찜하기 위해서는 로그인이 필요합니다!
+        </v-snackbar>
         <div
-          v-if="empty"
+          v-if="!wishChecked"
           class="heart-box"
         >
           <v-icon
@@ -59,7 +65,7 @@
           />
         </div>
         <div
-          v-if="!empty"
+          v-if="wishChecked"
           class="heart-box"
         >
           <v-icon
@@ -151,10 +157,16 @@ export default {
       type: Number,
       default: 0
     },
+
+    checked: {
+      type: Boolean,
+      default: false,
+    }
   },
   data () {
     return {
-      empty: true,
+      wishChecked: this.checked,
+      snackbar: false,
     }
   },
   computed: {
@@ -170,9 +182,16 @@ export default {
   },
   methods:{
     changeBtn(){
-      jwtAxios.post('/product/wishlist?productId=' + encodeURIComponent(this.name), { wish: this.empty ? "wish" : "unwish"})
-
-      this.empty = !this.empty;
+      if (this.$store.getters['Login/logined']) {
+        jwtAxios.post('/product/wishlist?productId=' + encodeURIComponent(this.name), { wish: !this.wishChecked ? "wish" : "unwish"})
+        .then((res) => {
+          console.log(res.data)
+          this.wishChecked = res.data['checked']
+        })
+      }
+      else {
+        this.snackbar = true
+      }
     },
     goProduct() {
       jwtAxios.post('/product/click?productId=' + encodeURIComponent(this.name))
