@@ -33,11 +33,14 @@
         v-for="imgDetail in imgDetails"
         :key="imgDetail"
       >
-        <v-img
-          alt="hi musbi"
-          :src="imgDetail"
-          class="py-2"
-        />
+        <div class="img-wrapper">
+          <img
+            alt="hi musbi"
+            :src="imgDetail"
+            class="py-2"
+            max-height="500"
+          >
+        </div>
       </div>
       <product-review />
     </v-window-item>
@@ -70,4 +73,7 @@ export default {
 }
 </script>
 <style scoped>
+.img-wrapper{
+  text-align: center;
+}
 </style>
