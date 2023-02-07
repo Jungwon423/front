@@ -158,12 +158,12 @@ export default {
   },
   methods:{
     changeBtn(){
-      jwtAxios.post('/product/' + this.name + '/wishlist', { wish: this.empty ? "wish" : "unwish"})
+      jwtAxios.post('/product/wishlist?productId=' + this.name, { wish: this.empty ? "wish" : "unwish"})
 
       this.empty = !this.empty;
     },
     goProduct() {
-      jwtAxios.post('/product/' + this.name + '/click')
+      jwtAxios.post('/product/click?productId=' + this.name)
 
       this.$router.push({
         name: 'product',

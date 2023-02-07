@@ -28,7 +28,7 @@
             height="20px"
           />
         </span>
-        <span class="py-2">리뷰 : {{ comment.length }}개</span>
+        <span class="py-2">리뷰 : {{ comments.length }}개</span>
       </div>
       
       <span class="mx-5 py-3"> {{ Math.floor(price).toLocaleString('ko-KR') }}원 </span>
@@ -162,67 +162,72 @@ export default {
   components: { PleaseLoginDialog },
   data() {
     return {
-      imageUrl: "",
-      name: "",
-      rating: 0,
-      comment: [],
-      price: 0,
-      naverPrice: 0,
-      category: "생활/건강",
-      market: "",
-      link: "",
-      tax: 0,
-      shippingFee: 0,
-      clickCount: 0,
-      goodNumber: 0,
-      good: [],
-      badNumber: 0,
-      bad: [],
-      wishUserList: [],
-      subImageUrl: [],
       recommendDialog: false,
       disrecommendDialog: false,
-
-      recommendChecked: false,
-      disRecommendChecked: false,
 
       snackbar: false
     };
   },
   computed: {
+    imageUrl: function() {
+      return this.$store.state.Product.imageUrl
+    },
+    name: function() {
+      return this.$store.state.Product.name
+    },
+    rating: function() {
+      return this.$store.state.Product.rating
+    },
+    comments: function() {
+      return this.$store.state.Product.comments
+    },
+    price: function() {
+      return this.$store.state.Product.price
+    },
+    naverPrice: function() {
+      return this.$store.state.Product.naverPrice
+    },
+    category: function() {
+      return this.$store.state.Product.category
+    },
+    marketName: function() {
+      return this.$store.state.Product.marketName
+    },
+    link: function() {
+      return this.$store.state.Product.link
+    },
+    tax: function() {
+      return this.$store.state.Product.tax
+    },
+    shippingFee: function() {
+      return this.$store.state.Product.shippingFee
+    },
+    clickCount: function() {
+      return this.$store.state.Product.clickCount
+    },
+    good: function() {
+      return this.$store.state.Product.good
+    },
+    bad: function() {
+      return this.$store.state.Product.bad
+    },
+    wishUserList: function() {
+      return this.$store.state.Product.wishUserList
+    },
+    recommendChecked: function() {
+      return this.good.includes(this.$store.state.Login.id)
+    },
+    disRecommendChecked: function() {
+      return this.bad.includes(this.$store.state.Login.id)
+    },
     discountRate: function () {
         return (1 - this.price / this.naverPrice) * 100;
     },
   },
-  async created() {
-    jwtAxios.get("/product/detail?name=" + this.$route.query.name)
-      .then((res) => {
-      this.imageUrl = res.data["result"]["imageUrl"];
-      this.name = res.data["result"]["name"];
-      this.rating = res.data["result"]["rating"];
-      // this.comment = res.data['result']['comment']
-      this.price = res.data["result"]["price"],
-      this.naverPrice = res.data["result"]["naverPrice"];
-      this.category = res.data["result"]["categoryName"];
-      this.market = res.data["result"]["marketName"];
-      this.link = res.data["result"]["link"];
-      this.tax = res.data["result"]["tax"];
-      this.shippingFee = res.data["result"]["shippingFee"];
-      this.clickCount = res.data["result"]["clickCount"],
-      this.goodNumber = res.data["result"]["good"].length;
-      this.good = res.data["result"]["good"];
-      this.badNumber = res.data["result"]["bad"].length;
-      this.bad = res.data["result"]["bad"];
-      this.wishUserList = res.data["result"]["wishUserList"];
-      this.subImageUrl = res.data["result"]["subImageUrl"];
-
-      // this.recommendChecked = res.data['result'].includes()
-    });
-  },
   methods: {
     clickGood() {
       if (this.$store.getters['Login/logined'] && !this.recommendChecked && !this.disrecommendChecked) {
-        jwtAxios.post("/product/" + this.$route.query.name + "/recommend")
+        jwtAxios.post("/product/recommend?productId=" + this.$route.query.name)
         .then((res) => {
           this.good = res.data['users']
           this.goodNumber = res.data['users'].length
@@ -239,8 +244,8 @@ export default {
       
     },
     clickBad() {
-      if (this.$store.getters['Login/logined']) {
-        jwtAxios.post("/product/" + this.$route.query.name + "/disrecommend")
+      if (this.$store.getters['Login/logined'] && !this.recommendChecked && !this.disrecommendChecked) {
+        jwtAxios.post("/product/disrecommend?productId=" + this.$route.query.name)
         this.empty2 = !this.empty2;
       }
       else if (this.$store.getters['Login/logined']) {

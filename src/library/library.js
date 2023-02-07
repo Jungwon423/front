@@ -19,7 +19,6 @@ function parseMarketString(marketString) {
 
   }
   var marketList = marketString.split("+")
-  console.log(marketList)
   marketList.forEach(element => {
     if (element != '') currentMarket[element] = true
   });

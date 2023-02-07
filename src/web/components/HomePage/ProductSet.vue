@@ -53,6 +53,7 @@
           :click-count="product.clickCount"
           :locale="product.locale"
           :naver-price="product.naverPrice"
+          :rating="product.rating"
         />
       </v-col>
     </v-row>

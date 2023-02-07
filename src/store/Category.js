@@ -1,5 +1,4 @@
 import jwtAxios from '@/library/jwtAxios'
-import library from '@/library/library';
 
 export default {
   namespaced: true,
@@ -55,13 +54,6 @@ export default {
     async FETCH_PRODUCTLIST_API(context) {
       const config = {"Content-Type": 'application/json'};
       try {
-        console.log("/category/" +
-        context.state.currentCategory +
-        "/" +
-        context.state.page +
-        "/list",
-        context.state.currentMarket, config)
-
         let res = await jwtAxios.post(
           "/category/" +
           context.state.currentCategory +

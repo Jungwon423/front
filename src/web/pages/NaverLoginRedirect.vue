@@ -11,7 +11,10 @@ export default {
     axios.get(process.env.VUE_APP_API_ROOT + '/login/naver?code=' + naver_id_login.getAccessToken())
     .then((res) => {
       this.$store.commit('Login/SET_TOKEN', res.data['token'])
+      this.$store.commit('Login/SET_ID', res.data['userid'])
+
       localStorage.setItem('token', res.data['token'])
+      localStorage.setItem('id', res.data['userid'])
 
       this.$router.push('/')
     })

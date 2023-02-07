@@ -29,7 +29,7 @@
       :image-url="product.imageUrl"
       :price="product.price"
       :naver-price="product.naverPrice"
-      :rating="0"
+      :rating="product.rating"
       :comment="0"
       :view="0"
       :market-name="product.marketName"

@@ -76,10 +76,6 @@ export default {
     this.good = res.data['good']
     this.phoneNumber =res.data['phoneNumber']
     this.comment = res.data['comment']
-
-    console.log(this.nickname)
-    console.log(this.good)
-    console.log(this.comment)
   }
 };
 </script>

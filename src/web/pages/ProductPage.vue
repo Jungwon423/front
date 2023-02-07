@@ -12,9 +12,7 @@
 import HomeHeader from '@/web/components/HomePage/HomeHeader.vue'
 import ProductTab from '@/web/components/ProductPage/ProductTab.vue'
 import ProductInfo from '@/web/components/ProductPage/ProductInfo.vue'
-import ProductReview from '@/web/components/ProductPage/ProductReview.vue'
 import Footer from '@/web/components/Footer/KaguFooter.vue'
-
 
 export default {
   name: 'ProductPage',
@@ -22,8 +20,10 @@ export default {
     HomeHeader,
     ProductTab,
     ProductInfo,
-    //ProductReview,
     Footer,
+  },
+  async created() {
+    await this.$store.dispatch('Product/FETCH_PRODUCTDETAIL_API', this.$route.query.name)
   }
 }
 </script>

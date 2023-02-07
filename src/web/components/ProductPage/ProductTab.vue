@@ -35,7 +35,7 @@
       >
         <v-img
           alt="hi musbi"
-          :src="imgDetail.src"
+          :src="imgDetail"
           class="py-2"
         />
       </div>
@@ -56,18 +56,16 @@ export default {
   },
 
   data() {
-  return {
-    tab: 'tab',
-    tabNames: ['상품 이미지', '한줄평'],
-    imgDetails:[
-      {
-          src: require('@/assets/상품정보1.png')
-      },
-      {
-          src: require('@/assets/상품정보2.png')
-      },
-    ]
-  }
+    return {
+      tab: 'tab',
+      tabNames: ['상품 이미지', '한줄평'],
+    }
+  },
+
+  computed : {
+    imgDetails: function() {
+      return this.$store.state.Product.subImageUrl
+    }
   }
 }
 </script>

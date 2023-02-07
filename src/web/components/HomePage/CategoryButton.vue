@@ -51,7 +51,6 @@ export default {
   },
   methods: {
     changeCategory() {
-      console.log('/category/' + this.value + '/click')
       jwtAxios.post('/category/' + this.value + '/click')
 
       this.$router.push({

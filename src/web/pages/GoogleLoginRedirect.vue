@@ -10,7 +10,10 @@ created () {
   axios.get(process.env.VUE_APP_API_ROOT +'/login/google?code=' + this.$route.query.code)
   .then((res) => {
     this.$store.commit('Login/SET_TOKEN', res.data['token'])
-    localStorage.setItem('token', res.data['token'])
+      this.$store.commit('Login/SET_ID', res.data['userid'])
+
+      localStorage.setItem('token', res.data['token'])
+      localStorage.setItem('id', res.data['userid'])
 
     this.$router.push('/')
   })

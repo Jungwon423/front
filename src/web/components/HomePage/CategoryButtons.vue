@@ -74,7 +74,7 @@ export default {
           color: '#D1C4E9',
         },
         {
-          value: 'fashion_accessories',
+          value: 'fashion-accessories',
           title: '패션잡화',
           src: require('@/assets/drawerIcon/패션잡화.png'),
           imageSize: '40px',

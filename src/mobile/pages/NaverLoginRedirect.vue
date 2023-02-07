@@ -12,7 +12,6 @@ export default {
     .then((res) => {
       this.$store.commit('Login/SET_TOKEN', res.data['token'])
       localStorage.setItem('token', res.data['token'])
-      console.log(res.data['token'])
 
       this.$router.push('/')
     })
