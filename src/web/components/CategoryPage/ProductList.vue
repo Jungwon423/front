@@ -3,10 +3,11 @@
     <div class="item-box px-2">
       {{ productCount }} items in <strong> {{ currentCategory }}</strong>
     </div>
-    <v-row class="text-center">
-      <v-col
-        v-if="productList.length == 0"
-      >
+    <v-row
+      v-if="productList.length == 0"
+      class="text-center"
+    >
+      <v-col>
         <div class="glasses">
           <v-img
             width="80"

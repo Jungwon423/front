@@ -2,16 +2,12 @@
   <v-row>
     <v-col>
       <div class="card01">
-        <!-- <div class="pa-10 card-title"> 
-            죄송...
-          </div>-->
-        <v-img
-          class="card-img"
-          src="@/assets/randomImage/음.png"
-        />
+        <div class="card-title"> 
+          X
+        </div>
           
         <div class="pa-10 card-content">
-          검색 기능은 아직 지원하지 않습니다.
+          로그인이 필요한 서비스 입니다. <div>로그인 하시겠습니까?</div>
         </div>
         <v-spacer />
         <div
@@ -19,20 +15,20 @@
         >
           <v-spacer />
           <v-btn
-            class="card-btn"
-            color="brown lighten-2"
+            class="card-btn1"
             text
+            color="#616161"
             @click="dialog = false"
           >
-            확인
+            취소
           </v-btn>
           <v-btn
-            class="card-btn"
-            color="#BCAAA4"
+            class="card-btn2"
             text
-            @click="dialog = false"
+            color="#C62828"
+            @click="goLogin();"
           >
-            닫기
+            확인
           </v-btn>
         </div>
       </div>
@@ -46,37 +42,32 @@ export default {
     setup() {}, 
     data() {
         return {
-            sampleData: ''
+          dialog : false,
+          sampleData: ''
         }
     }, 
     created() {},
     mounted() {}, 
     unmounted() {},
-    methods: {}
+    methods: {
+      goLogin(){
+        this.$router.push('/login')
+      }
+    }
 }
 </script>
 
 <style scoped>
-.search-btn1{
-  display:flex;
-  height:55px;
-  width:100px;
-  margin-left:20px;
-  border-color:#6D4C41;
-  border-radius:0px 9px 9px 0px;
-  background-color:#8D6E63;
-  border-width:1px;
-  color:white;
-}
 .card01{
-  height:500px;
+  height:250px;
   position:relative;
   background-color:white;
   border-radius:8px;
 }
 .card-title{
-  line-height: 40px;
-  font-size:40px;
+  float:right;
+  padding-right:3%;
+  font-size:25px;
   font-family: "dohyeon";
 }
 .card-img{
@@ -87,15 +78,27 @@ export default {
 }
 .card-footer{
   height:80px;
-  background-color: grey;
 }
 .card-content{
-  height:300px;
-  font-size:30px;
-}
-.card-btn{
-  height:80px;
+  position:relative;
+  left:5%;
+  top:5%;
+  height:170px;
   font-size:20px;
-  width:250px;
+  width:400px;
+}
+.card-btn1{
+  margin-left:10%;
+  height:50px;
+  font-size:20px;
+  color:white;
+  width:170px;
+}
+.card-btn2{
+  margin-left:10%;
+  height:50px;
+  font-size:20px;
+  color:white;
+  width:170px;
 }
 </style>

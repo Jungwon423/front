@@ -144,7 +144,7 @@ export default {
   left:40%;
   width:140px;
   height:40px;
-  background-color:#FF4081;
+  background-color:#A1887F;
   color:white;
 }
 .like-btn-wrapper2{

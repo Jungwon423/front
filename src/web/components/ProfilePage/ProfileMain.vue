@@ -42,23 +42,23 @@
         </div>
       </div>
     </div>
-    <profile-comment />
-    <profile-good />
+    <comment-list />
+    <good-list />
   </div>
 </template>
 
 <script>
 
 import jwtAxios from '@/library/jwtAxios'
-import profileGood from '@/web/components/ProfilePage/ProfileGood.vue'
-import profileComment from '@/web/components/ProfilePage/ProfileComment.vue'
 import ChangeNickname from '@/web/components/ProfilePage/ChangeNickname.vue'
+import CommentList from '@/web/components/ProfilePage/CommentList.vue'
+import GoodList from '@/web/components/ProfilePage/GoodList.vue'
 
 export default {
   components: {
     ChangeNickname,
-    profileComment,
-    profileGood
+    CommentList,
+    GoodList,
   },
   data() {
     return {

@@ -8,6 +8,7 @@ import w_ProductPage from '@/web/pages/ProductPage.vue';
 import w_LoginPage from '@/web/pages/LoginPage.vue';
 import w_Login2Page from '@/web/components/LoginPage/LoginMain2.vue';
 import w_RegisterPage from '@/web/pages/RegisterPage.vue';
+import m_AgreePage from '@/web/components/RegisterPage/AgreeRegister.vue';
 import w_PolicyPage from '@/web/pages/PolicyPage.vue';
 import w_CompanyPage from '@/web/pages/CompanyPage.vue';
 import w_ProfilePage from '@/web/pages/ProfilePage.vue';
@@ -17,6 +18,8 @@ import w_NaverLoginRedirect from '@/web/pages/NaverLoginRedirect.vue'
 import w_GoogleLoginRedirect from '@/web/pages/GoogleLoginRedirect.vue'
 import w_BrandPage from '@/web/pages/BrandPage.vue';
 import w_AdminPage from '@/web/pages/AdminPage.vue';
+import w_SearchPage from '@/web/pages/SearchPage.vue';
+
 
 const m_router = mobile_router;
 
@@ -57,6 +60,11 @@ const w_routes = [ //웹 라우터
       component: w_RegisterPage
     },
     {
+      path: '/register/agree',
+      name: 'terms_agree',
+      component: m_AgreePage
+    },
+    {
       path: '/policy',
       name: 'policy',
       component: w_PolicyPage
@@ -95,6 +103,11 @@ const w_routes = [ //웹 라우터
       path: '/brand',
       name: 'brand',
       component: w_BrandPage
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: w_SearchPage
     },
 ]
 
