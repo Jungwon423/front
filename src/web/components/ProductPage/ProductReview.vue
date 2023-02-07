@@ -112,7 +112,7 @@ export default {
     }
   },
   created() {
-    jwtAxios.get('/product/comments?productId=' + this.$route.query.name)
+    jwtAxios.get('/product/comments?productId=' + encodeURIComponent(this.$route.query.name))
     .then((res) => {
       this.comments = res.data['result']
       this.productId = res.data['result']['productId']
@@ -121,10 +121,10 @@ export default {
   methods: {
     writeComment() {
       if (this.$store.getters['Login/logined']) {
-        jwtAxios.post('comment/write?productId=' + this.$route.query.name, {'comment' : this.textfield})
+        jwtAxios.post('comment/write?productId=' + encodeURIComponent(this.$route.query.name), {'comment' : this.textfield})
         .then((res) => {
           this.textfield = ''
-          jwtAxios.get('/product/comments?productId=' + this.$route.query.name)
+          jwtAxios.get('/product/comments?productId=' + encodeURIComponent(this.$route.query.name))
           .then((res) => {
             this.comments = res.data['result']
             this.productId = res.data['result']['productId']

@@ -27,7 +27,7 @@ export default {
       try {
         let res = await jwtAxios.get(
           "/category/" +
-          context.state.currentMarket +
+          encodeURIComponent(context.state.currentMarket) +
           "/top3"
         );
 

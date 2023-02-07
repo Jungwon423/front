@@ -4,7 +4,9 @@
       {{ productCount }} items in <strong> {{ currentCategory }}</strong>
     </div>
     <v-row class="text-center">
-      <v-col>
+      <v-col
+        v-if="productList.length == 0"
+      >
         <div class="glasses">
           <v-img
             width="80"

@@ -80,7 +80,7 @@ export default {
     async FETCH_PRODUCTDETAIL_API(context, productName) {
         console.log('뭐야..')
         try {
-            let res = await jwtAxios.get("/product/detail?name=" + productName)
+            let res = await jwtAxios.get("/product/detail?name=" + encodeURIComponent(productName))
             .then((res) => {
                 console.log(res.data['result'])
                 context.commit('SET_IMAGEURL', res.data["result"]["imageUrl"])

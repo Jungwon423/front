@@ -150,7 +150,7 @@ export default {
   recommend(){
     if (this.$store.getters['Login/logined']) {
         this.empty1 = !this.empty1;
-        jwtAxios.post('/comment/' + this.id + '/recommend')
+        jwtAxios.post('/comment/' + encodeURIComponent(this.id) + '/recommend')
     }
     else {
         this.recommendDialog = true
@@ -159,7 +159,7 @@ export default {
   disrecommend(){
     if (this.$store.getters['Login/logined']) {
         this.empty2 = !this.empty2;
-        jwtAxios.post('/comment/' + this.id + '/disrecommend')
+        jwtAxios.post('/comment/' + encodeURIComponent(this.id) + '/disrecommend')
     }
     else {
         this.disrecommendDialog = true
