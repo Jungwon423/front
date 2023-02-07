@@ -14,7 +14,7 @@
           :value="tabName"
           color="#E0E0E0"
         >
-          <span style="color:grey">
+          <span style="color:#424242; font-weight:700">
             {{ tabName }}
           </span>
         </v-tab>
@@ -22,7 +22,7 @@
     </v-col>
   </v-row>
   <v-window v-model="tab">
-    <v-window-item value="Description">
+    <v-window-item value="상품 이미지">
       <div
         class="mx-5 my-3"
         style="font-size:20; font-weight:600"
@@ -42,7 +42,7 @@
       <product-review />
     </v-window-item>
 
-    <v-window-item value="Review">
+    <v-window-item value="한줄평">
       <product-review />
     </v-window-item>
   </v-window>

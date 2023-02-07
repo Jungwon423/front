@@ -54,7 +54,7 @@
           </div>
           <div
             class="py-2 text-link1"
-            @click="goRegister()"
+            @click="goAgree()"
           >
             이메일로 가입하기
           </div>
@@ -87,8 +87,8 @@ export default {
 
       alert('로그인 되었습니다.')
     },
-    goRegister() {
-        this.$router.push('/register')
+    goAgree() {
+        this.$router.push('/register/agree')
       },
   }
 }

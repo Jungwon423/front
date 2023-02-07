@@ -1,95 +1,90 @@
 <template>
-  <div
-    style="display:inline"
-    class="pa-8"
-  >
-    <div style="display:flex">
-      <div class="img-block">
-        <v-avatar
-          size="50"
-          class="rounded-xl"
-          color="wheat"
-          :image="imageUrl"
-        />
+  <div class="single-review">
+    <div class="img-block">
+      <v-avatar
+        size="50"
+        class="rounded-xl"
+        color="#D7CCC8"
+      />
+      <!-- :image="imageUrl" -->
+    </div>
+    <div class="user-block">
+      <div class="user-name">
+        {{ name }}
       </div>
-      <div class="user-block">
-        <div class="user-name">
-          {{ name }}
-        </div>
-        <div class="user-id">
-          @{{ name }}
-        </div>
-      </div>  
-      <div>
-        <v-btn
-          variant="tonal"
-          class="mx-4 edit-btn"
-        >
-          수정
-        </v-btn>
+      <div class="user-id">
+        @{{ name }}
       </div>
+    </div>  
+    <div>
+      <v-btn
+        variant="tonal"
+        class="mx-4 edit-btn"
+      >
+        수정
+      </v-btn>
+    </div>
 
-      <v-dialog
-        v-model="recommendDialog"
-        max-width="500px"
-        height="500px"
-      >
-        <template #activator="{ attrs }">
-          <div
-            class="ddabong-card10"
-            v-bind="attrs"
-            @click.stop="recommend()"
-          >
-            <div class="ddabong">
-              <v-img
-                v-if="!empty1"
-                src="@/assets/thumbs/따봉2.png"
-              />
-              <v-img
-                v-if="empty1"
-                src="@/assets/thumbs/추천.png"
-              />
-            </div>
-            <div class="ddabong-text">
-              {{ good }}
-            </div>
+    <v-dialog
+      v-model="recommendDialog"
+      max-width="500px"
+      height="500px"
+    >
+      <template #activator="{ attrs }">
+        <div
+          class="ddabong-card10"
+          v-bind="attrs"
+          @click.stop="recommend()"
+        >
+          <div class="ddabong">
+            <v-img
+              v-if="!empty1"
+              src="@/assets/thumbs/따봉2.png"
+            />
+            <v-img
+              v-if="empty1"
+              src="@/assets/thumbs/추천.png"
+            />
           </div>
-        </template>
-        <please-login-dialog />
-      </v-dialog>
+          <div class="ddabong-text">
+            {{ good }}
+          </div>
+        </div>
+      </template>
+      <please-login-dialog />
+    </v-dialog>
     
-      <v-dialog
-        v-model="disrecommendDialog"
-        max-width="500px"
-        height="500px"
-      >
-        <template #activator="{ attrs }">
-          <div
-            class="ddabong-card11"
-            v-bind="attrs"
-            @click.stop="disrecommend()"
-          >
-            <div class="ddabong">
-              <v-img
-                v-if="!empty2"
-                src="@/assets/thumbs/우우2.png"
-              />
-              <v-img
-                v-if="empty2"
-                src="@/assets/thumbs/비추천.png"
-              />
-            </div>
-            <div class="ddabong-text">
-              {{ bad }}
-            </div>
+    <v-dialog
+      v-model="disrecommendDialog"
+      max-width="500px"
+      height="500px"
+    >
+      <template #activator="{ attrs }">
+        <div
+          class="ddabong-card11"
+          v-bind="attrs"
+          @click.stop="disrecommend()"
+        >
+          <div class="ddabong">
+            <v-img
+              v-if="!empty2"
+              src="@/assets/thumbs/우우2.png"
+            />
+            <v-img
+              v-if="empty2"
+              src="@/assets/thumbs/비추천.png"
+            />
           </div>
-        </template>
-        <please-login-dialog />
-      </v-dialog>
-    </div>
-    <div class="user-content py-4">
-      {{ content }}
-    </div>
+          <div class="ddabong-text">
+            {{ bad }}
+          </div>
+        </div>
+      </template>
+      <please-login-dialog />
+    </v-dialog>
+  </div>
+  <div class="user-content">
+    <span class="user-text">{{ content }}</span>
   </div>
 </template>
 
@@ -170,9 +165,13 @@ export default {
 </script>
 
 <style scoped>
+.single-review{
+  display:flex;
+  width:980px;
+}
 .img-block{
   display:flex;
-  height:70px;
+  height:60px;
 }
 .user-name{
   font-size:14px;
@@ -191,7 +190,6 @@ export default {
 }
 .user-block{
   position:relative;
-  height:70px;
   margin-top:8px;
   margin-left:12px;
   font-size:12px;
@@ -200,24 +198,30 @@ export default {
 }
 .user-content{
   width :980px;
+  padding-bottom:10px;
+  position:relative;
   border-bottom:solid;
   border-width:1px;
   border-color:#E0E0E0;
 }
+.user-text{
+  position: relative;
+  left:2%;
+  bottom:500%;
+}
 
 .ddabong-card10{
-  text-align:end;
-  position:relative;
+  position:absolute;
   margin-top:10px;
-  left:65%;
+  margin-left:800px;
+  float:inline-end;
   display:flex;
   width:100px;
 }
 .ddabong-card11{
-  text-align:end;
-  position:relative;
+  position:absolute;
   margin-top:10px;
-  left:60%;
+  margin-left:850px;
   display:flex;
   width:100px;
 }
