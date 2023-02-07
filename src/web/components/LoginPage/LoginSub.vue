@@ -47,7 +47,7 @@
     </div>
     <div
       class="py-2 text-link1"
-      @click="goRegister()"
+      @click="goAgree()"
     >
       계정 생성하기
     </div>
@@ -81,9 +81,9 @@ export default {
       redirectUri: process.env.VUE_APP_HOME_URL + '/kakao',
       });
     },
-    goRegister() {
-      this.$router.push('/register')
-    },
+    goAgree() {
+        this.$router.push('/register/agree')
+      },
     goLogin2() {
       this.$router.push('/Login2')
     },

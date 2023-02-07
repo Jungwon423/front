@@ -9,7 +9,7 @@
 <script>
 import WishHeader from '@/web/components/WishPage/WishHeader.vue';
 import WishList from '@/web/components/WishPage/WishList.vue';
-import WishEmpty from '@/web/components/Empty/WishEmpty.vue';
+import WishEmpty from '@/web/components/WishPage/WishEmpty.vue';
 
 export default {
   name: 'WishPage',

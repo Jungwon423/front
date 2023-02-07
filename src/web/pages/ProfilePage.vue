@@ -10,8 +10,8 @@ import ProfileHeader from '@/web/components/ProfilePage/ProfileHeader.vue';
 export default {
 name: 'ProfilePage',
 components : {
-    ProfileMain,
-    ProfileHeader,
+  ProfileHeader,
+  ProfileMain,
 },
 }
 </script>

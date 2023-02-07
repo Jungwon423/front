@@ -1,4 +1,7 @@
 <template>
+  <div class="product-category">
+    홈 &nbsp;> &nbsp;{{ category }}
+  </div>
   <div class="product-wrapper pa-12">
     <div class="img-wrapper1">
       <v-img :src="imageUrl" />
@@ -29,6 +32,93 @@
           />
         </span>
         <span class="py-2">리뷰 : {{ comments.length }}개</span>
+        <div class="ddabong-card">
+          <v-dialog
+            v-model="recommendDialog"
+            max-width="500px"
+            height="500px"
+          >
+            <template #activator="{ attrs }">
+              <v-snackbar
+                v-model="snackbar"
+                :timeout="2000"
+              >
+                이미 추천/비추천을 한 제품입니다.
+              </v-snackbar>
+              <div
+                class="ddabong-card1 text-center"
+                v-bind="attrs"
+                @click="clickGood"
+              >
+                <div class="ddabong pa-1">
+                  <div class="ddabong-img1">
+                    <v-img
+                      v-if="!recommendChecked"
+                      width="25px"
+                      height="25px"             
+                      src="@/assets/thumbs/추천.png"
+                    />
+                  </div>
+                  <div class="ddabong-img2">
+                    <v-img
+                      v-if="recommendChecked"   
+                      width="20px"
+                      height="20px"
+                      src="@/assets/thumbs/따봉1.png"
+                      v-bind="attrs"
+                    />
+                  </div>
+                  <span class="ddabong-text">추천 {{ good.length }}</span>
+                </div>
+              </div>
+            </template>
+          
+            <please-login-dialog />
+          </v-dialog>
+
+          <v-dialog
+            v-model="disrecommendDialog"
+            max-width="500px"
+            height="500px"
+          >
+            <template #activator="{ attrs }">
+              <v-snackbar
+                v-model="snackbar"
+                :timeout="2000"
+              >
+                이미 추천/비추천을 한 제품입니다.
+              </v-snackbar>
+              <div
+                class="ddabong-card2 text-center"
+                v-bind="attrs"
+              
+                @click="clickBad"
+              >
+                <div class="ddabong pa-1">
+                  <div class="ddabong-img1">
+                    <v-img
+                      v-if="!disRecommendChecked"
+                      width="25px"
+                      height="25px"             
+                      src="@/assets/thumbs/비추천.png"
+                    />
+                  </div>
+                  <div class="ddabong-img2">
+                    <v-img
+                      v-if="disRecommendChecked"   
+                      width="20px"
+                      height="20px"
+                      src="@/assets/thumbs/우우1.png"
+                      v-bind="attrs"
+                    />
+                  </div>
+                  <span class="ddabong-text">비추천 {{ bad.length }}</span>
+                </div>
+              </div>
+            </template>
+            <please-login-dialog />
+          </v-dialog>
+        </div>
       </div>
       
       <span class="mx-5 py-3"> {{ Math.floor(price).toLocaleString('ko-KR') }}원 </span>
@@ -38,112 +128,19 @@
         네이버 최저가: {{ Math.floor(naverPrice).toLocaleString('ko-KR') }}원
       </div>
       <div class="px-5">
-        카테고리:  {{ category }}
+        {{ marketName }}
       </div>
-            
-
-      <div class="ddabong-card pa-4">
-        <v-dialog
-          v-model="recommendDialog"
-          max-width="500px"
-          height="500px"
-        >
-          <template #activator="{ attrs }">
-            <v-snackbar
-              v-model="snackbar"
-              :timeout="2000"
-            >
-              이미 추천/비추천을 한 제품입니다.
-            </v-snackbar>
-            <div
-              class="ddabong-card1 text-center"
-              v-bind="attrs"
-              @click="clickGood"
-            >
-              <div class="ddabong pa-1">
-                <div class="ddabong-img1">
-                  <v-img
-                    v-if="!recommendChecked"
-                    width="25px"
-                    height="25px"             
-                    src="@/assets/thumbs/추천.png"
-                  />
-                </div>
-                <div class="ddabong-img2">
-                  <v-img
-                    v-if="recommendChecked"   
-                    width="20px"
-                    height="20px"
-                    src="@/assets/thumbs/따봉1.png"
-                    v-bind="attrs"
-                  />
-                </div>
-                <span class="ddabong-text">추천 {{ good.length }}</span>
-              </div>
-            </div>
-          </template>
-          
-          <please-login-dialog />
-        </v-dialog>
-
-        <v-dialog
-          v-model="disrecommendDialog"
-          max-width="500px"
-          height="500px"
-        >
-          <template #activator="{ attrs }">
-            <v-snackbar
-              v-model="snackbar"
-              :timeout="2000"
-            >
-              이미 추천/비추천을 한 제품입니다.
-            </v-snackbar>
-            <div
-              class="ddabong-card2 text-center"
-              v-bind="attrs"
-              
-              @click="clickBad"
-            >
-              <div class="ddabong pa-1">
-                <div class="ddabong-img1">
-                  <v-img
-                    v-if="!disRecommendChecked"
-                    width="25px"
-                    height="25px"             
-                    src="@/assets/thumbs/비추천.png"
-                  />
-                </div>
-                <div class="ddabong-img2">
-                  <v-img
-                    v-if="disRecommendChecked"   
-                    width="20px"
-                    height="20px"
-                    src="@/assets/thumbs/우우1.png"
-                    v-bind="attrs"
-                  />
-                </div>
-                <span class="ddabong-text">비추천 {{ bad.length }}</span>
-              </div>
-              <!-- 
-              <div class="ddabong pa-1">
-                <v-img
-                  v-if="!disRecommendChecked"
-                  width="20px"
-                  height="20px"
-                  src="@/assets/thumbs/우우1.png"
-                />
-                <v-img
-                  v-if="disRecommendChecked"
-                  src="@/assets/thumbs/비추천.png"
-                  v-bind="attrs"
-                />
-              </div>
-              <span class="ddabong-text">비추천 {{ bad.length }}</span>
-               -->
-            </div>
-          </template>
-          <please-login-dialog />
-        </v-dialog>
+      <div style="display:flex; margin-top: 30px;">
+        <div class="buy-btn1">
+          <div class="buy-text1">
+            찜하기
+          </div>
+        </div>
+        <div class="buy-btn2">
+          <div class="buy-text2">
+            바로구매 >
+          </div>
+        </div>
       </div>
       <hr class="h-line1">
     </div>
@@ -157,7 +154,7 @@ import PleaseLoginDialog from '@/web/components/ProductPage/PleaseLoginDialog.vu
 export default {
   name: "ProductInfo",
   components: {
-    PleaseLoginDialog
+    //PleaseLoginDialog
   },
   components: { PleaseLoginDialog },
   data() {
@@ -223,6 +220,9 @@ export default {
     discountRate: function () {
         return (1 - this.price / this.naverPrice) * 100;
     },
+    market_image: function () {
+      return require("@/assets/" + this.marketName + ".png")
+    },
   },
   methods: {
     clickGood() {
@@ -259,6 +259,11 @@ export default {
 }
 </script>
 <style scoped>
+.product-category{
+  font-weight:600;
+  padding-left:70px;
+  padding-top:20px;
+}
 .product-wrapper{
   display:flex;
   width:980px;
@@ -315,7 +320,7 @@ export default {
   position:relative;
 }
 .ddabong-img2{
-  display:inline-block;
+  display:inline;
   width:30px;
   position:relative;
   right:30%;
@@ -323,34 +328,35 @@ export default {
 }
 .ddabong-text{
   display:inline-block;
-  position:relative;
-  width:30px;
   font-size:12px;
+  position:relative;
+  bottom:30%;
 }
 .ddabong-card{
-  width:500px;
+  position:relative;
+  display:flex;
 }
 .ddabong-card1{
-  display:inline-block;
+  position:relative;
+  left:10%;
+  display:inline;
   border-style:solid;
   border-radius:6px;
   border-width:2px;
   border-color:#757575;
-  width:90px;
   height:40px;
   align-self: center;
   cursor:pointer;
   transition:all 0.9s, color 0.3;  
 }
 .ddabong-card2{
-  display:inline-block;
-  border-style:solid;
   position:relative;
-  left:4%;
+  left:14%;
+  display:flex;
+  border-style:solid;
   border-radius:6px;
   border-width:2px;
   border-color:#757575;
-  width:90px;
   height:40px;
   align-self: center;
   cursor:pointer;
@@ -366,5 +372,44 @@ export default {
 }
 .ddabong-card2:active{
   background-color: #757575;
+}
+.buy-btn1{
+  display:block;
+  width:120px;
+  height:47px;
+  left:28%;
+  position:relative;
+  border:1px solid #6D4C41;
+  cursor: pointer;
+  color:#6D4C41;
+}
+.buy-btn2{
+  display:block;
+  left:30%;
+  width:180px;
+  height:47px;
+  position:relative;
+  background-color:#6D4C41;
+  color:white;
+  border:1px solid #6D4C41;
+  cursor: pointer;
+}
+.buy-text1{
+  position:relative;
+  left:25%;
+  margin-top:10px;
+  font-size:18px;
+}
+.buy-text2{
+  position:relative;
+  left:30%;
+  margin-top:10px;
+  font-size:18px;
+}
+.buy-btn1:hover{
+  box-shadow:200px 0 0 0 rgba(0,0,0,0.3) inset;
+}
+.buy-btn2:hover{
+  box-shadow:200px 0 0 0 rgba(0,0,0,0.3) inset;
 }
 </style>

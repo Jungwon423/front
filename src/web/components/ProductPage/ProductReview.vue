@@ -23,18 +23,19 @@
       </div>
     </v-col>
   </v-row>
-  <single-review
-    v-for="comment in comments"
-    :id="comment.id"
-    :key="comment"
-    :name="comment.writerId"
-    :content="comment.content"
-    :good="comment.good"
-    :bad="comment.bad"
-    :timestamp="comment.timestamp"
-    :image-url="comment.imageUrl"
-  />
-  
+  <div style="padding-top:30px;">
+    <single-review
+      v-for="comment in comments"
+      :id="comment.id"
+      :key="comment"
+      :name="comment.writerId"
+      :content="comment.content"
+      :good="comment.good"
+      :bad="comment.bad"
+      :timestamp="comment.timestamp"
+      :image-url="comment.imageUrl"
+    />
+  </div>
   <div
     class="text-wrapper"
   >
@@ -68,22 +69,6 @@
     </template>
     <please-login-dialog />
   </v-dialog>
-  <!--  
-  <div class="py-10 user-write">
-    <div class="search-bar-wrapper">
-      <textarea
-        class="comment"
-        name="content"
-        cols="40"
-        rows="8"
-      >
-        폼의 기본 내용 값이 들어갑니다.
-        줄 바꿈 및
-        공란도 그대로 인식하고,
-        <strong>이런 태그도</strong> 소스가 그대로 노출됩니다.
-      </textarea>
-    </div>
-  </div>-->
 </template>
 
 <script>
