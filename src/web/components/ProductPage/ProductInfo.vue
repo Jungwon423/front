@@ -238,8 +238,9 @@ export default {
       else {
         this.recommendDialog = true
       }
-
-      
+    },
+    scrollTop(){
+      window.scrollTo(0, 0);
     },
     clickBad() {
       if (this.$store.getters['Login/logined'] && !this.recommendChecked && !this.disrecommendChecked) {

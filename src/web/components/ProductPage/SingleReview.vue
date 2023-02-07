@@ -168,6 +168,7 @@ export default {
 .single-review{
   display:flex;
   width:980px;
+  padding-top:10px;
 }
 .img-block{
   display:flex;

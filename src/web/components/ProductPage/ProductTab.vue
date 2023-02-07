@@ -38,7 +38,7 @@
             alt="hi musbi"
             :src="imgDetail"
             class="py-2"
-            max-height="500"
+            max-height="800"
           >
         </div>
       </div>
