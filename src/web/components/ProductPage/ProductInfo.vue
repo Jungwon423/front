@@ -229,9 +229,7 @@ export default {
       if (this.$store.getters['Login/logined'] && !this.recommendChecked && !this.disrecommendChecked) {
         jwtAxios.post("/product/recommend?productId=" + this.$route.query.name)
         .then((res) => {
-          this.good = res.data['users']
-          this.goodNumber = res.data['users'].length
-          this.recommendChecked = res.data['recommendChecked']
+          this.$store.commit('Product/SET_GOOD', res.data['users'])
         })
       }
       else if (this.$store.getters['Login/logined']) {
@@ -246,7 +244,9 @@ export default {
     clickBad() {
       if (this.$store.getters['Login/logined'] && !this.recommendChecked && !this.disrecommendChecked) {
         jwtAxios.post("/product/disrecommend?productId=" + this.$route.query.name)
-        this.empty2 = !this.empty2;
+        .then((res) => {
+          this.$store.commit('Product/SET_BAD', res.data['users'])
+        })
       }
       else if (this.$store.getters['Login/logined']) {
         this.snackbar = true

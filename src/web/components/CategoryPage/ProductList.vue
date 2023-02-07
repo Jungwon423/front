@@ -30,7 +30,7 @@
       :price="product.price"
       :naver-price="product.naverPrice"
       :rating="product.rating"
-      :comment="0"
+      :comment="product.comments.length"
       :view="0"
       :market-name="product.marketName"
       :good="0"
@@ -49,6 +49,7 @@ export default {
   },
   computed: {
     productList: function () {
+      console.log(this.$store.state.Category.productList)
       return this.$store.state.Category.productList
     },
     productCount: function () {

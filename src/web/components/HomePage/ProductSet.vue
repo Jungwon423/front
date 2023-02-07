@@ -54,6 +54,7 @@
           :locale="product.locale"
           :naver-price="product.naverPrice"
           :rating="product.rating"
+          :comment="product.comments.length"
         />
       </v-col>
     </v-row>

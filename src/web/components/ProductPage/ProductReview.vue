@@ -8,7 +8,9 @@
   <span class="text-group5">&nbsp; &nbsp; ( {{ comments.length }} 개의 한줄평)</span>
   <hr>
   <v-row class="text-center">
-    <v-col>
+    <v-col
+      v-if="comments.length == 0"
+    >
       <div class="messages">
         <v-img
           width="80"
@@ -114,7 +116,6 @@ export default {
     .then((res) => {
       this.comments = res.data['result']
       this.productId = res.data['result']['productId']
-    
     })
   },
   methods: {
@@ -123,7 +124,7 @@ export default {
         jwtAxios.post('comment/write?productId=' + this.$route.query.name, {'comment' : this.textfield})
         .then((res) => {
           this.textfield = ''
-          jwtAxios.get('/product/' + this.$route.query.name + '/comments')
+          jwtAxios.get('/product/comments?productId=' + this.$route.query.name)
           .then((res) => {
             this.comments = res.data['result']
             this.productId = res.data['result']['productId']
