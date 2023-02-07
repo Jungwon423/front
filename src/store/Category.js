@@ -56,11 +56,11 @@ export default {
       try {
         let res = await jwtAxios.post(
           "/category/" +
-          encodeURIComponent(context.state.currentCategory) +
+          context.state.currentCategory +
           "/" +
-          encodeURIComponent(context.state.page) +
+          context.state.page +
           "/list",
-          encodeURIComponent(context.state.currentMarket), config
+          context.state.currentMarket, config
         );
 
         context.commit("SET_PRODUCTLIST", res.data["result"],);

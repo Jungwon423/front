@@ -128,7 +128,7 @@ export default {
     }
   },
   async created() {
-    jwtAxios.get('/product/detail?name=' + this.$route.query.name.replace(/\+/g,"%2B"))
+    jwtAxios.get('/product/detail?name=' + encodeURIComponen(this.$route.query.name))
     .then((res) => {
       this.imageUrl = res.data['result']['imageUrl']
       this.name = res.data['result']['name']
