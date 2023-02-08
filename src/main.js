@@ -11,7 +11,7 @@ loadFonts()
 const app = createApp(App);
 
 var categoryMap = new Map();
-categoryMap.set("all", "홈");
+categoryMap.set("all", "전체");
 categoryMap.set("life_health", "생활/건강");
 categoryMap.set("duty-free", "면세점");
 categoryMap.set("travel_culture", "여행/문화");

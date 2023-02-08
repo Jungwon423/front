@@ -46,36 +46,42 @@
           />
         </span>
         <span>댓글 : {{ comment }}개</span>
-        <v-snackbar
-          v-model="snackbar"
-          :timeout="2000"
+        <v-dialog
+          v-model="loginDialog"
+          max-width="500px"
+          height="500px"
         >
-          찜하기 위해서는 로그인이 필요합니다!
-        </v-snackbar>
-        <div
-          v-if="!wishChecked"
-          class="heart-box"
-        >
-          <v-icon
-            icon="mdi-heart-outline"
-            color="#A1887F"
-            size="large"
-            class="heart-icon"
-            @click.stop="changeBtn()"
+          <template #activator="{ attrs }">
+            <div
+              v-if="!wishChecked"
+              class="heart-box"
+              v-bind="attrs"
+            >
+              <v-icon
+                icon="mdi-heart-outline"
+                color="#A1887F"
+                size="large"
+                class="heart-icon"
+                @click.stop="changeBtn()"
+              />
+            </div>
+            <div
+              v-if="wishChecked"
+              class="heart-box"
+            >
+              <v-icon
+                icon="mdi-heart"
+                color="#A1887F"
+                size="large"
+                class="heart-icon"
+                @click.stop="changeBtn()"
+              />
+            </div>
+          </template>
+          <please-login-dialog
+            @close="closeDialog"
           />
-        </div>
-        <div
-          v-if="wishChecked"
-          class="heart-box"
-        >
-          <v-icon
-            icon="mdi-heart"
-            color="#A1887F"
-            size="large"
-            class="heart-icon"
-            @click.stop="changeBtn()"
-          />
-        </div>
+        </v-dialog>
       </div>
     </div>
   </div>
@@ -83,9 +89,11 @@
   
 <script>
 import jwtAxios from '@/library/jwtAxios';
+import PleaseLoginDialog from '@/web/components/ProductPage/PleaseLoginDialog.vue'
 
 export default {
   name: 'ProductContainer',
+  components: { PleaseLoginDialog },
 
   props: {
     name: {
@@ -166,7 +174,7 @@ export default {
   data () {
     return {
       wishChecked: this.checked,
-      snackbar: false,
+      loginDialog: false,
     }
   },
   computed: {
@@ -190,7 +198,7 @@ export default {
         })
       }
       else {
-        this.snackbar = true
+        this.loginDialog = true
       }
     },
     goProduct() {
@@ -204,6 +212,9 @@ export default {
           name: this.name,
         }},)  
     },
+    closeDialog() {
+      this.loginDialog = false
+    }
   }
 }
 </script>

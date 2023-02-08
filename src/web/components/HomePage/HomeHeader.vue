@@ -168,7 +168,7 @@ export default {
         this.$router.push({
           name: 'category',
           query: {
-            categoryName: "life_health",
+            categoryName: "all",
             marketName: library.currentMarketToString(this.$store.state.Category.currentMarket),
             page: "1"}},)
       }

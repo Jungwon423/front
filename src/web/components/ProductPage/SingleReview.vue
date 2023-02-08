@@ -51,7 +51,9 @@
           </div>
         </div>
       </template>
-      <please-login-dialog />
+      <please-login-dialog
+        @close="closeRecommendDialog"
+      />
     </v-dialog>
     
     <v-dialog
@@ -80,7 +82,9 @@
           </div>
         </div>
       </template>
-      <please-login-dialog />
+      <please-login-dialog 
+        @close="closeDisRecommendDialog"
+      />
     </v-dialog>
   </div>
   <div class="user-content">
@@ -142,24 +146,31 @@ export default {
     }
   },
   methods:{
-  recommend(){
-    if (this.$store.getters['Login/logined']) {
-        this.empty1 = !this.empty1;
-        jwtAxios.post('/comment/' + this.id + '/recommend')
-    }
-    else {
-        this.recommendDialog = true
-    }
-  },
-  disrecommend(){
-    if (this.$store.getters['Login/logined']) {
-        this.empty2 = !this.empty2;
-        jwtAxios.post('/comment/' + this.id + '/disrecommend')
-    }
-    else {
-        this.disrecommendDialog = true
-    }
-  },
+    recommend(){
+      if (this.$store.getters['Login/logined']) {
+          this.empty1 = !this.empty1;
+          jwtAxios.post('/comment/' + this.id + '/recommend')
+      }
+      else {
+          this.recommendDialog = true
+      }
+    },
+    disrecommend(){
+      if (this.$store.getters['Login/logined']) {
+          this.empty2 = !this.empty2;
+          jwtAxios.post('/comment/' + this.id + '/disrecommend')
+      }
+      else {
+          this.disrecommendDialog = true
+      }
+    },
+    closeRecommendDialog() {
+      this.recommendDialog = false
+    },
+
+    closeDisRecommendDialog() {
+      this.recommendDialog = false
+    },
   }
 }
 </script>

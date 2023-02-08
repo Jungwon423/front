@@ -67,7 +67,9 @@
         </v-btn>
       </div>
     </template>
-    <please-login-dialog />
+    <please-login-dialog
+      @close="closeWriteDialog"
+    />
   </v-dialog>
 </template>
 
@@ -119,6 +121,9 @@ export default {
       else {
           this.writeDialog = true
       }
+    },
+    closeWriteDialog() {
+      this.writeDialog = false
     }
   },
 }

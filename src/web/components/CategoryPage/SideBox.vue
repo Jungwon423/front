@@ -57,10 +57,16 @@
           class="sidebar-content"
         >
           <label><input
+            v-model="marketChecked[marketName]"
             type="checkbox"
             @click="changeMarket(marketName)"
           > {{ marketName }}</label>
         </div>
+        <v-btn
+          @click="reset"
+        >
+          초기화
+        </v-btn>
       </div>
     </div>
   </div>
@@ -72,10 +78,16 @@ import library from '@/library/library'
   export default {
     data() {
       return {
-        categoryNames: ["life_health","travel_culture","food",
+        categoryNames: ["all", "life_health","travel_culture","food",
         "furniture_interior","digital_consumer","cosmetics_beauty","fashion-accessories", "fashion-clothes"],
 
         marketNames: ["Amazon", "eBay", "AliExpress"],
+
+        marketChecked: {
+          'Amazon' : false,
+          'eBay' : false,
+          'AliExpress' : false
+        },
 
         market : "all"
       }
@@ -119,6 +131,7 @@ import library from '@/library/library'
             changeMarketMap["Amazon"] = true
             changeMarketMap["eBay"] = true
             changeMarketMap["AliExpress"] = true
+            this.$store.commit('Category/SET_MARKETALLCHECKED', false)
           }
         }
 
@@ -128,6 +141,29 @@ import library from '@/library/library'
           categoryName: this.$store.state.Category.currentCategory,
           marketName: library.currentMarketToString(changeMarketMap),
           page: 1}},)
+      },
+
+      reset() {
+        let changeMarketMap = {
+          "Amazon" : false,
+          "eBay" : false,
+          "AliExpress" : false
+        }
+        this.marketChecked = changeMarketMap
+        this.$store.commit('Category/SET_MARKETALLCHECKED', false)
+        this.$router.push({ 
+        name: 'category',
+        query: {
+          categoryName: this.$store.state.Category.currentCategory,
+          marketName: library.currentMarketToString(
+            {
+              "Amazon" : true,
+              "eBay" : true,
+              "AliExpress" : true
+            }
+          ),
+          page: 1}},)
+
       }
     }
   }

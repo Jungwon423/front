@@ -18,7 +18,7 @@
             class="card-btn1"
             text
             color="#616161"
-            @click="dialog = false"
+            @click="closeDialog"
           >
             취소
           </v-btn>
@@ -38,22 +38,16 @@
 
 <script>
 export default {
-    components: {}, 
-    setup() {}, 
-    data() {
-        return {
-          dialog : false,
-          sampleData: ''
-        }
-    }, 
-    created() {},
-    mounted() {}, 
-    unmounted() {},
-    methods: {
-      goLogin(){
-        this.$router.push('/login')
-      }
+emits: ['close'],
+  methods: {
+    goLogin(){
+      this.$router.push('/login')
+    },
+    closeDialog() {
+      this.dialog = false
+      this.$emit("close", false)
     }
+  }
 }
 </script>
 

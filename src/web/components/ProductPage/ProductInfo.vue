@@ -73,7 +73,9 @@
               </div>
             </template>
           
-            <please-login-dialog />
+            <please-login-dialog
+              @close="closeRecommendDialog"
+            />
           </v-dialog>
 
           <v-dialog
@@ -116,7 +118,9 @@
                 </div>
               </div>
             </template>
-            <please-login-dialog />
+            <please-login-dialog
+              @close="closeDisRecommendDialog"
+            />
           </v-dialog>
         </div>
       </div>
@@ -132,9 +136,40 @@
       </div>
       <div style="display:flex; margin-top: 30px;">
         <div class="buy-btn1">
-          <div class="buy-text1">
-            찜하기
-          </div>
+          <v-row>
+            <v-col>
+              <div class="buy-text1">
+                찜하기
+              </div>
+            </v-col>
+          
+            <v-col>
+              <div
+                v-if="!wishChecked"
+                class="heart-box"
+              >
+                <v-icon
+                  icon="mdi-heart-outline"
+                  color="#A1887F"
+                  size="large"
+                  class="heart-icon"
+                  @click.stop="changeBtn()"
+                />
+              </div>
+              <div
+                v-if="wishChecked"
+                class="heart-box"
+              >
+                <v-icon
+                  icon="mdi-heart"
+                  color="#A1887F"
+                  size="large"
+                  class="heart-icon"
+                  @click.stop="changeBtn()"
+                />
+              </div>
+            </v-col>
+          </v-row>
         </div>
         <div class="buy-btn2">
           <div
@@ -164,6 +199,8 @@ export default {
     return {
       recommendDialog: false,
       disrecommendDialog: false,
+
+      wishChecked: false,
 
       snackbar: false
     };
@@ -262,7 +299,16 @@ export default {
 
     openMarket() {
       window.open(this.link)
-    }
+    },
+
+    closeRecommendDialog() {
+      this.recommendDialog = false
+    },
+
+    closeDisRecommendDialog() {
+      this.recommendDialog = false
+    },
+
   }
 }
 </script>
