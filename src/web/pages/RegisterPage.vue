@@ -8,7 +8,7 @@ import RegisterMain from '@/web/components/RegisterPage/RegisterMain.vue';
 export default {
     name: 'RegisterPage',
     components : {
-        RegisterMain,
+      RegisterMain,
     }
 }
 </script>

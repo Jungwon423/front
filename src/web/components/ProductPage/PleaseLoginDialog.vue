@@ -1,18 +1,22 @@
 <template>
-  <v-row>
-    <v-col>
-      <div class="card01">
-        <div class="card-title"> 
-          X
-        </div>
+  <v-dialog
+    v-model="dialog"
+    max-width="500px"
+    height="500px"
+  >
+    <v-row>
+      <v-col>
+        <div class="card01">
+          <div
+            class="card-title"
+            @click.stop="$emit('close')"
+          > 
+            X
+          </div>
           
-        <div class="pa-10 card-content">
-          로그인이 필요한 서비스 입니다. <div>로그인 하시겠습니까?</div>
-        </div>
-        <v-spacer />
-        <div
-          class="card-footer"
-        >
+          <div class="pa-10 card-content">
+            로그인이 필요한 서비스 입니다. <div>로그인 하시겠습니까?</div>
+          </div>
           <v-spacer />
           <v-btn
             class="card-btn1"
@@ -28,12 +32,28 @@
             color="#C62828"
             @click="goLogin();"
           >
-            확인
-          </v-btn>
+            <v-spacer />
+            <v-btn
+              class="card-btn1"
+              text
+              color="#616161"
+              @click.stop="$emit('close')"
+            >
+              취소
+            </v-btn>
+            <v-btn
+              class="card-btn2"
+              text
+              color="#C62828"
+              @click="goLogin();"
+            >
+              확인
+            </v-btn>
+          </div>
         </div>
-      </div>
-    </v-col>
-  </v-row>
+      </v-col>
+    </v-row>
+  </v-dialog>
 </template>
 
 <script>
@@ -63,12 +83,6 @@ emits: ['close'],
   padding-right:3%;
   font-size:25px;
   font-family: "dohyeon";
-}
-.card-img{
-  position:relative;
-  left:10%;
-  width:100px;
-  height:100px;
 }
 .card-footer{
   height:80px;

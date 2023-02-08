@@ -30,6 +30,9 @@ export default {
   },
   watch: {
     '$route' () {
+      console.log(this.$route.query.keyword)
+      //this.$store.commit('Search/SET_CURRENTKEYWORD', this.$route.query.keyword)
+      this.$store.commit('Search/SET_PAGE', this.$route.query.page)
       this.$store.dispatch('Search/FETCH_PRODUCTLIST_API')
     },
   },

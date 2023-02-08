@@ -13,7 +13,6 @@
       <div> {{ name }}</div>
       <div class="py-2">
         <span style="font-size:15px;">{{ roundedPrice }}원</span>
-        <span class="origin-price">{{ roundedNaverPrice }} 원</span>
         <div class="naver-price">네이버 최저가 : {{ roundedNaverPrice }} 원</div>
       </div>
       <div class="rating-review">
@@ -39,8 +38,8 @@
         </span>
         <span class="py-2"> 댓글 : {{ comment }}개</span>
       </div>
-      <div>
-        조회수 : {{ view }}
+      <div class="view">
+        조회수 : {{ clickCount }}
       </div>
     </span>
 
@@ -126,7 +125,7 @@ export default {
       type: Number,
       default: 0
     },
-    view: {
+    clickCount:{
       type: Number,
       default: 0
     },
@@ -199,7 +198,7 @@ export default {
   padding: 10px;
   margin: 10px;
   width: 950px;
-  height: 200px;
+  height: 220px;
   border: 1px solid;
   border-width:1px;
   border-color:#E0E0E0;
@@ -236,6 +235,10 @@ export default {
   position:relative;
   top:-8%;
   left:-5%;
+}
+.view{
+  position:relative;
+  bottom:12%;
 }
 .shopping-mall-text{
   font-size:14px;

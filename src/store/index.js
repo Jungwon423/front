@@ -4,6 +4,7 @@ import Category from './Category'
 import Login from './Login.js'
 import Product from './Product'
 import Search from './Search'
+import User from './User'
 import Wish from './Wish'
 
 export default createStore({
@@ -13,6 +14,7 @@ export default createStore({
     Login,
     Product,
     Search,
+    User,
     Wish
   }
 })

@@ -7,6 +7,7 @@ export default {
     currentKeyword:'',
     productList: [],
     productCount: 0,
+    page:1,
     totalPage: 1,
   },
 
@@ -25,6 +26,10 @@ export default {
       state.productCount = payload
     },
 
+    SET_PAGE(state, payload) {
+      state.page = payload;
+    },
+
     SET_TOTALPAGE(state, payload) {
       state.totalPage = payload
     }
@@ -35,12 +40,14 @@ export default {
       const config = {"Content-Type": 'application/json'};
       try {
         let res = await jwtAxios.post(
-          "/product/search?keyword=" +
+          "/product/" +
+          context.state.page +
+          "/search?keyword=" +
           keyword, config
         );
         context.commit("SET_PRODUCTLIST", res.data["result"],);
         context.commit("SET_PRODUCTCOUNT", res.data['productCount']);
-        //context.commit("SET_TOTALPAGE", res.data['totalPage']);
+        context.commit("SET_TOTALPAGE", res.data['totalPage']);
       } catch (error) {
       }
     },

@@ -15,6 +15,11 @@ export default {
     TitleHeader,
     AdminMain,
     },
+    watch: {
+    '$route' () {
+      this.$store.dispatch('User/FETCH_PRODUCTLIST_API')
+    },
+  },
 }
 </script>
 
