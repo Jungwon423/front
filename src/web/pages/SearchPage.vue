@@ -1,22 +1,19 @@
 <template>
   <div class="width-980">
-    <WishHeader />
-    <WishList />
-    <WishEmpty />
+    <SearchHeader />
+    <SearchMain />
   </div>
 </template>
         
   <script>
-  import WishHeader from '@/web/components/WishPage/WishHeader.vue';
-  import WishList from '@/web/components/WishPage/WishList.vue';
-  import WishEmpty from '@/web/components/WishPage/WishEmpty.vue';
+  import SearchHeader from '@/web/components/SearchPage/SearchHeader.vue';
+  import SearchMain from '@/web/components/SearchPage/SearchMain.vue';
   
   export default {
-    name: 'WishPage',
+    name: 'SearchPage',
     components : {
-      WishHeader,
-      WishList,
-      WishEmpty,
+      SearchHeader,
+      SearchMain,
     },
   }
   </script>
