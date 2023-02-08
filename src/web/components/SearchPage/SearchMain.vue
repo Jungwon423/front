@@ -38,6 +38,8 @@
       :market-name="product.marketName"
       :good="0"
       :bad="0"
+      :checked="product.wishUserList.includes($store.state.Login.id)"
+
     />
   </div>
 </template>
@@ -52,19 +54,21 @@
     },
     computed: {
       productList: function () {
-        console.log(this.$store.state.Category.productList)
-        return this.$store.state.Category.productList
+        console.log(this.$store.state.Search.productList)
+        return this.$store.state.Search.productList
       },
       productCount: function () {
-        return this.$store.state.Category.productCount
+        return this.$store.state.Search.productCount
       },
-      currentCategory: function () {
-        return this.$categoryMap.get(this.$store.state.Category.currentCategory)
+      currentKeyword: function () {
+        console.log(this.$store.state.Search.currentKeyword)
+        return this.$store.state.Search.currentKeyword
       }
     },
     
     async created() {
-      await this.$store.dispatch('Category/FETCH_PRODUCTLIST_API')
+      await this.$store.dispatch('Search/FETCH_PRODUCTLIST_API',this.$store.state.Search.currentKeyword)
+
     }
     
   }
