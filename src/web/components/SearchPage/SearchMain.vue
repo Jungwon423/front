@@ -1,7 +1,7 @@
 <template>
   <div class="inline-block">
     <div class="item-box px-2">
-      검색 결과 : {{ productCount }}개
+      검색결과 &nbsp; {{ productCount }} 건
     </div>
     <v-row
       v-if="productList.length == 0"
@@ -39,6 +39,7 @@
       :good="0"
       :bad="0"
       :checked="product.wishUserList.includes($store.state.Login.id)"
+
     />
   </div>
 </template>
@@ -67,6 +68,7 @@
     
     async created() {
       await this.$store.dispatch('Search/FETCH_PRODUCTLIST_API',this.$store.state.Search.currentKeyword)
+
     }
     
   }

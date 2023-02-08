@@ -5,6 +5,19 @@
     <ProductTab />
     <Footer />
   </div>
+  <div @click="scrollTop()">
+    <v-avatar
+      class="scroll-btn"
+      color="#3E2723"
+      size="50"
+    >
+      <v-img
+        width="30"
+        height="30"
+        src="@/assets/mdi/arrow-up-custom.png"
+      />
+    </v-avatar>
+  </div>
 </template>
 
 <script>
@@ -24,6 +37,11 @@ export default {
   },
   async created() {
     await this.$store.dispatch('Product/FETCH_PRODUCTDETAIL_API', this.$route.query.name)
+  },
+  methods: {
+    scrollTop(){
+      window.scrollTo({top:0, left:0, behavior:'smooth'});
+    },
   }
 }
 </script>
@@ -33,5 +51,12 @@ export default {
   width: 980px;
   margin-left: auto;
   margin-right: auto;
+}
+.scroll-btn{
+  position:fixed;
+  bottom:10%;
+  right:3%;
+  float:right;
+  cursor:pointer;
 }
 </style>

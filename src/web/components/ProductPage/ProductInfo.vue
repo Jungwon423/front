@@ -137,7 +137,10 @@
           </div>
         </div>
         <div class="buy-btn2">
-          <div class="buy-text2">
+          <div
+            class="buy-text2"
+            @click="openMarket"
+          >
             바로구매 >
           </div>
         </div>
@@ -238,8 +241,9 @@ export default {
       else {
         this.recommendDialog = true
       }
-
-      
+    },
+    scrollTop(){
+      window.scrollTo(0, 0);
     },
     clickBad() {
       if (this.$store.getters['Login/logined'] && !this.recommendChecked && !this.disrecommendChecked) {
@@ -254,6 +258,10 @@ export default {
       else {
         this.disrecommendDialog = true
       }
+    },
+
+    openMarket() {
+      window.open(this.link)
     }
   }
 }
