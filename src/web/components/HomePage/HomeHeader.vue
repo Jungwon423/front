@@ -25,17 +25,24 @@
   
     <div class="search-bar-wrapper">
       <input
+        v-model="keyword"
         type="text"
         name="hot"
         placeholder="최근 핫딜"
         class="search-bar"
       >
+      <v-btn
+        class="search-btn1"
+        @click="Search()"
+      >
+        검색
+      </v-btn>
       <div class="text-center">
         <v-row
           align-content="center"
         >
           <v-col>
-            <not-available-dialog />
+            <!-- <not-available-dialog /> -->
           </v-col>
         </v-row>
       </div>
@@ -115,14 +122,19 @@
 
 <script>
 import NotAvailableDialog from './NotAvailableDialog.vue'
-import NavigationDrawer from './NavigationDrawer.vue'
+import NavigationDrawer from '@/web/components/HomePage/NavigationDrawer.vue'
 import library from '@/library/library'
 
 export default {
   name: 'HomeHeader',
   components: {
-    NotAvailableDialog,
+    //NotAvailableDialog,
     NavigationDrawer
+  },
+  data () {
+    return {
+      keyword:'',
+    }
   },
   computed: {
     logined () {
@@ -130,6 +142,16 @@ export default {
     }
   },
   methods: {
+    Search(){
+      console.log(this.keyword)
+      this.$store.commit('Search/SET_CURRENTKEYWORD', this.keyword)
+      //console.log(this.$store.state.Search.currentKeyword)
+      
+      this.$router.push({
+      name: 'search',
+      query: {
+        keyword : this.keyword}},)
+    },
     goHomePage() {
       if (window.location.pathname == "/") {  //현재 홈페이지 일 경우
         location.reload();
@@ -215,6 +237,17 @@ export default {
 }
 </style>
 <style scoped>
+.search-btn1{
+  display:flex;
+  height:55px;
+  width:100px;
+  margin-left:20px;
+  border-color:#6D4C41;
+  border-radius:0px 9px 9px 0px;
+  background-color:#8D6E63;
+  border-width:1px;
+  color:white;
+}
 .group1 {
   display: flex;
   height: 50px;
