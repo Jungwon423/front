@@ -34,7 +34,13 @@
           <hr class="h-line3">
           <div class="default-table-title">
             전화번호
-          </div><span class="px-6"> {{ phoneNumber }}</span>
+          </div><span
+            v-if="typeof phoneNumber == 'undefined'"
+            class="px-6"
+          >전화번호를 등록해 주세요.</span><span
+            v-else
+            class="px-6"
+          > {{ phoneNumber }}</span>
           <hr class="h-line3">
           <div class="default-table-title">
             별명
@@ -67,7 +73,6 @@ export default {
       good: [],
       phoneNumber: '',
       comment: [],
-      
     };
   },
   

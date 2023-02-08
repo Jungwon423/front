@@ -34,10 +34,10 @@
       :naver-price="product.naverPrice"
       :rating="product.rating"
       :comment="product.comments.length"
-      :view="0"
+      :click-count="product.clickCount"
       :market-name="product.marketName"
-      :good="0"
-      :bad="0"
+      :good="product.good.length"
+      :bad="product.bad.length"
       :checked="product.wishUserList.includes($store.state.Login.id)"
     />
   </div>

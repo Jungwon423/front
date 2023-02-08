@@ -113,10 +113,13 @@
                     />
                   </div>
                   <span class="ddabong-text">비추천 {{ bad.length }}</span>
+                  <please-login-dialog
+                    v-model="disRecommendDialog"
+                    @close="disRecommendDialog = false"
+                  />
                 </div>
               </div>
             </template>
-            <please-login-dialog />
           </v-dialog>
         </div>
       </div>
@@ -131,11 +134,20 @@
         {{ marketName }}
       </div>
       <div style="display:flex; margin-top: 30px;">
-        <div class="buy-btn1">
+        <div
+          class="buy-btn1"
+          @click.stop="dialog = true"
+        >
           <div class="buy-text1">
             찜하기
           </div>
         </div>
+
+        <please-login-dialog
+          v-model="dialog"
+          @close="dialog = false"
+        />
+
         <div class="buy-btn2">
           <div
             class="buy-text2"
@@ -157,14 +169,14 @@ import PleaseLoginDialog from '@/web/components/ProductPage/PleaseLoginDialog.vu
 export default {
   name: "ProductInfo",
   components: {
-    //PleaseLoginDialog
+    PleaseLoginDialog
   },
   components: { PleaseLoginDialog },
   data() {
     return {
       recommendDialog: false,
       disrecommendDialog: false,
-
+      dialog:false,
       snackbar: false
     };
   },
@@ -258,6 +270,9 @@ export default {
       else {
         this.disrecommendDialog = true
       }
+    },
+    addWishlist(){
+      
     },
 
     openMarket() {

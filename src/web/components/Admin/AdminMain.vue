@@ -7,37 +7,61 @@
       >
         브랜드 기획전
       </div>
+      <!-- 
       <div
         v-if="show"
         class="py-4"
         style="font-size:17px; font-weight:400;"
       >
-        해외 탑 브랜드의 세일을 알아보세요
-      </div>
+        {{ categoryCount }}
+        {{ productCount }}
+      </div> -->
+      <user-container
+        v-for="user in userList"
+        :id="user.id"
+        :key="user.id"
+        :product-count="user.productCount"
+        :category-count="user.categoryCount"
+      />
     </v-col>
   </v-row>
 </template>
 <script>
+import UserContainer from '@/web/components/Admin/UserContainer.vue'
 import jwtAxios from '@/library/jwtAxios'
 export default {
   name: 'AdminMain',
+  components:{
+    UserContainer,
+  },
   data() {
     return {
       show:false,
     }
   },
+  computed: {
+    userList: function () {
+      console.log(this.$store.state.User.userList)
+      return this.$store.state.User.userList
+    },
+    userCount: function () {
+      return this.$store.state.User.userCount
+    },
+  },
+  async created() {
+    await this.$store.dispatch('User/FETCH_PRODUCTLIST_API')
+  },
   created () {
-    // 백엔드 서버로 액세스 코드 전달 (implicit)
     jwtAxios.get('/admin/checkAdmin')
     .then((res) => {
       console.log(res.data)
     }),
     jwtAxios.get('/admin/test/detail')
     .then((res) => {
-      this.categoryCount = res.data["categoryCount"]
-      this.productCount= res.data["productCount"]
+      //this.categoryCount = res.data["categoryCount"]
+      //this.productCount= res.data["productCount"]
       console.log(res.data['categoryCount'])
-      console.log(res.data['productCount'])
+      //console.log(res.data['productCount'])
     })
   },
   methods:{

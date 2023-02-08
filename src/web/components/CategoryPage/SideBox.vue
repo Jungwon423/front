@@ -146,7 +146,6 @@ import library from '@/library/library'
   position: relative;
   align-items: flex-start;
   justify-content: flex-start;
-  background-color: whitesmoke;
 } 
 .sidebar-title{
   width: 240px;

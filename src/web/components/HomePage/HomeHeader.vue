@@ -150,6 +150,7 @@ export default {
       this.$router.push({
       name: 'search',
       query: {
+        page: this.$route.query.page,
         keyword : this.keyword}},)
     },
     goHomePage() {
