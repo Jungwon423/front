@@ -2,44 +2,43 @@
   <div class="product-container">
     <img
       class="product-image"
-      src="https://i.ebayimg.com/images/g/A5UAAOSwK39hi5H1/s-l300.jpg"
+      :src="imageUrl"
       width="180"
       height="180"
     >
     <span class="product-info py-2">
-      <div>Canon Cemra EOS 200D, Black 10x zoom</div>
+      <div> {{ name }} </div>
       <div class="py-2">
-        <span style="font-size:15px;">87,000원</span>
-        <div class="naver-price">네이버 최저가 : 103,000원</div>
-      </div>
-      <div class="rating-review">
-        <v-rating
-          v-model="rating"
-          class="px-5"
-          value="3.5"
-          color="#FFB300"
-          empty-icon="mdi-star-outline"
-          full-icon="mdi-star"
-          half-icon="mdi-star-half"
-          half-increments
-          readonly
-          size="15"
-        />
-        <div class="rating-num">3.0</div>
-        <div class="v-line3" />
-        <span class="img-message py-2">
-          <v-img
-            src="@/assets/message.png"
-            width="20px"
-            height="20px"
+        <span style="font-size:15px;">{{ Math.floor(price).toLocaleString('ko-KR') }}원</span>
+        <div class="naver-price">네이버 최저가 : {{ Math.floor(naverPrice).toLocaleString('ko-KR') }}원
+        </div>
+        <div class="rating-review">
+          <v-rating
+            class="px-5"
+            :value="rating"
+            color="#FFB300"
+            empty-icon="mdi-star-outline"
+            full-icon="mdi-star"
+            half-icon="mdi-star-half"
+            half-increments
+            readonly
+            size="15"
           />
-        </span>
-        <span class="py-2">리뷰 : 35개</span>
-      </div>
-      <div>
-        조회수 : 401,222
-      </div>
-    </span>
+          <div class="rating-num">{{ rating }}</div>
+          <div class="v-line3" />
+          <span class="img-message py-2">
+            <v-img
+              src="@/assets/message.png"
+              width="20px"
+              height="20px"
+            />
+          </span>
+          <span class="py-2">리뷰 : {{ commentCount }}개</span>
+        </div>
+        <div>
+          조회수 : {{ clickCount }}
+        </div>
+      </div></span>
 
     
     <div class="shopping-mall1 px-4">
@@ -51,6 +50,7 @@
     <div>
       <v-btn
         class="like-btn-wrapper1"
+        @click="openMarket"
       >
         <span
           class="px-12"
@@ -62,6 +62,7 @@
     
       <v-btn
         class="like-btn-wrapper2"
+        @click="deleteWish"
       >
         <span
           class="px-12"
@@ -73,10 +74,58 @@
 </template>
 
 <script>
+import jwtAxios from '@/library/jwtAxios'
 export default {
-  data () {
-    return {
-      rating: 3,
+  props: {
+    name: {
+      type: String,
+      default: ''
+    },
+    price: {
+      type: Number,
+      default: 0
+    },
+    imageUrl: {
+      type: String,
+      default: ''
+    },
+    marketName: {
+      type: String,
+      default: ''
+    },
+    clickCount: {
+      type: Number,
+      default: 0
+    },
+    naverPrice: {
+      type: Number,
+      default: 0
+    },
+    rating: {
+      type: Number,
+      default: 0
+    },
+    commentCount: {
+      type: Number,
+      default: 0
+    },
+    link: {
+      type: String,
+      default: ''
+    }
+  },
+  methods: {
+    openMarket() {
+      window.open(this.link)
+    },
+    deleteWish() {
+      console.log('/product/wishlist?productId=' + encodeURIComponent(this.name), { wish: "unwish"})
+      jwtAxios.post('/product/wishlist?productId=' + encodeURIComponent(this.name),
+      { wish: "unwish"})
+      .then((res) => {
+        console.log(res.data['wishList'])
+        this.$store.commit('Wish/SET_WISHLIST', res.data["wishList"]) 
+      })
     }
   },
 }

@@ -18,8 +18,19 @@
             로그인이 필요한 서비스 입니다. <div>로그인 하시겠습니까?</div>
           </div>
           <v-spacer />
-          <div
-            class="card-footer"
+          <v-btn
+            class="card-btn1"
+            text
+            color="#616161"
+            @click="closeDialog"
+          >
+            취소
+          </v-btn>
+          <v-btn
+            class="card-btn2"
+            text
+            color="#C62828"
+            @click="goLogin();"
           >
             <v-spacer />
             <v-btn
@@ -47,24 +58,16 @@
 
 <script>
 export default {
-  components: {},
-  emits: ['close'], 
-  setup() {}, 
-  data() {
-      return {
-        sampleData: ''
-      }
-  },
-  computed: {
-  }, 
-    created() {},
-    mounted() {}, 
-    unmounted() {},
-    methods: {
-      goLogin(){
-        this.$router.push('/login')
-      }
+emits: ['close'],
+  methods: {
+    goLogin(){
+      this.$router.push('/login')
+    },
+    closeDialog() {
+      this.dialog = false
+      this.$emit("close", false)
     }
+  }
 }
 </script>
 
