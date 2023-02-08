@@ -49,7 +49,7 @@
             >
               확인
             </v-btn>
-          </div>
+          </v-btn>
         </div>
       </v-col>
     </v-row>
