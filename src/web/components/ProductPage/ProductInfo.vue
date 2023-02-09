@@ -79,7 +79,7 @@
           </v-dialog>
 
           <v-dialog
-            v-model="disrecommendDialog"
+            v-model="disRecommendDialog"
             max-width="500px"
             height="500px"
           >
@@ -115,10 +115,6 @@
                     />
                   </div>
                   <span class="ddabong-text">비추천 {{ bad.length }}</span>
-                  <please-login-dialog
-                    v-model="disRecommendDialog"
-                    @close="disRecommendDialog = false"
-                  />
                 </div>
               </div>
             </template>
@@ -176,11 +172,6 @@
           </v-row>
         </div>
 
-        <please-login-dialog
-          v-model="dialog"
-          @close="dialog = false"
-        />
-
         <div class="buy-btn2">
           <div
             class="buy-text2"
@@ -208,7 +199,7 @@ export default {
   data() {
     return {
       recommendDialog: false,
-      disrecommendDialog: false,
+      disRecommendDialog: false,
       wishChecked: false,
       snackbar: false
     };
@@ -301,7 +292,7 @@ export default {
         this.snackbar = true
       }
       else {
-        this.disrecommendDialog = true
+        this.disRecommendDialog = true
       }
     },
     addWishlist(){
@@ -317,7 +308,7 @@ export default {
     },
 
     closeDisRecommendDialog() {
-      this.recommendDialog = false
+      this.disRecommendDialog = false
     },
 
   }
