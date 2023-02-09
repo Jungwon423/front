@@ -13,7 +13,6 @@ instance.interceptors.request.use(function(config) {
             Authorization: `Bearer ${store.state.Login.token}`
         }
     }
-
     return config;
 })
 
