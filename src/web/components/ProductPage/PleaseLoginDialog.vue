@@ -1,22 +1,18 @@
 <template>
-  <v-dialog
-    v-model="dialog"
-    max-width="500px"
-    height="500px"
-  >
-    <v-row>
-      <v-col>
-        <div class="card01">
-          <div
-            class="card-title"
-            @click.stop="$emit('close')"
-          > 
-            X
-          </div>
+  <v-row>
+    <v-col>
+      <div class="card01">
+        <div class="card-title"> 
+          X
+        </div>
           
-          <div class="pa-10 card-content">
-            로그인이 필요한 서비스 입니다. <div>로그인 하시겠습니까?</div>
-          </div>
+        <div class="pa-10 card-content">
+          로그인이 필요한 서비스 입니다. <div>로그인 하시겠습니까?</div>
+        </div>
+        <v-spacer />
+        <div
+          class="card-footer"
+        >
           <v-spacer />
           <v-btn
             class="card-btn1"
@@ -32,28 +28,12 @@
             color="#C62828"
             @click="goLogin();"
           >
-            <v-spacer />
-            <v-btn
-              class="card-btn1"
-              text
-              color="#616161"
-              @click.stop="$emit('close')"
-            >
-              취소
-            </v-btn>
-            <v-btn
-              class="card-btn2"
-              text
-              color="#C62828"
-              @click="goLogin();"
-            >
-              확인
-            </v-btn>
+            확인
           </v-btn>
         </div>
-      </v-col>
-    </v-row>
-  </v-dialog>
+      </div>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -65,7 +45,7 @@ emits: ['close'],
     },
     closeDialog() {
       this.dialog = false
-      this.$emit("close", false)
+      this.$emit("close", false)  
     }
   }
 }
