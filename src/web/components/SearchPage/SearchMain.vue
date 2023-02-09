@@ -3,6 +3,9 @@
     <div class="item-box px-2">
       검색결과 &nbsp; {{ productCount }} 건
     </div>
+    <div>
+      {{ currentKeyword }}
+    </div>
     <v-row
       v-if="productList.length == 0"
       class="text-center"
@@ -53,7 +56,7 @@
     },
     computed: {
       productList: function () {
-        console.log(this.$store.state.Search.productList)
+        //console.log(this.$store.state.Search.productList)
         return this.$store.state.Search.productList
       },
       productCount: function () {

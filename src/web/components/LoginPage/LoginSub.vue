@@ -69,7 +69,7 @@ export default {
     }
   },
   mounted (){
-    const naver_id_login = new window.naver_id_login("g45Um10Zkbqc0tRDbvsW", process.env.VUE_APP_HOME_URL + "/naver");
+    const naver_id_login = new window.naver_id_login(process.env.VUE_APP_NAVER_CLIENT, process.env.VUE_APP_HOME_URL + "/naver");
     const state = naver_id_login.getUniqState();
     naver_id_login.setState(state);
     // naver_id_login.setPopup(); // popup 설정을 위한 코드

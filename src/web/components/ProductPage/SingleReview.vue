@@ -16,22 +16,35 @@
         @{{ name }}
       </div>
     </div>  
-    <div
-      v-if="name == $store.state.Login.id"
-    >
+    <div>
+      <!-- v-if="name == $store.state.Login.id" -->
       <v-btn
         variant="tonal"
         class="mx-4 edit-btn"
       >
         수정
       </v-btn>
-      <v-btn
-        variant="tonal"
-        class="mx-4 edit-btn"
-        @click="deleteComment"
+      <v-dialog
+        v-model="deleteCommentDialog"
+        max-width="500px"
+        height="500px"
       >
-        삭제
-      </v-btn>
+        <template #activator="{ attrs }">
+          <v-btn
+            variant="tonal"
+            class="mx-4 edit-btn"
+            v-bind="attrs"
+            @click="openDeleteDialog"
+          >
+            삭제
+          </v-btn>
+        </template>
+      
+        <delete-dialog
+          :id="id"
+          @close="closedeleteCommentDialog"
+        />
+      </v-dialog>
     </div>
 
     <v-snackbar
@@ -111,9 +124,13 @@
 <script>
 import jwtAxios from '@/library/jwtAxios'
 import PleaseLoginDialog from './PleaseLoginDialog.vue';
+import DeleteDialog from './DeleteDialog.vue';
 
 export default {
-  components: { PleaseLoginDialog },
+  components: { 
+    PleaseLoginDialog,
+    DeleteDialog,
+   },
 
   props: {
     imageUrl : {
@@ -166,7 +183,7 @@ export default {
       empty2: this.badClicked,
       recommendDialog: false,
       disrecommendDialog: false,
-
+      deleteCommentDialog:false,
       snackbar: false
     }
   },
@@ -208,16 +225,15 @@ export default {
     },
 
     closeDisRecommendDialog() {
-      this.recommendDialog = false
+      this.disrecommendDialog = false
     },
 
-    deleteComment() {
-      jwtAxios.delete('/comment/' + this.id + '/delete')
-      .then((res) => {
-        console.log(res.data['comments'])
-        this.$store.commit('Product/SET_COMMENTS', res.data['comments'])
-      })
-    }
+    closedeleteCommentDialog() {
+      this.deleteCommentDialog = false
+    },
+    openDeleteDialog(){
+      this.deleteCommentDialog = true
+    },
   }
 }
 </script>

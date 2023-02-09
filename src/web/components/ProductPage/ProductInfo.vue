@@ -129,48 +129,82 @@
       <!-- <span class="originPrice"> {{ Math.floor(naverPrice).toLocaleString('ko-KR') }}원 </span> -->
       <span class="px-5 discountRate"> {{ Math.floor(discountRate) }}% </span>
       <div class="px-5">
-        네이버 최저가: {{ Math.floor(naverPrice).toLocaleString('ko-KR') }}원
+        <span>네이버 최저가: {{ Math.floor(naverPrice).toLocaleString('ko-KR') }}원</span>
+        <v-btn
+          class="brand2-btn-wrapper"
+        >
+          <v-img
+            src="@/assets/네이버로고.png"
+            class="brand-btn"
+          />
+          <span
+            class="px-10"
+            style="font-weight:600;"
+          > 쇼핑 바로가기</span>
+        </v-btn>
       </div>
       <div class="px-5">
         {{ marketName }}
       </div>
+      
+    
       <div style="display:flex; margin-top: 30px;">
-        <div class="buy-btn1">
-          <v-row>
-            <v-col>
-              <div class="buy-text1">
-                찜하기
-              </div>
-            </v-col>
+        <v-dialog
+          v-model="wishlistDialog"
+          max-width="500px"
+          height="500px"
+        >
+          <template #activator="{ attrs }">
+            <v-snackbar
+              v-model="snackbar"
+              :timeout="2000"
+            >
+              이미 찜한 제품입니다.
+            </v-snackbar>
+            <div
+              class="buy-btn1"
+              @click="addWishlist"
+            >
+              <v-row>
+                <v-col>
+                  <div class="buy-text1">
+                    찜하기
+                  </div>
+                </v-col>
           
-            <v-col>
-              <div
-                v-if="!wishChecked"
-                class="heart-box"
-              >
-                <v-icon
-                  icon="mdi-heart-outline"
-                  color="#A1887F"
-                  size="large"
-                  class="heart-icon"
-                  @click.stop="changeBtn()"
-                />
-              </div>
-              <div
-                v-if="wishChecked"
-                class="heart-box"
-              >
-                <v-icon
-                  icon="mdi-heart"
-                  color="#A1887F"
-                  size="large"
-                  class="heart-icon"
-                  @click.stop="changeBtn()"
-                />
-              </div>
-            </v-col>
-          </v-row>
-        </div>
+                <v-col>
+                  <div
+                    v-if="!wishChecked"
+                    class="heart-box"
+                  >
+                    <v-icon
+                      icon="mdi-heart-outline"
+                      color="#A1887F"
+                      size="large"
+                      class="heart-icon"
+                    />
+                    <!-- @click.stop="changeBtn()" -->
+                  </div>
+                  <div
+                    v-if="wishChecked"
+                    class="heart-box"
+                  >
+                    <v-icon
+                      icon="mdi-heart"
+                      color="#A1887F"
+                      size="large"
+                      class="heart-icon"
+                      v-bind="attrs"
+                    />
+                  </div>
+                </v-col>
+              </v-row>
+            </div>
+          </template>
+          <please-login-dialog
+            @close="closeWishlistDialog"
+          />
+        </v-dialog>
 
         <div class="buy-btn2">
           <div
@@ -195,13 +229,13 @@ export default {
   components: {
     PleaseLoginDialog
   },
-  components: { PleaseLoginDialog },
   data() {
     return {
       recommendDialog: false,
       disRecommendDialog: false,
+      wishlistDialog:false,
       wishChecked: false,
-      snackbar: false
+      snackbar: false,
     };
   },
   computed: {
@@ -257,7 +291,7 @@ export default {
       return this.bad.includes(this.$store.state.Login.id)
     },
     discountRate: function () {
-        return (1 - this.price / this.naverPrice) * 100;
+      return (1 - this.price / this.naverPrice) * 100;
     },
     market_image: function () {
       return require("@/assets/" + this.marketName + ".png")
@@ -296,7 +330,16 @@ export default {
       }
     },
     addWishlist(){
-      
+      if (this.$store.getters['Login/logined']) {
+        jwtAxios.post("/product/wishlist?productId=" + encodeURIComponent(this.$route.query.name))
+        .then((res) => {
+          this.$store.commit('Product/SET_WISHUSERLIST', res.data['users'])
+          this.wishChecked = res.data['checked']
+        })
+      }
+      else {
+        this.wishlistDialog = true
+      }
     },
 
     openMarket() {
@@ -309,6 +352,9 @@ export default {
 
     closeDisRecommendDialog() {
       this.disRecommendDialog = false
+    },
+    closeWishlistDialog() {
+      this.wishlistDialog = false
     },
 
   }
@@ -431,7 +477,7 @@ export default {
 }
 .buy-btn1{
   display:block;
-  width:120px;
+  width:130px;
   height:47px;
   left:28%;
   position:relative;
@@ -454,7 +500,7 @@ export default {
   position:relative;
   left:25%;
   margin-top:10px;
-  font-size:18px;
+  font-size:17px;
 }
 .buy-text2{
   position:relative;
@@ -467,5 +513,45 @@ export default {
 }
 .buy-btn2:hover{
   box-shadow:200px 0 0 0 rgba(0,0,0,0.3) inset;
+}
+
+.brand2-btn-wrapper{
+  margin-left:20px;
+  height:40px;
+  width:120px;
+  font-size:12px;
+  background-color:#1EC800;
+  color:white;
+}
+.brand-btn{
+  position: relative;
+  top:10%;
+  left:20%;
+  width:30px;
+  height:30px;
+}
+.heart-box{
+  position:relative;
+  top:5%;
+  display:flex;
+  vertical-align: middle;
+  border-style:solid;
+  border-width:1px;
+  border-color:#BDBDBD;
+  border-radius:7px;
+  width:40px;
+  height:40px;
+  color: #000;
+  background-color: #fff;
+  cursor: pointer;
+}
+.heart-box:hover {
+  background-color: #EEEEEE;
+  box-shadow: 0px 2px 2px #E0E0E0;
+}
+.heart-icon{
+  position:relative;
+  left:13%;
+  top:13%;
 }
 </style>
