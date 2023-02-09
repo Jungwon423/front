@@ -16,12 +16,21 @@
         @{{ name }}
       </div>
     </div>  
-    <div>
+    <div
+      v-if="name == $store.state.Login.id"
+    >
       <v-btn
         variant="tonal"
         class="mx-4 edit-btn"
       >
         수정
+      </v-btn>
+      <v-btn
+        variant="tonal"
+        class="mx-4 edit-btn"
+        @click="deleteComment"
+      >
+        삭제
       </v-btn>
     </div>
 
@@ -171,6 +180,14 @@ export default {
     closeDisRecommendDialog() {
       this.recommendDialog = false
     },
+
+    deleteComment() {
+      jwtAxios.delete('/comment/' + this.id + '/delete')
+      .then((res) => {
+        console.log(res.data['comments'])
+        this.$store.commit('Product/SET_COMMENTS', res.data['comments'])
+      })
+    }
   }
 }
 </script>
