@@ -59,8 +59,8 @@ export default {
         default: ''
       },
       name: {
-        type: Number,
-        default: 0
+        type: String,
+        default: ''
       },
       price: {
         type: Number,
