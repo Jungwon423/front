@@ -129,18 +129,15 @@ export default {
             "Content-Type": `application/json`,
           },
           })
-        .then((response) => {
-          console.log(response)
-          if (response.data.errorCode === 400) {
-            alert(response.data.errorMessage)
-          }
-          else{
+        .then((res) => {
+          if (res.status == 200){
             alert("회원가입이 완료되었습니다. 로그인 화면으로 돌아갑니다")
-            this.$router.push({path: './login'});
+            this.$router.push('/login');
           }
           })
-        .catch(error =>{
-          console.log(error.response);
+          .catch(error =>{
+          console.log(error.response.data);
+          alert(error.response.data.message);
         });
       } catch (error) {
         console.error(error);

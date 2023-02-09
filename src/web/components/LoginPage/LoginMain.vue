@@ -95,7 +95,11 @@ export default {
               localStorage.setItem('token', res.data['token'])
               this.$router.push("/");
             }
-          });
+          })
+          .catch(error =>{
+            console.log(error)
+            alert(error.response.data.message);
+        });
       } catch (error) {
         console.error(error);
       }
