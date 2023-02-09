@@ -2,7 +2,10 @@
   <v-row>
     <v-col>
       <div class="card01">
-        <div class="card-title"> 
+        <div
+          class="card-title"
+          @click="closeDialog"
+        > 
           X
         </div>
           
