@@ -17,7 +17,7 @@
       />
     </div>
     <WishEmpty
-      v-if="wishList == []"
+      v-if="wishList.length == 0"
     />
   </div>
 </template>
@@ -43,7 +43,7 @@ export default {
   created() {
     jwtAxios.get('user/wishlist')
     .then((res) => {
-      this.$store.commit('Wish/SET_WISHLIST', res.data["result"]) 
+      this.$store.commit('Wish/SET_WISHLIST', res.data["result"] == null ? [] : res.data["result"])
     })
 
   }

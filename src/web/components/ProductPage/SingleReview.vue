@@ -34,6 +34,13 @@
       </v-btn>
     </div>
 
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="2000"
+    >
+      이미 추천/비추천을 한 제품입니다.
+    </v-snackbar>
+
     <v-dialog
       v-model="recommendDialog"
       max-width="500px"
@@ -47,16 +54,16 @@
         >
           <div class="ddabong">
             <v-img
-              v-if="!empty1"
+              v-if="goodList.includes($store.state.Login.id)"
               src="@/assets/thumbs/따봉2.png"
             />
             <v-img
-              v-if="empty1"
+              v-if="!goodList.includes($store.state.Login.id)"
               src="@/assets/thumbs/추천.png"
             />
           </div>
           <div class="ddabong-text">
-            {{ good }}
+            {{ goodList.length }}
           </div>
         </div>
       </template>
@@ -78,16 +85,16 @@
         >
           <div class="ddabong">
             <v-img
-              v-if="!empty2"
+              v-if="badList.includes($store.state.Login.id)"
               src="@/assets/thumbs/우우2.png"
             />
             <v-img
-              v-if="empty2"
+              v-if="!badList.includes($store.state.Login.id)"
               src="@/assets/thumbs/비추천.png"
             />
           </div>
           <div class="ddabong-text">
-            {{ bad }}
+            {{ badList.length }}
           </div>
         </div>
       </template>
@@ -126,12 +133,16 @@ export default {
       default: ""
     },
     good: {
-      type: Number,
-      default: 0
+      type: Array,
+      default() {
+        return []
+      }
     },
     bad: {
-      type: Number,
-      default: 0
+      type: Array,
+      default() {
+        return []
+      }
     },
     goodClicked: {
       type: Boolean,
@@ -148,26 +159,45 @@ export default {
   },
   data () {
     return {
+      goodList: this.good,
+      badList: this.bad,
+
       empty1: this.goodClicked,
       empty2: this.badClicked,
       recommendDialog: false,
-      disrecommendDialog: false
+      disrecommendDialog: false,
+
+      snackbar: false
     }
+  },
+  created() {
+    console.log("goodlist = " + this.goodList)
+    console.log("good = " + this.good)
   },
   methods:{
     recommend(){
-      if (this.$store.getters['Login/logined']) {
-          this.empty1 = !this.empty1;
-          jwtAxios.post('/comment/' + this.id + '/recommend')
+      if (this.$store.getters['Login/logined'] && !this.goodList.includes(this.$store.state.Login.id) && !this.badList.includes(this.$store.state.Login.id)) {
+        jwtAxios.post('/comment/' + this.id + '/recommend')
+        .then((res) => {
+          this.goodList = res.data['users']
+        })
+      }
+      else if (this.$store.getters['Login/logined']) {
+        this.snackbar = true
       }
       else {
           this.recommendDialog = true
       }
     },
     disrecommend(){
-      if (this.$store.getters['Login/logined']) {
-          this.empty2 = !this.empty2;
+      if (this.$store.getters['Login/logined'] && !goodList.includes($store.state.Login.id) && !badList.includes($store.state.Login.id)) {
           jwtAxios.post('/comment/' + this.id + '/disrecommend')
+          .then((res) => {
+            this.badList = res.data['users']
+          })
+      }
+      else if (this.$store.getters['Login/logined']) {
+        this.snackbar = true
       }
       else {
           this.disrecommendDialog = true

@@ -77,7 +77,10 @@ export default {
   },
   
   async created() {
+    
     let res = await jwtAxios.get('/user/profile')
+
+    console.log(res.data)
 
     this.nickname = res.data['nickname']
     this.email = res.data['email']

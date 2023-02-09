@@ -30,8 +30,8 @@
       :key="comment"
       :name="comment.writerId"
       :content="comment.content"
-      :good="comment.good"
-      :bad="comment.bad"
+      :good="comment.goodUser"
+      :bad="comment.badUser"
       :timestamp="comment.timestamp"
       :image-url="comment.imageUrl"
     />
@@ -99,6 +99,7 @@ export default {
   },
   computed: {
     comments: function() {
+      console.log(this.$store.state.Product.comments)
       return this.$store.state.Product.comments
     }
   },
