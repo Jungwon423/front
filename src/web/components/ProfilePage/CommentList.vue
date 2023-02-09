@@ -10,53 +10,36 @@
       <span class="product-detail2">작성일</span> 
       <span class="product-detail3 mx-4">추천수</span>
     </div>
-    <hr class="h-line5">
-    <v-row class="text-center">
-      <v-col>
-        <div class="messages">
-          <v-img
-            width="80"
-            height="80"
-            src="@/assets/empty-comment.jpg"
-          />
-        </div>
-        <div class="empty-review1">
-          내가 작성한 댓글이 없습니다.
-        </div>
-      </v-col>
-    </v-row>
-    <ProfileComment />
-    <ProfileComment />
+    <no-comments 
+      v-if="comments==null || comments.length==0"
+    />
+    <ProfileComment
+      v-for="comment in comments"
+      :id="comment.id"
+      :key="comment"
+      :content="comment.content"
+      :timestamp="comment.timestamp"
+      :good-number="comment.good == null ? 0 : comment.good.length"
+    />
   </div>
 </template>
   
   <script>
-  //import ProductContainer from '@/web/components/CategoryPage/ProductContainer.vue';
+  import NoComments from '@/web/components/ProfilePage/NoComments.vue'
   import ProfileComment from '@/web/components/ProfilePage/ProfileComment.vue';
+  
   
   export default {
     name: 'ProductList',
     components: {
+      NoComments,
       ProfileComment,
     },
-    /*
     computed: {
-      productList: function () {
-        console.log(this.$store.state.Category.productList)
-        return this.$store.state.Category.productList
-      },
-      productCount: function () {
-        return this.$store.state.Category.productCount
-      },
-      currentCategory: function () {
-        return this.$categoryMap.get(this.$store.state.Category.currentCategory)
+      comments: function() {
+        return this.$store.state.Profile.comments
       }
-    },
-    
-    async created() {
-      await this.$store.dispatch('Category/FETCH_PRODUCTLIST_API')
     }
-    */
   }
   </script>
   

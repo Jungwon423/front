@@ -4,33 +4,31 @@
       <v-img
         width="180"
         height="180"
-        src="https://i.ebayimg.com/images/g/A5UAAOSwK39hi5H1/s-l300.jpg"
+        :src="imageUrl"
       />
     </div>
     <div class="good-wrapper1">
       <div class="text-wrapper">
-        <span>추천 10</span>
-        <span class="mx-2">비추천 7</span>
+        <span>추천 {{ goodNumber }}</span>
+        <span class="mx-2">비추천 {{ badNumber }}</span>
       </div>
       <div class="text-wrapper1">
-        Canon Cemra EOS 200D, Black 10x zoomCan
-        Canon Cemra EOS 200D, Black 10x zoomCan
-        Canon Cemra EOS 200D, Black 10x zoomCan
+        {{ name }}
       </div>
     </div>
     <div class="good-wrapper2">
       <div class="text-wrapper2">
-        87000원
+        {{ price.toLocaleString('ko-KR') }}원
       </div>
     </div>
     <div class="good-wrapper3">
       <div class="text-wrapper3">
-        Amazon
+        {{ marketName }}
       </div>
     </div>
     <div class="naver-price">
       <div class="text-wrapper4">
-        110000원
+        {{ naverPrice.toLocaleString('ko-KR') }}원
       </div>
     </div>
     <div class="other">
@@ -46,6 +44,36 @@
 export default {
     name: 'ProfileGood',
     components: {
+    },
+    props: {
+      goodNumber: {
+        type: Number,
+        default: 0
+      },
+      badNumber: {
+        type: Number,
+        default: 0
+      },
+      imageUrl: {
+        type: String,
+        default: ''
+      },
+      name: {
+        type: Number,
+        default: 0
+      },
+      price: {
+        type: Number,
+        default: 0
+      },
+      marketName: {
+        type: String,
+        default: ''
+      },
+      naverPrice: {
+        type: Number,
+        default: 0
+      }
     },
     data () {
         return {}

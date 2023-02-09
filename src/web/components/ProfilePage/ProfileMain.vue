@@ -25,26 +25,17 @@
       <div class="default-table">
         <div class="pa-6">
           <div class="default-table-title">
+            아이디
+          </div><span class="px-6"> {{ nickname }}</span>
+          <hr class="h-line3">
+          <div class="default-table-title">
             닉네임
           </div><span class="px-6"> {{ nickname }}</span>
           <hr class="h-line3">
           <div class="default-table-title">
             이메일
-          </div><span class="px-6"> {{ email }}</span>
+          </div><span class="px-6"> {{ email ? email : '-' }}</span>
           <hr class="h-line3">
-          <div class="default-table-title">
-            전화번호
-          </div><span
-            v-if="typeof phoneNumber == 'undefined'"
-            class="px-6"
-          >전화번호를 등록해 주세요.</span><span
-            v-else
-            class="px-6"
-          > {{ phoneNumber }}</span>
-          <hr class="h-line3">
-          <div class="default-table-title">
-            별명
-          </div><span class="px-6"> {{ "data-binding X" }}</span>
         </div>
       </div>
     </div>
@@ -66,27 +57,34 @@ export default {
     CommentList,
     GoodList,
   },
-  data() {
-    return {
-      nickname: '엔비',
-      email: '',
-      good: [],
-      phoneNumber: '',
-      comment: [],
-    };
+  computed: {
+    id: function() {
+      return this.$store.state.Profile.id
+    },
+    nickname: function() {
+      return this.$store.state.Profile.nickname
+    },
+    email: function() {
+      return this.$store.state.Profile.email
+    }
   },
   
   async created() {
     
-    let res = await jwtAxios.get('/user/profile')
-
-    console.log(res.data)
-
-    this.nickname = res.data['nickname']
-    this.email = res.data['email']
-    this.good = res.data['good']
-    this.phoneNumber =res.data['phoneNumber']
-    this.comment = res.data['comment']
+    await jwtAxios.get('/user/profile')
+    .then((res) => {
+      console.log(res.data)
+      // this.$store.commit('Profile/SET_ID', res.data['id'])
+      this.$store.commit('Profile/SET_NICKNAME', res.data['nickname'])
+      this.$store.commit('Profile/SET_EMAIL', res.data['email'])
+      this.$store.commit('Profile/SET_RECOMMENDS', res.data['recommends'])
+      this.$store.commit('Profile/SET_COMMENTS', res.data['comments'])
+      
+      console.log(res.data['nickname'])
+      console.log(this.$store.state.Profile.nickname)
+      console.log(this.$store.state.Profile.email)
+      console.log(this.$store.state.Profile.recommends)
+    })
   }
 };
 </script>

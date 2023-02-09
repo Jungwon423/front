@@ -73,7 +73,7 @@
     </v-dialog>
     
     <v-dialog
-      v-model="disrecommendDialog"
+      v-model="disRecommendDialog"
       max-width="500px"
       height="500px"
     >
@@ -190,7 +190,7 @@ export default {
       }
     },
     disrecommend(){
-      if (this.$store.getters['Login/logined'] && !goodList.includes($store.state.Login.id) && !badList.includes($store.state.Login.id)) {
+      if (this.$store.getters['Login/logined'] && !this.goodList.includes(this.$store.state.Login.id) && !this.badList.includes(this.$store.state.Login.id)) {
           jwtAxios.post('/comment/' + this.id + '/disrecommend')
           .then((res) => {
             this.badList = res.data['users']

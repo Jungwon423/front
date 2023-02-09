@@ -6,6 +6,7 @@ import Product from './Product'
 import Search from './Search'
 import User from './User'
 import Wish from './Wish'
+import Profile from './Profile'
 
 export default createStore({
   modules: {
@@ -15,6 +16,7 @@ export default createStore({
     Product,
     Search,
     User,
-    Wish
+    Wish,
+    Profile
   }
 })
