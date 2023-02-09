@@ -83,13 +83,12 @@ import library from '@/library/library'
 
         marketNames: ["Amazon", "eBay", "AliExpress"],
 
-        marketChecked: {
-          'Amazon' : false,
-          'eBay' : false,
-          'AliExpress' : false
-        },
-
-        market : "all"
+        marketChecked: this.$store.state.Category.currentMarket,
+        // {
+        //   'Amazon' : false,
+        //   'eBay' : false,
+        //   'AliExpress' : false
+        // },
       }
     },
     computed: {

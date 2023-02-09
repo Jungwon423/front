@@ -93,15 +93,19 @@ export default {
   data() {
     return {
       productId: '',
-      comments:[],
       textfield: "",
       writeDialog: false
+    }
+  },
+  computed: {
+    comments: function() {
+      return this.$store.state.Product.comments
     }
   },
   created() {
     jwtAxios.get('/product/comments?productId=' + encodeURIComponent(this.$route.query.name))
     .then((res) => {
-      this.comments = res.data['result']
+      this.$store.commit('Product/SET_COMMENTS', res.data['result'])
       this.productId = res.data['result']['productId']
     })
   },
@@ -113,7 +117,7 @@ export default {
           this.textfield = ''
           jwtAxios.get('/product/comments?productId=' + encodeURIComponent(this.$route.query.name))
           .then((res) => {
-            this.comments = res.data['result']
+            this.$store.commit('Product/SET_COMMENTS', res.data['result'])
             this.productId = res.data['result']['productId']
           })
         })
