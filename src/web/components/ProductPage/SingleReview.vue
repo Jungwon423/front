@@ -182,7 +182,7 @@ export default {
       empty1: this.goodClicked,
       empty2: this.badClicked,
       recommendDialog: false,
-      disrecommendDialog: false,
+      disRecommendDialog: false,
       deleteCommentDialog:false,
       snackbar: false
     }
@@ -217,7 +217,7 @@ export default {
         this.snackbar = true
       }
       else {
-          this.disrecommendDialog = true
+          this.disRecommendDialog = true
       }
     },
     closeRecommendDialog() {
@@ -225,7 +225,7 @@ export default {
     },
 
     closeDisRecommendDialog() {
-      this.disrecommendDialog = false
+      this.disRecommendDialog = false
     },
 
     closedeleteCommentDialog() {
