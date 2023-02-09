@@ -10,58 +10,42 @@
       <span class="mx-12">브랜드</span>
       <span class="mx-8">네이버 최저가</span>
     </div>
-    <v-row class="text-center">
-      <v-col>
-        <div class="messages">
-          <v-img
-            width="120"
-            height="120"
-            src="@/assets/프레임손가락.png"
-          />
-        </div>
-        <div class="empty-review1">
-          선호하는 제품을
-        </div>
-        <div class="empty-review1">
-          추천하여 다른 사용자들과 공유해보세요.
-        </div>
-      </v-col>
-    </v-row>
-    <ProfileGood />
+    <NoGoodList 
+      v-if="recommends == null || recommends.length == 0"
+    />
+    <ProfileGood
+      v-for="recommend in recommends"
+      :key="recommend"
+      :good-number="recommend.goodCount"
+      :bad-number="recommend.badCount"
+      :image-url="recommend.imageUrl"
+      :name="recommend.name"
+      :price="recommend.price"
+      :market-name="recommend.marketName"
+      :naver-price="recommend.naverPrice"
+    />
   </div>
 </template>
     
 <script>
-//import ProductContainer from '@/web/components/CategoryPage/ProductContainer.vue';
 import ProfileGood from '@/web/components/ProfilePage/ProfileGood.vue';
+import NoGoodList from './NoGoodList.vue';
 
 export default {
     name: 'ProductList',
     components: {
-    ProfileGood,
+      ProfileGood,
+      NoGoodList
     },
-    /*
     computed: {
-    productList: function () {
-        console.log(this.$store.state.Category.productList)
-        return this.$store.state.Category.productList
-    },
-    productCount: function () {
-        return this.$store.state.Category.productCount
-    },
-    currentCategory: function () {
-        return this.$categoryMap.get(this.$store.state.Category.currentCategory)
+      recommends: function() {
+        return this.$store.state.Profile.recommends
+      }
     }
-    },
-    
-    async created() {
-    await this.$store.dispatch('Category/FETCH_PRODUCTLIST_API')
-    }
-    */
 }
 </script>
 
-<style scoped>
+<style>
 .default-info3{
 margin-left:40px;
 width:980px;

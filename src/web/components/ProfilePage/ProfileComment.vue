@@ -5,29 +5,44 @@
         <input type="checkbox">
       </span>
       <span class="text-wrapper">
-        12130131
+        {{ id }}
       </span>
     </div>
     <div class="comment-wrapper2">
       <div class="text-wrapper1">
-        안녕하세요 제품이 끝내주네요.안녕하세요 제품이 끝내주네요.안녕하세요 제품이 끝내주네요.안녕하세요 제품이 끝내주네요.안녕하세요 제품이 끝내주네요.안녕하세요 제품이 끝내주네요.
+        {{ content }}
       </div>
     </div>
     <div class="comment-wrapper3">
       <div class="text-wrapper2">
-        20230203
+        {{ timestamp }}
       </div>
     </div>
-    <div>6</div>
+    <div>{{ goodNumber }}</div>
   </div>
 </template>
   
 <script>
 export default {
-    name: 'ProfileGood',
-    data () {
-        return {}
+  name: 'ProfileGood',
+  props: {
+    id: {
+      type: String,
+      default: ''
     },
+    content: {
+      type: String,
+      default: ''
+    },
+    timestamp: {
+      type: String,
+      default: ''
+    },
+    goodNumber: {
+      type: Number,
+      default: 0
+    }
+  }
 }
 </script>
 
