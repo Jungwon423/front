@@ -1,7 +1,14 @@
 <template>
   <div class="my-12 default-info3">
-    <div class="pa-6">
+    <div class="pa-6 product-title">
       내가 쓴 댓글
+    </div>
+    <div class="del-btn">
+      <v-btn
+        variant="outlined"
+      >
+        선택삭제
+      </v-btn>
     </div>
     <hr class="h-line4">
     <div class="product-detail1 pa-4">
@@ -44,6 +51,17 @@
   </script>
   
   <style scoped>
+.product-title{
+  display:inline-block;
+}
+.del-btn{
+  display:inline-block;
+  position:relative;
+  top:10%;
+  left:65%;
+  font-size:14px;
+  font-weight:800;
+}
 .default-info3{
   margin-left:40px;
   width:980px;

@@ -31,10 +31,10 @@
         {{ naverPrice.toLocaleString('ko-KR') }}원
       </div>
     </div>
-    <div class="other">
-      <div>
-        <v-btn>삭제</v-btn>
-      </div>
+    <div class="del-btn">
+      <v-btn variant="outlined">
+        삭제
+      </v-btn>
     </div>
   </div>
 </template>
@@ -157,11 +157,11 @@ export default {
   position:relative;
   left:4%;
 }
-.other{
+.del-btn{
   position:relative;
   float:right;
-  text-align: end;
   top:80%;
   font-size:14px;
+  font-weight:800;
 }
 </style>

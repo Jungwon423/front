@@ -44,7 +44,7 @@ export default {
 emits: ['close'],
   methods: {
     goLogin(){
-      this.$router.push('/login')
+      this.$router.replace('/login')
     },
     closeDialog() {
       this.dialog = false

@@ -42,21 +42,25 @@
     </v-btn>
   </a>
   <v-col>
+    <!-- 
     <div class="text-link1">
       비밀번호 찾기
     </div>
+    -->
     <div
       class="py-2 text-link1"
       @click="goAgree()"
     >
-      계정 생성하기
+      일반 회원가입 >
     </div>
+    <!-- 
     <div
       class="py-2 text-link1"
       @click="goLogin2()"
     >
       간편로그인 디자인 보기
     </div>
+     -->
   </v-col>
 </template>
 <script>
@@ -89,30 +93,8 @@ export default {
     },
     clickNaver(){
       var el = document.getElementById("naver_id_login");
-      //console.log(el);
       el.getElementsByTagName("a")[0].click(); //버튼 누르면 naver_id_login id가진 div도 눌리게
     },
-    /*
-    handleCredentialResponse(response) {
-      // decodeJwtResponse() is a custom function defined by you
-      // to decode the credential response.
-      const responsePayload = parseJwt(response.credential);
-
-      console.log("ID: " + responsePayload.sub);
-      console.log('Full Name: ' + responsePayload.name);
-      console.log('Given Name: ' + responsePayload.given_name);
-      console.log('Family Name: ' + responsePayload.family_name);
-      console.log("Image URL: " + responsePayload.picture);
-      console.log("Email: " + responsePayload.email); 
-    },  
-    parseJwt (token) {
-      var base64Url = token.split('.')[1];
-      var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join(''));
-      return JSON.parse(jsonPayload);
-    },*/
   }
 }
 </script>
@@ -158,7 +140,8 @@ export default {
   margin-left:0px;
 }
 .text-link1{
-  font-size:medium;
+  margin-top:20px;
+  font-size:18px;
   font-weight:700;
   color:#616161;
 }
