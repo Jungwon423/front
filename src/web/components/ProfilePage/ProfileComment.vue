@@ -2,7 +2,12 @@
   <div class="comment-container2">
     <div class="comment-wrapper1">
       <span class="text-wrapper">
-        <input type="checkbox">
+        <input
+          v-model="check"
+          type="checkbox"
+          :value="id"
+          @click="sendData"
+        >
       </span>
       <span class="text-wrapper">
         {{ id }}
@@ -20,6 +25,7 @@
     </div>
     <div>{{ goodNumber }}</div>
   </div>
+  <div @click="sendData" />
 </template>
   
 <script>
@@ -41,8 +47,19 @@ export default {
     goodNumber: {
       type: Number,
       default: 0
+    },
+  },
+  emits: ['send-data'],
+  data () {
+    return {
+      check:false,
     }
-  }
+  },
+  methods:{
+    sendData() { //누를 때 자동으로 데이터 보냄
+      this.$emit('send-data',this.id)
+    },
+  },
 }
 </script>
 

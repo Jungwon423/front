@@ -31,19 +31,35 @@
         {{ naverPrice.toLocaleString('ko-KR') }}원
       </div>
     </div>
-    <div class="del-btn">
-      <v-btn variant="outlined">
-        삭제
-      </v-btn>
-    </div>
+    <v-dialog
+      v-model="deleteGood"
+      max-width="500px"
+      height="500px"
+    >
+      <template #activator="{ attrs }">
+        <v-btn
+          variant="outlined"
+          class="mx-4 del-btn"
+          v-bind="attrs"
+          @click="openDeleteDialog"
+        >
+          삭제
+        </v-btn>
+      </template>
+      <delete-good-dialog
+        :name="name"
+        @close="closeDeleteDialog"
+      />
+    </v-dialog>
   </div>
 </template>
 
 <script>
-
+import DeleteGoodDialog from '@/web/components/ProfilePage/DeleteGoodDialog.vue';
 export default {
     name: 'ProfileGood',
     components: {
+      DeleteGoodDialog,
     },
     props: {
       goodNumber: {
@@ -76,7 +92,18 @@ export default {
       }
     },
     data () {
-        return {}
+    return {
+      deleteGood: false,
+      }
+    },
+    
+    methods:{
+      closeDeleteDialog() {
+        this.deleteGood = false
+      },
+      openDeleteDialog(){
+        this.deleteGood = true
+      },
     },
 }
 </script>
