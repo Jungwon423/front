@@ -18,7 +18,7 @@
     </div>
     <div class="good-wrapper2">
       <div class="text-wrapper2">
-        {{ price.toLocaleString('ko-KR') }}원
+        {{ Math.floor(price).toLocaleString('ko-KR') }}원
       </div>
     </div>
     <div class="good-wrapper3">
@@ -116,13 +116,16 @@ export default {
 }
 .text-wrapper{
   font-size:15px; 
+  margin-left:20px;
   color:#616161;
 }
 .text-wrapper1{
   position:relative;
   top:7%;
-  padding-right:30px;
+  margin-left:20px;
+  padding-right:10px;
   font-weight:500;
+  font-size:19px;
   white-space:normal;
   display:-webkit-box;
   -webkit-line-clamp: 3;

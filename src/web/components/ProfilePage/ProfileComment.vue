@@ -75,10 +75,11 @@ export default {
   width:180px;
 }
 .text-wrapper{
+  font-size:10px;
   position:relative;
   display: inline-block;
   width:30px;
-  left:20%;
+  left:10%;
 }
 .text-wrapper1{
   display: inline-block;
