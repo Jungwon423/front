@@ -114,7 +114,7 @@
                       v-bind="attrs"
                     />
                   </div>
-                  <span class="ddabong-text">비추천 {{ bad.length }}</span>
+                  <span class="ddabong-text">비추 {{ bad.length }}</span>
                 </div>
               </div>
             </template>
@@ -140,7 +140,7 @@
           <span
             class="px-10"
             style="font-weight:600;"
-          > 쇼핑 바로가기</span>
+          > 쇼핑</span>
         </v-btn>
       </div>
       <div class="px-5">
@@ -183,7 +183,7 @@
                       size="large"
                       class="heart-icon"
                     />
-                    <!-- @click.stop="changeBtn()" -->
+                  <!-- @click.stop="changeBtn()" -->
                   </div>
                   <div
                     v-if="wishChecked"
@@ -413,7 +413,7 @@ export default {
   color:#EF5350;
 }
 .ddabong{
-  width:100px;
+  width:40px;
   height:30px;
 }
 .ddabong-img1{
@@ -422,19 +422,22 @@ export default {
   position:relative;
 }
 .ddabong-img2{
-  display:inline;
+  display:inline-block;
   width:30px;
   position:relative;
   right:30%;
   bottom:30%;
 }
 .ddabong-text{
+  right:10%;
+  width:40px;
   display:inline-block;
-  font-size:12px;
+  font-size:10px;
   position:relative;
-  bottom:30%;
+  bottom:200%;
 }
 .ddabong-card{
+  margin-left:130px;
   position:relative;
   display:flex;
 }
@@ -516,9 +519,9 @@ export default {
 }
 
 .brand2-btn-wrapper{
-  margin-left:20px;
+  margin-left:15px;
   height:40px;
-  width:120px;
+  width:70px;
   font-size:12px;
   background-color:#1EC800;
   color:white;
@@ -526,7 +529,7 @@ export default {
 .brand-btn{
   position: relative;
   top:10%;
-  left:20%;
+  left:27%;
   width:30px;
   height:30px;
 }

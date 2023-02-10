@@ -3,13 +3,28 @@
     <div class="pa-6 product-title">
       내가 쓴 댓글
     </div>
-    <div class="del-btn">
-      <v-btn
-        variant="outlined"
-      >
-        선택삭제
-      </v-btn>
-    </div>
+    <v-dialog
+      v-model="selectedDeleteDialog"
+      max-width="500px"
+      height="500px"
+    >
+      <!-- @click="openDeleteDialog" -->
+      <template #activator="{ attrs }">
+        <v-btn
+          variant="outlined"
+          class="mx-4 del-btn"
+          v-bind="attrs"
+          @click="openSelectedDeleteDialog"
+        >
+          선택삭제
+        </v-btn>
+      </template>
+      
+      <selected-delete-dialog
+        :comments="comment_check"
+        @close="closeSelectedDeleteDialog"
+      />
+    </v-dialog>
     <hr class="h-line4">
     <div class="product-detail1 pa-4">
       <span class="product-detail0">댓글 id</span>
@@ -27,30 +42,53 @@
       :content="comment.content"
       :timestamp="comment.timestamp"
       :good-number="comment.good == null ? 0 : comment.good.length"
+      @send-data="showData"
     />
   </div>
 </template>
   
-  <script>
-  import NoComments from '@/web/components/ProfilePage/NoComments.vue'
-  import ProfileComment from '@/web/components/ProfilePage/ProfileComment.vue';
-  
-  
-  export default {
-    name: 'ProductList',
-    components: {
-      NoComments,
-      ProfileComment,
-    },
-    computed: {
-      comments: function() {
-        return this.$store.state.Profile.comments
-      }
-    }
+<script>
+import NoComments from '@/web/components/ProfilePage/NoComments.vue'
+import ProfileComment from '@/web/components/ProfilePage/ProfileComment.vue';
+import SelectedDeleteDialog from '@/web/components/ProfilePage/SelectedDeleteDialog.vue';
+
+export default {
+  name: 'ProductList',
+  components: {
+    NoComments,
+    ProfileComment,
+    SelectedDeleteDialog,
+  },
+  data () {
+  return {
+    selectedDeleteDialog:false,
+    comment_check:[],
   }
-  </script>
+},
+  computed: {
+    comments: function() {
+      return this.$store.state.Profile.comments
+    }
+  },
+  methods:{
+  closeSelectedDeleteDialog() {
+    this.selectedDeleteDialog = false
+  },
+  openSelectedDeleteDialog(){
+    this.selectedDeleteDialog = true
+  },
+  showData(data) {
+    if (this.comment_check.includes(data)){
+      this.comment_check.pop(data)
+    }else{
+      this.comment_check.push(data)
+    }
+  },
+  }
+}
+</script>
   
-  <style scoped>
+<style scoped>
 .product-title{
   display:inline-block;
 }
