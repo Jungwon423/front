@@ -85,7 +85,7 @@ export default {
   display: inline-block;
   position:relative;
   margin-left:10px;
-  font-weight:500;
+  font-weight:400;
   white-space:normal;
   display:-webkit-box;
   -webkit-line-clamp: 2;

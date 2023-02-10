@@ -141,16 +141,12 @@ export default {
   border-color:transparent;
   background-color: #E0E0E0;
 }
-.login-bar-wrapper:focus{
-  border-color:black;
-  border-width:2px;
-  background-color: white;
-}
 .login-bar{
   position:relative;
   width:350px;
   height:60px;
   font-size:20px;
+  margin-left:20px;
   text-align:left;
 }
 .login-bar:hover{
@@ -159,7 +155,6 @@ export default {
 input::placeholder {
   color: #616161;
   position:relative;
-  left:20px;
   font-size:20px;
 }
 .login-btn{
@@ -183,4 +178,5 @@ input::placeholder {
     border-color:#B0BEC5;
     width:400px;
 }
+input:focus {outline: none;}
 </style>

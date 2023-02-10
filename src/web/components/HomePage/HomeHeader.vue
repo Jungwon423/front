@@ -331,4 +331,5 @@ input::placeholder{
   font-size:small;
   cursor:pointer;
 }
+input:focus {outline: none;}
 </style>
