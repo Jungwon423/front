@@ -1,10 +1,7 @@
 <template>
   <div class="inline-block">
     <div class="item-box px-2">
-      검색결과 &nbsp; {{ productCount }} 건
-    </div>
-    <div>
-      {{ currentKeyword }}
+      <strong>{{ currentKeyword }}</strong> &nbsp; 검색결과 : &nbsp; {{ productCount }} 건
     </div>
     <v-row
       v-if="productList.length == 0"
@@ -28,7 +25,7 @@
     </v-row>
   
   
-    <ProductContainer 
+    <SearchContainer 
       v-for="product in productList"
       :key="product.name"
       :name="product.name"
@@ -47,12 +44,12 @@
 </template>
   
   <script>
-  import ProductContainer from '@/web/components/CategoryPage/ProductContainer.vue';
+  import SearchContainer from '@/web/components/SearchPage/SearchContainer.vue';
   
   export default {
     name: 'ProductList',
     components: {
-      ProductContainer
+      SearchContainer
     },
     computed: {
       productList: function () {
@@ -70,7 +67,6 @@
     
     async created() {
       await this.$store.dispatch('Search/FETCH_PRODUCTLIST_API',this.$store.state.Search.currentKeyword)
-
     }
     
   }

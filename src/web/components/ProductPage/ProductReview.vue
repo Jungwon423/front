@@ -23,7 +23,8 @@
       </div>
     </v-col>
   </v-row>
-  <div style="padding-top:30px;">
+  <div class="empty" />
+  <div style="padding-top:50px;">
     <single-review
       v-for="comment in comments"
       :id="comment.id"
@@ -169,6 +170,7 @@ export default {
   left:45.5%;
 }
 .empty-review1{
+  height:80px;
   font-size:20px;
   color: #BDBDBD;
 }

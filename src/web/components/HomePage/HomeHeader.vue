@@ -145,7 +145,6 @@ export default {
     Search(){
       console.log(this.keyword)
       this.$store.commit('Search/SET_CURRENTKEYWORD', this.keyword)
-      //console.log(this.$store.state.Search.currentKeyword)
       
       this.$router.push({
       name: 'search',

@@ -3,11 +3,11 @@
     <img
       class="product-image"
       :src="imageUrl"
-      width="180"
-      height="180"
+      width="200"
+      height="200"
     >
     <span class="product-info py-2">
-      <div> {{ name }} </div>
+      <div class="product-name"> {{ name }} </div>
       <div class="py-2">
         <span style="font-size:15px;">{{ Math.floor(price).toLocaleString('ko-KR') }}원</span>
         <div class="naver-price">네이버 최저가 : {{ Math.floor(naverPrice).toLocaleString('ko-KR') }}원
@@ -137,18 +137,23 @@ export default {
   padding: 10px;
   margin: 10px;
   width: 950px;
-  height: 200px;
+  height: 220px;
   border: 1px solid;
   border-width:1px;
   border-color:#FCE4EC;
   border-radius: 8px;
   background-color:white;
 }
-.origin-price{
-  padding-left:3px;
-  color:#757575;
-  text-decoration-line: line-through;
-  font-size:12px;
+.product-name{
+  position:relative;
+  font-weight:500;
+  font-size:18px;
+  white-space:normal;
+  display:-webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 .v-line3{
   margin-top:10px;
@@ -183,9 +188,11 @@ export default {
   width: 500px;
 }
 .shopping-mall1 {
+  position:relative;
   width: 80px;
   display:inline-block;
-  left:50%;
+  top:10%;
+  left:25%;
 }
 .like-btn-wrapper1{
   position: relative;
