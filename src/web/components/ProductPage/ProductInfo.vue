@@ -132,6 +132,7 @@
         <span>네이버 최저가: {{ Math.floor(naverPrice).toLocaleString('ko-KR') }}원</span>
         <v-btn
           class="brand2-btn-wrapper"
+          @click="openNaver"
         >
           <v-img
             src="@/assets/네이버로고.png"
@@ -296,6 +297,10 @@ export default {
     market_image: function () {
       return require("@/assets/" + this.marketName + ".png")
     },
+    naver_link: function(){
+      let link = "https://search.shopping.naver.com/search/all?frm=NVSHATC&origQuery="+this.name+"&pagingIndex=1&pagingSize=40&productSet=total&query=" + this.name + "&sort=price_asc&timestamp=&viewType=list";
+      return link;
+    },
   },
   methods: {
     clickGood() {
@@ -355,6 +360,10 @@ export default {
     },
     closeWishlistDialog() {
       this.wishlistDialog = false
+    },
+
+    openNaver() {
+      window.open(this.naver_link)
     },
 
   }
