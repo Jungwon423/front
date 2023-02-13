@@ -3,8 +3,9 @@
     <div class="item-box px-2">
       <strong>{{ currentKeyword }}</strong> &nbsp; 검색결과 : &nbsp; {{ productCount }} 건
     </div>
+    <!-- v-if="productList.length == 0" -->
     <v-row
-      v-if="productList.length == 0"
+      
       class="text-center"
     >
       <v-col>
@@ -53,22 +54,21 @@
     },
     computed: {
       productList: function () {
-        //console.log(this.$store.state.Search.productList)
+        console.log(this.$store.state.Search.productList)
         return this.$store.state.Search.productList
       },
       productCount: function () {
+        //console.log(this.$store.state.Search.productCount)
         return this.$store.state.Search.productCount
       },
       currentKeyword: function () {
-        console.log(this.$store.state.Search.currentKeyword)
+        //console.log(this.$store.state.Search.currentKeyword)
         return this.$store.state.Search.currentKeyword
       }
     },
-    
     async created() {
-      await this.$store.dispatch('Search/FETCH_PRODUCTLIST_API',this.$store.state.Search.currentKeyword)
+      await this.$store.dispatch('Search/FETCH_PRODUCTLIST_API')
     }
-    
   }
   </script>
   

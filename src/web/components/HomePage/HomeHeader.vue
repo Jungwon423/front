@@ -143,14 +143,12 @@ export default {
   },
   methods: {
     Search(){
-      console.log(this.keyword)
       this.$store.commit('Search/SET_CURRENTKEYWORD', this.keyword)
-      
       this.$router.push({
       name: 'search',
       query: {
-        page: this.$route.query.page,
-        keyword : this.keyword}},)
+        keyword : this.keyword,
+        page: 1}},)
     },
     goHomePage() {
       if (window.location.pathname == "/") {  //현재 홈페이지 일 경우

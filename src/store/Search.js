@@ -36,14 +36,14 @@ export default {
   },
 
   actions: {
-    async FETCH_PRODUCTLIST_API(context, keyword) {
+    async FETCH_PRODUCTLIST_API(context) {
       const config = {"Content-Type": 'application/json'};
       try {
         let res = await jwtAxios.post(
           "/product/" +
           context.state.page +
           "/search?keyword=" +
-          keyword, config
+          context.state.currentKeyword, config
         );
         context.commit("SET_PRODUCTLIST", res.data["result"],);
         context.commit("SET_PRODUCTCOUNT", res.data['productCount']);
