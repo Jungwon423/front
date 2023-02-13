@@ -1,28 +1,29 @@
 <template>
   <div class="category-page">
-    <HomeHeader />
+    <SearchHeader />
     <SideBox />
     <ProductList />
-    <CategoryPagination />
+    <SearchPagination />
     <Footer />
   </div>
 </template>
 
 <script>
-import HomeHeader from '@/web/components/HomePage/HomeHeader.vue'
+import SearchHeader from '@/web/components/SearchPage/SearchHeader.vue'
 import SideBox from '@/web/components/CategoryPage/SideBox.vue';
 import ProductList from '@/web/components/SearchPage/SearchMain.vue';
-import CategoryPagination from '../components/CategoryPage/CategoryPagination.vue';
+import SearchPagination from '@/web/components/SearchPage/SearchPagination.vue';
 import Footer from '@/web/components/Footer/KaguFooter.vue'
 import library from '@/library/library';
 
 export default {
   name: 'CategoryPage',
   components : {
-    HomeHeader,
+    SearchHeader,
+    //HomeHeader,
     SideBox,
     ProductList,
-    CategoryPagination,
+    SearchPagination,
     Footer,
   },
   method:{
@@ -30,10 +31,9 @@ export default {
   },
   watch: {
     '$route' () {
-      console.log(this.$route.query.keyword)
-      //this.$store.commit('Search/SET_CURRENTKEYWORD', this.$route.query.keyword)
       this.$store.commit('Search/SET_PAGE', this.$route.query.page)
-      this.$store.dispatch('Search/FETCH_PRODUCTLIST_API')
+      this.$store.commit('Search/SET_CURRENTKEYWORD', this.$route.query.keyword)
+      this.$store.dispatch('Search/FETCH_PRODUCTLIST_API',this.$route.query.keyword)
     },
   },
 }
